@@ -1,0 +1,66 @@
+# Carpetas generadas por Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+
+# Archivos de configuración de IDEs
+.vs/
+.gradle/
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Archivos generados por Unity
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+
+# Archivos de compilación
+*.apk
+*.unitypackage
+*.aab
+*.app
+
+# Archivos del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+report.xml
+Thumbs.db.meta
+
+# Configuración de JetBrains Rider
+.idea/
+.idea/**
+
+# Información de compilación de Asset Hunter
+*.ahbuildinfo
+
+# Archivos de FMOD
+fmod.log
+fmod_editor.log
+/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
+/Assets/Plugins/FMOD/Cache/Editor.meta
