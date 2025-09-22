@@ -95,4 +95,22 @@ public class EntityManager : MonoBehaviour
             hunter = null;
         }
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            // Invierte el estado del interruptor global en la clase Agent.
+            Agent.movementEnabled = !Agent.movementEnabled;
+
+            if (Agent.movementEnabled)
+            {
+                Debug.Log("<color=lime>MOVIMIENTO HABILITADO</color> - Presiona 'R' para detener.", this);
+            }
+            else
+            {
+                Debug.Log("<color=red>MOVIMIENTO DESHABILITADO</color> - Presiona 'R' para reanudar.", this);
+            }
+        }
+    }
 }

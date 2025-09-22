@@ -1,19 +1,52 @@
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
+// Boid hereda de Agent, por lo que tiene acceso a 'velocity', 'maxSpeed', 'ApplyForce', etc.
 public class Boid : Agent
 {
-    [Header("Parámetros de Detección del Boid")]
+    // --- VARIABLES PÚBLICAS ---
+
+    [Header("Parámetros de Detección")]
     public float foodDetectionRadius = 15f;
     public float hunterDetectionRadius = 20f;
     public float flockmateDetectionRadius = 10f;
 
-    private void Start()
+    [Header("Parámetros de Flocking")]
+    [Tooltip("Peso de cohesión (0–1).")]
+    [Range(0f, 1f)] public float cohesionWeight = 0.4f;
+
+    [Tooltip("Peso de alineamiento (0–1).")]
+    [Range(0f, 1f)] public float alignmentWeight = 0.2f;
+
+    [Tooltip("Peso de separación (0–1).")]
+    [Range(0f, 1f)] public float separationWeight = 0.3f; // ojo, 1.5 no entra en el rango 0–1
+
+
+    [Header("Parámetros de Wander")]
+    [Tooltip("Distancia a la que se proyecta el círculo de Wander.")]
+    public float wanderDistance = 10f;
+    [Tooltip("Radio del círculo de Wander. Un radio mayor produce giros más amplios.")]
+    public float wanderRadius = 5f;
+    [Tooltip("Magnitud del desplazamiento aleatorio por segundo. Un valor mayor produce giros más erráticos.")]
+    public float wanderJitter = 40f;
+
+    // --- VARIABLE PRIVADA PARA "MEMORIA" DE WANDER ---
+    // Almacena el ángulo actual en el círculo de Wander para que persista entre frames.
+    private float wanderAngle = 0f;
+
+    // --- MÉTODOS DE UNITY ---
+
+    private void OnEnable()
     {
-        EntityManager.Instance.RegisterBoid(this);
+        if (EntityManager.Instance != null)
+        {
+            EntityManager.Instance.RegisterBoid(this);
+        }
+        velocity = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (EntityManager.Instance != null)
         {
@@ -27,11 +60,13 @@ public class Boid : Agent
         base.Update();
     }
 
+    // --- LÓGICA PRINCIPAL (ÁRBOL DE DECISIÓN) ---
+
     private void ExecuteDecisionTree()
     {
         Hunter hunter = EntityManager.Instance.hunter;
         GameObject closestFood = FindClosestInList(EntityManager.Instance.foodItems, foodDetectionRadius);
-        var flockmates = EntityManager.Instance.boids.Where(b => b != this && Vector3.Distance(transform.position, b.transform.position) < flockmateDetectionRadius).ToList();
+        var flockmates = EntityManager.Instance.boids.Where(b => b != this && b.gameObject.activeInHierarchy && Vector3.Distance(transform.position, b.transform.position) < flockmateDetectionRadius).ToList();
 
         if (hunter != null && Vector3.Distance(transform.position, hunter.transform.position) < hunterDetectionRadius)
         {
@@ -54,45 +89,133 @@ public class Boid : Agent
         Wander();
     }
 
-    // --- Métodos de Comportamiento (Textos Simplificados) ---
+    // --- COMPORTAMIENTOS (ACCIONES) ---
 
     private void GoToFood(GameObject food)
     {
-        debugStatusText = "Comer"; // <-- CAMBIO
+        debugStatusText = "Comer";
         SetDebugColor(Color.green);
-        Debug.DrawLine(transform.position, food.transform.position, Color.green, 0f, false);
+        Debug.DrawLine(transform.position, food.transform.position, Color.green);
+        ApplyForce(Arrive(food.transform.position));
     }
 
     private void EvadeHunter(Hunter hunter)
     {
-        debugStatusText = "Huir"; // <-- CAMBIO
+        debugStatusText = "Huir";
         SetDebugColor(Color.red);
-        Vector3 threatPosition = hunter.transform.position + Vector3.up * 0.2f;
-        Debug.DrawLine(transform.position, threatPosition, Color.red, 0f, false);
-        Vector3 escapeDirection = (transform.position - hunter.transform.position).normalized;
-        Debug.DrawLine(transform.position, transform.position + escapeDirection * 10f, Color.cyan, 0f, false);
+        Debug.DrawLine(transform.position, hunter.transform.position, Color.red);
+        Vector3 desired = (transform.position - hunter.transform.position).normalized * maxSpeed;
+        Vector3 steeringForce = desired - velocity;
+        ApplyForce(steeringForce);
     }
 
-    private void ApplyFlocking(System.Collections.Generic.List<Boid> flockmates)
+    private void ApplyFlocking(List<Boid> flockmates)
     {
-        debugStatusText = "Flock"; // <-- CAMBIO
+        debugStatusText = "Flock";
         SetDebugColor(Color.blue);
-        foreach (var mate in flockmates)
-        {
-            Debug.DrawLine(transform.position, mate.transform.position, new Color(0, 0, 1, 0.5f));
-        }
+        Vector3 cohesionForce = CalculateCohesion(flockmates);
+        Vector3 alignmentForce = CalculateAlignment(flockmates);
+        Vector3 separationForce = CalculateSeparation(flockmates);
+        ApplyForce(cohesionForce * cohesionWeight);
+        ApplyForce(alignmentForce * alignmentWeight);
+        ApplyForce(separationForce * separationWeight);
     }
 
     private void Wander()
     {
-        debugStatusText = "Wander"; // <-- CAMBIO
+        debugStatusText = "Wander";
         SetDebugColor(Color.gray);
+
+        wanderAngle += Random.Range(-1f, 1f) * wanderJitter * Time.deltaTime;
+
+        Vector3 circleCenter = transform.position + velocity.normalized * wanderDistance;
+
+        Vector3 offset = new Vector3(
+            Mathf.Cos(wanderAngle * Mathf.Deg2Rad),
+            0,
+            Mathf.Sin(wanderAngle * Mathf.Deg2Rad)
+        ) * wanderRadius;
+
+        Vector3 target = circleCenter + offset;
+
+        DebugHelper.DrawCircle(circleCenter, wanderRadius, Color.gray);
+        Debug.DrawLine(transform.position, target, Color.white);
+        DrawSphere(target, 0.5f, Color.white);
+
+        Vector3 desired = (target - transform.position).normalized * maxSpeed;
+        ApplyForce(desired - velocity);
     }
 
-    private GameObject FindClosestInList(System.Collections.Generic.List<GameObject> list, float radius)
+    // --- CÁLCULOS DE FLOCKING ---
+
+    private Vector3 CalculateCohesion(List<Boid> flockmates)
+    {
+        Vector3 centerOfMass = Vector3.zero;
+        foreach (var mate in flockmates) { centerOfMass += mate.transform.position; }
+        centerOfMass /= flockmates.Count;
+        DrawSphere(centerOfMass, 0.5f, Color.blue);
+        Debug.DrawLine(transform.position, centerOfMass, Color.blue);
+        return Arrive(centerOfMass);
+    }
+
+    private Vector3 CalculateAlignment(List<Boid> flockmates)
+    {
+        Vector3 averageVelocity = Vector3.zero;
+        foreach (var mate in flockmates) { averageVelocity += mate.velocity; }
+        averageVelocity /= flockmates.Count;
+        Vector3 alignmentLineEnd = transform.position + averageVelocity.normalized * 5f;
+        Debug.DrawLine(transform.position, alignmentLineEnd, Color.white);
+        DrawSphere(alignmentLineEnd, 0.2f, Color.white);
+        Vector3 desiredVelocity = averageVelocity.normalized * maxSpeed;
+        return desiredVelocity - velocity;
+    }
+
+    private Vector3 CalculateSeparation(List<Boid> flockmates)
+    {
+        Vector3 separationForce = Vector3.zero;
+        int neighborsCount = 0;
+        foreach (var mate in flockmates)
+        {
+            float distance = Vector3.Distance(transform.position, mate.transform.position);
+            if (distance > 0 && distance < flockmateDetectionRadius / 2)
+            {
+                Vector3 repulsion = (transform.position - mate.transform.position).normalized / distance;
+                separationForce += repulsion;
+                neighborsCount++;
+                Debug.DrawLine(mate.transform.position, transform.position, Color.red);
+            }
+        }
+        if (neighborsCount > 0)
+        {
+            separationForce /= neighborsCount;
+            Vector3 desiredVelocity = separationForce.normalized * maxSpeed;
+            return desiredVelocity - velocity;
+        }
+        return Vector3.zero;
+    }
+
+    // --- MÉTODOS DE AYUDA ---
+
+    private Vector3 Arrive(Vector3 target)
+    {
+        Vector3 desired = target - transform.position;
+        float distance = desired.magnitude;
+        float slowingRadius = 10f;
+        if (distance < slowingRadius)
+        {
+            desired = desired.normalized * maxSpeed * (distance / slowingRadius);
+        }
+        else
+        {
+            desired = desired.normalized * maxSpeed;
+        }
+        return desired - velocity;
+    }
+
+    private GameObject FindClosestInList(List<GameObject> list, float radius)
     {
         return list
-            .Where(item => Vector3.Distance(transform.position, item.transform.position) < radius)
+            .Where(item => item != null && item.activeInHierarchy && Vector3.Distance(transform.position, item.transform.position) < radius)
             .OrderBy(item => Vector3.Distance(transform.position, item.transform.position))
             .FirstOrDefault();
     }
@@ -103,5 +226,10 @@ public class Boid : Agent
         DebugHelper.DrawCircle(transform.position, foodDetectionRadius, Color.green);
         DebugHelper.DrawCircle(transform.position, hunterDetectionRadius, Color.red);
         DebugHelper.DrawCircle(transform.position, flockmateDetectionRadius, Color.blue);
+    }
+
+    private void DrawSphere(Vector3 position, float radius, Color color)
+    {
+        DebugHelper.DrawCircle(position, radius, color);
     }
 }
