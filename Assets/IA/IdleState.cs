@@ -4,19 +4,22 @@ public class IdleState : FSMState
 {
     public override void Enter(Agent agent)
     {
-        Debug.Log("Cazador: Entrando en estado de DESCANSO (recuperando energía).");
+        Hunter hunter = (Hunter)agent;
+        hunter.SetDebugInfo(new Color(0.2f, 0.2f, 0.4f), "Descansar");
+        // --- LÍNEA QUE CAUSABA EL ERROR SI EL ENUM NO EXISTE ---
+        hunter.currentHunterState = HunterState.Resting;
     }
 
     public override void Execute(Agent agent)
     {
-        Debug.Log("Cazador: Ejecutando lógica de DESCANSO (esperando).");
-
-        // Lógica de transición:
-        // if (energy >= maxEnergy) { agent.ChangeState(new PatrolState()); }
+        Hunter hunter = (Hunter)agent;
+        hunter.energy += 20 * Time.deltaTime;
+        if (hunter.energy >= hunter.maxEnergy)
+        {
+            hunter.energy = hunter.maxEnergy;
+            hunter.ChangeState(new PatrolState());
+        }
     }
 
-    public override void Exit(Agent agent)
-    {
-        Debug.Log("Cazador: Saliendo del estado de DESCANSO.");
-    }
+    public override void Exit(Agent agent) { }
 }

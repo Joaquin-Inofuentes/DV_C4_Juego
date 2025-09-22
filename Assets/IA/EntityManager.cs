@@ -8,7 +8,21 @@ using UnityEngine;
 public class EntityManager : MonoBehaviour
 {
     // --- Singleton Pattern ---
-    public static EntityManager Instance { get; private set; }
+    public static EntityManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<EntityManager>();
+            return _instance;
+        }
+        private set
+        {
+            _instance = value;
+        }
+    }
+    private static EntityManager _instance;
+
 
     // --- Listas de Entidades ---
     [Header("Listas de Entidades")]
@@ -21,17 +35,9 @@ public class EntityManager : MonoBehaviour
     public List<Transform> patrolWaypoints = new List<Transform>();
 
 
-    private void Awake()
+    public void Awake()
     {
-        // Implementación del patrón Singleton
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
     }
 
     // --- Métodos de Registro / Desregistro ---
@@ -78,6 +84,15 @@ public class EntityManager : MonoBehaviour
         {
             hunter = hunterInstance;
             Debug.Log($"Cazador '{hunter.name}' registrado.");
+        }
+    }
+
+    // --- MÉTODO QUE FALTABA Y CAUSABA EL ERROR ---
+    public void UnregisterHunter(Hunter hunterInstance)
+    {
+        if (hunter == hunterInstance)
+        {
+            hunter = null;
         }
     }
 }

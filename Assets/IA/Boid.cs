@@ -1,20 +1,20 @@
 using UnityEngine;
+using System.Linq;
 
-/// <summary>
-/// Representa un agente Boid (presa).
-/// Utiliza un Árbol de Decisión para elegir su comportamiento en cada frame.
-/// </summary>
 public class Boid : Agent
 {
+    [Header("Parámetros de Detección del Boid")]
+    public float foodDetectionRadius = 15f;
+    public float hunterDetectionRadius = 20f;
+    public float flockmateDetectionRadius = 10f;
+
     private void Start()
     {
-        // Al iniciar, se registra en el EntityManager
         EntityManager.Instance.RegisterBoid(this);
     }
 
     private void OnDestroy()
     {
-        // Al ser destruido, se da de baja del EntityManager
         if (EntityManager.Instance != null)
         {
             EntityManager.Instance.UnregisterBoid(this);
@@ -24,72 +24,84 @@ public class Boid : Agent
     protected override void Update()
     {
         ExecuteDecisionTree();
-
-        // Llama al Update de la clase base para aplicar el movimiento
         base.Update();
     }
 
-    /// <summary>
-    /// Simula un Árbol de Decisión para determinar la acción del Boid.
-    /// </summary>
     private void ExecuteDecisionTree()
     {
-        // Aquí iría la lógica real de percepción. Por ahora, son solo placeholders.
-        bool foodNearby = false; // Placeholder
-        bool hunterNearby = false; // Placeholder
-        bool flockmatesNearby = true; // Placeholder
+        Hunter hunter = EntityManager.Instance.hunter;
+        GameObject closestFood = FindClosestInList(EntityManager.Instance.foodItems, foodDetectionRadius);
+        var flockmates = EntityManager.Instance.boids.Where(b => b != this && Vector3.Distance(transform.position, b.transform.position) < flockmateDetectionRadius).ToList();
 
-        if (foodNearby)
+        if (hunter != null && Vector3.Distance(transform.position, hunter.transform.position) < hunterDetectionRadius)
         {
-            GoToFood();
+            EvadeHunter(hunter);
+            return;
         }
-        else if (hunterNearby)
+
+        if (closestFood != null)
         {
-            EvadeHunter();
+            GoToFood(closestFood);
+            return;
         }
-        else if (flockmatesNearby)
+
+        if (flockmates.Count > 0)
         {
-            ApplyFlocking();
+            ApplyFlocking(flockmates);
+            return;
         }
-        else
-        {
-            Wander();
-        }
+
+        Wander();
     }
 
-    // --- Métodos de Comportamiento (Steering Behaviors) ---
+    // --- Métodos de Comportamiento (Textos Simplificados) ---
 
-    private void GoToFood()
+    private void GoToFood(GameObject food)
     {
-        Debug.Log($"{name}: Decisión -> Ir a por comida (Arrive).");
-        // Lógica de Arrive iría aquí.
-        // Vector3 force = Arrive(targetFood.position);
-        // ApplyForce(force);
+        debugStatusText = "Comer"; // <-- CAMBIO
+        SetDebugColor(Color.green);
+        Debug.DrawLine(transform.position, food.transform.position, Color.green, 0f, false);
     }
 
-    private void EvadeHunter()
+    private void EvadeHunter(Hunter hunter)
     {
-        Debug.Log($"{name}: Decisión -> Huir del cazador (Evade).");
-        // Lógica de Evade iría aquí.
-        // Vector3 force = Evade(hunter.position, hunter.velocity);
-        // ApplyForce(force);
+        debugStatusText = "Huir"; // <-- CAMBIO
+        SetDebugColor(Color.red);
+        Vector3 threatPosition = hunter.transform.position + Vector3.up * 0.2f;
+        Debug.DrawLine(transform.position, threatPosition, Color.red, 0f, false);
+        Vector3 escapeDirection = (transform.position - hunter.transform.position).normalized;
+        Debug.DrawLine(transform.position, transform.position + escapeDirection * 10f, Color.cyan, 0f, false);
     }
 
-    private void ApplyFlocking()
+    private void ApplyFlocking(System.Collections.Generic.List<Boid> flockmates)
     {
-        Debug.Log($"{name}: Decisión -> Mantenerse con el grupo (Flocking).");
-        // Lógica de Flocking (combinación de las 3 reglas) iría aquí.
-        // Vector3 separation = Separation();
-        // Vector3 alignment = Alignment();
-        // Vector3 cohesion = Cohesion();
-        // ApplyForce(separation + alignment + cohesion);
+        debugStatusText = "Flock"; // <-- CAMBIO
+        SetDebugColor(Color.blue);
+        foreach (var mate in flockmates)
+        {
+            Debug.DrawLine(transform.position, mate.transform.position, new Color(0, 0, 1, 0.5f));
+        }
     }
 
     private void Wander()
     {
-        Debug.Log($"{name}: Decisión -> Moverse aleatoriamente (Wander).");
-        // Lógica de Wander iría aquí.
-        // Vector3 force = Wander();
-        // ApplyForce(force);
+        debugStatusText = "Wander"; // <-- CAMBIO
+        SetDebugColor(Color.gray);
+    }
+
+    private GameObject FindClosestInList(System.Collections.Generic.List<GameObject> list, float radius)
+    {
+        return list
+            .Where(item => Vector3.Distance(transform.position, item.transform.position) < radius)
+            .OrderBy(item => Vector3.Distance(transform.position, item.transform.position))
+            .FirstOrDefault();
+    }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        DebugHelper.DrawCircle(transform.position, foodDetectionRadius, Color.green);
+        DebugHelper.DrawCircle(transform.position, hunterDetectionRadius, Color.red);
+        DebugHelper.DrawCircle(transform.position, flockmateDetectionRadius, Color.blue);
     }
 }
