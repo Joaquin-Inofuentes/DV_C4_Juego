@@ -628,6 +628,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &181464754
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -749,6 +752,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &185760535
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -870,6 +876,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &234679179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -991,6 +1000,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &251800572
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1196,23 +1208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e561c302684d5b4b9fa07e59422e082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allWaypoints:
-  - nombre: WayPoints1
-    puntos:
-    - {fileID: 1033564441}
-    - {fileID: 1190515973}
-    - {fileID: 259661338}
-    - {fileID: 349643758}
-    - {fileID: 1146615915}
-    - {fileID: 1655012479}
-    - {fileID: 1446621672}
-    - {fileID: 323515151}
-    - {fileID: 590392461}
-  - nombre: WayPoints2
-    puntos: []
-  distanciaMaxima: 20
-  obstaculoMask:
-    m_Bits: 0
 --- !u!4 &285177103
 Transform:
   m_ObjectHideFlags: 0
@@ -1891,6 +1886,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!1 &858361732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2295,7 @@ Transform:
   m_GameObject: {fileID: 1058109217}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34.861176, y: 27.502172, z: -28.397598}
+  m_LocalPosition: {x: -1.7, y: 27.502172, z: -19.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2888,6 +2886,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &1421481421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3710,6 +3711,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &1707614525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4039,6 +4043,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &1759518397
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4374,7 +4381,7 @@ Transform:
   m_GameObject: {fileID: 1883691227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.19, y: 0, z: 17.89}
+  m_LocalPosition: {x: 28.4, y: 0, z: 11.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4398,6 +4405,13 @@ MonoBehaviour:
   maxForce: 10
   energy: 100
   maxEnergy: 100
+  sightRadius: 25
+  attackRadius: 5
+  waypointArrivalDistance: 2
+  sequencePreference: 0.8
+  currentHunterState: 0
+  distanceToTarget: 0
+  distanceToAttackRange: 0
 --- !u!1 &1890718313
 GameObject:
   m_ObjectHideFlags: 0
@@ -4448,6 +4462,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &1890718316
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4569,6 +4586,9 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 10
   maxForce: 10
+  foodDetectionRadius: 15
+  hunterDetectionRadius: 20
+  flockmateDetectionRadius: 10
 --- !u!65 &1996416953
 BoxCollider:
   m_ObjectHideFlags: 0

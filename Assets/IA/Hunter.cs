@@ -13,16 +13,27 @@ public class Hunter : Agent
     [Tooltip("Distancia a la que se considera que el cazador ha llegado a un waypoint.")]
     public float waypointArrivalDistance = 2.0f;
 
-    [Tooltip("Si el cazador está más lejos que esto de su waypoint objetivo, buscará uno nuevo más cercano.")]
-    public float repathThresholdDistance = 30.0f;
+    [Range(0.5f, 1f)]
+    [Tooltip("Factor de anulación. Si otro waypoint es (distancia_actual * este_factor) más cercano, cambiará de objetivo. 1.0 = nunca cambia. 0.8 = cambia si hay uno un 20% más cerca.")]
+    public float dynamicRepathFactor = 0.8f;
+
 
     [Header("Debug Info (Read-Only)")]
     public HunterState currentHunterState;
+
+    [Tooltip("Distancia actual al objetivo (waypoint o boid).")]
     public float distanceToTarget;
+
+    // --- NUEVA VARIABLE PÚBLICA DE "MEMORIA" ---
+    [Tooltip("El índice del último waypoint que el cazador cruzó.")]
+    public int lastWaypointVisitedIndex = -1;
+
+    [Tooltip("Cuánto falta para entrar en rango de ataque. Negativo si ya está dentro.")]
     public float distanceToAttackRange;
 
     private FSMState currentState;
 
+    // ... (el resto del script se mantiene exactamente igual) ...
     private void OnEnable()
     {
         if (EntityManager.Instance != null)
@@ -75,7 +86,6 @@ public class Hunter : Agent
         DebugHelper.DrawCircle(transform.position, attackRadius, Color.red);
     }
 }
-
 
 public enum HunterState
 {
