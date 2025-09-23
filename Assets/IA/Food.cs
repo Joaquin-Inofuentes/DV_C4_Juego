@@ -2,13 +2,20 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    private void Start()
+    public static int foodEaten = 0;
+
+    private void OnEnable()
     {
-        EntityManager.Instance.RegisterFood(this.gameObject);
+        if (EntityManager.Instance != null)
+        {
+            EntityManager.Instance.RegisterFood(this.gameObject);
+        }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
+        // OnDisable se llama automáticamente cuando se destruye el objeto,
+        // por lo que el OnDestroy que tenías es redundante.
         if (EntityManager.Instance != null)
         {
             EntityManager.Instance.UnregisterFood(this.gameObject);
@@ -20,7 +27,17 @@ public class Food : MonoBehaviour
     /// </summary>
     public void Consume()
     {
-        Debug.Log($"La comida '{name}' ha sido consumida.");
+        foodEaten++;
+        Debug.Log($"<color=yellow>COMIDA CONSUMIDA:</color> Total = {foodEaten}");
+
+        // --- NUEVA LÍNEA CRÍTICA ---
+        // Notifica al BoidSpawner que debe crear un nuevo boid.
+        if (BoidSpawner.Instance != null)
+        {
+            BoidSpawner.Instance.SpawnBoid();
+        }
+
+        // Destruye el objeto de comida.
         Destroy(gameObject);
     }
 }

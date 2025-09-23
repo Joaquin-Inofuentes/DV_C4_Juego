@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5521916723473419043}
   m_Layer: 0
   m_Name: Boid
-  m_TagString: Untagged
+  m_TagString: Boid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,8 +135,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallAvoidanceDistance: 10
-  wallAvoidanceWeight: 2
-  whiskerAngle: 20
+  wallAvoidanceWeight: 0.5
+  whiskerAngle: 40
+  wallSeparationRadius: 3
+  wallSeparationWeight: 1.8
 --- !u!1 &8289275897619623033
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +150,6 @@ GameObject:
   - component: {fileID: 6742616150667074638}
   - component: {fileID: 7519935640648401427}
   - component: {fileID: 7578154007601548203}
-  - component: {fileID: 1194869838030098467}
   m_Layer: 0
   m_Name: Boid (4)
   m_TagString: Untagged
@@ -221,24 +222,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1194869838030098467
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8289275897619623033}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

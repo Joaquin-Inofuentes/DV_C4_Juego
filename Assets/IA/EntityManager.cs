@@ -1,5 +1,8 @@
+using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
+// --- NUEVO: Necesitamos esta directiva para usar el método .RemoveAll() de LINQ ---
+using System.Linq;
 
 /// <summary>
 /// Gestor Singleton para registrar y acceder a todas las entidades importantes en la escena.
@@ -31,7 +34,6 @@ public class EntityManager : MonoBehaviour
     public Hunter hunter;
 
     [Header("Puntos de Interés")]
-    // Puedes tener múltiples rutas de patrulla. Por ahora, una es suficiente.
     public List<Transform> patrolWaypoints = new List<Transform>();
 
 
@@ -47,7 +49,6 @@ public class EntityManager : MonoBehaviour
         if (!boids.Contains(boid))
         {
             boids.Add(boid);
-            Debug.Log($"Boid '{boid.name}' registrado. Total: {boids.Count}");
         }
     }
 
@@ -56,7 +57,6 @@ public class EntityManager : MonoBehaviour
         if (boids.Contains(boid))
         {
             boids.Remove(boid);
-            Debug.Log($"Boid '{boid.name}' desregistrado. Restantes: {boids.Count}");
         }
     }
 
@@ -65,7 +65,6 @@ public class EntityManager : MonoBehaviour
         if (!foodItems.Contains(food))
         {
             foodItems.Add(food);
-            Debug.Log($"Comida '{food.name}' registrada. Total: {foodItems.Count}");
         }
     }
 
@@ -74,7 +73,6 @@ public class EntityManager : MonoBehaviour
         if (foodItems.Contains(food))
         {
             foodItems.Remove(food);
-            Debug.Log($"Comida '{food.name}' desregistrada. Restantes: {foodItems.Count}");
         }
     }
 
@@ -83,11 +81,9 @@ public class EntityManager : MonoBehaviour
         if (hunter == null)
         {
             hunter = hunterInstance;
-            Debug.Log($"Cazador '{hunter.name}' registrado.");
         }
     }
 
-    // --- MÉTODO QUE FALTABA Y CAUSABA EL ERROR ---
     public void UnregisterHunter(Hunter hunterInstance)
     {
         if (hunter == hunterInstance)
@@ -96,21 +92,52 @@ public class EntityManager : MonoBehaviour
         }
     }
 
+    [Header("UI Debug")]
+    public TextMeshProUGUI debugText;
+
+    // --- MÉTODO UPDATE MODIFICADO ---
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        // --- NUEVO: Lógica de limpieza de listas ---
+        // Esta es una medida de seguridad para eliminar cualquier referencia "fantasma"
+        // que pueda haber quedado si un objeto fue destruido.
+        CleanUpLists();
+
+        // Lógica para activar/desactivar el movimiento con la tecla que asignaste.
+        if (Input.GetKeyDown(KeyCode.S)) // Nota: Cambiaste la tecla a 'S'
         {
-            // Invierte el estado del interruptor global en la clase Agent.
             Agent.movementEnabled = !Agent.movementEnabled;
 
             if (Agent.movementEnabled)
             {
-                Debug.Log("<color=lime>MOVIMIENTO HABILITADO</color> - Presiona 'R' para detener.", this);
+                Debug.Log("<color=lime>MOVIMIENTO HABILITADO</color> - Presiona 'S' para detener.", this);
             }
             else
             {
-                Debug.Log("<color=red>MOVIMIENTO DESHABILITADO</color> - Presiona 'R' para reanudar.", this);
+                Debug.Log("<color=red>MOVIMIENTO DESHABILITADO</color> - Presiona 'S' para reanudar.", this);
             }
         }
+
+        // Lógica para actualizar el texto de la UI.
+        if (debugText != null)
+        {
+            debugText.text = $"Comida Consumida: {Food.foodEaten}\n" +
+                             $"Comidas restantes: {foodItems.Count}\n" +
+                             $"Boids Restantes: {boids.Count}";
+        }
+    }
+
+    /// <summary>
+    /// Elimina todas las entradas nulas de las listas de entidades.
+    /// </summary>
+    private void CleanUpLists()
+    {
+        // Usa el método RemoveAll de LINQ para eliminar cualquier boid que sea 'null'.
+        // La expresión "item => item == null" es una forma corta de decir:
+        // "Para cada 'item' en la lista, si el 'item' es nulo, elimínalo".
+        boids.RemoveAll(item => item == null);
+
+        // Hace lo mismo para la lista de comida.
+        foodItems.RemoveAll(item => item == null);
     }
 }
