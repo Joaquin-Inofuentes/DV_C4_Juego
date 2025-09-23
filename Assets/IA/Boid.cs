@@ -2,56 +2,42 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-// Boid hereda de Agent, por lo que tiene acceso a 'velocity', 'maxSpeed', 'ApplyForce', etc.
 public class Boid : Agent
 {
-    // --- VARIABLES PÚBLICAS ---
-
     [Header("Parámetros de Detección")]
     public float foodDetectionRadius = 15f;
     public float hunterDetectionRadius = 20f;
     public float flockmateDetectionRadius = 10f;
 
     [Header("Parámetros de Flocking")]
-    [Tooltip("Peso de cohesión (0–1).")]
-    [Range(0f, 1f)] public float cohesionWeight = 0.4f;
-
-    [Tooltip("Peso de alineamiento (0–1).")]
-    [Range(0f, 1f)] public float alignmentWeight = 0.2f;
-
-    [Tooltip("Peso de separación (0–1).")]
-    [Range(0f, 1f)] public float separationWeight = 0.3f; // ojo, 1.5 no entra en el rango 0–1
-
+    public float cohesionWeight = 1.0f;
+    public float alignmentWeight = 1.0f;
+    public float separationWeight = 1.5f;
 
     [Header("Parámetros de Wander")]
-    [Tooltip("Distancia a la que se proyecta el círculo de Wander.")]
     public float wanderDistance = 10f;
-    [Tooltip("Radio del círculo de Wander. Un radio mayor produce giros más amplios.")]
     public float wanderRadius = 5f;
-    [Tooltip("Magnitud del desplazamiento aleatorio por segundo. Un valor mayor produce giros más erráticos.")]
     public float wanderJitter = 40f;
 
-    // --- VARIABLE PRIVADA PARA "MEMORIA" DE WANDER ---
-    // Almacena el ángulo actual en el círculo de Wander para que persista entre frames.
-    private float wanderAngle = 0f;
+    [Header("Parámetros de Evasión de Muros")]
+    public LayerMask wallLayer;
+    public float wallAvoidanceDistance = 10f;
+    public float wallAvoidanceWeight = 2.0f;
+    // --- NUEVO: El ángulo de los "bigotes" laterales ---
+    [Tooltip("El ángulo en grados de los sensores laterales para una evasión más suave.")]
+    public float whiskerAngle = 20f;
 
-    // --- MÉTODOS DE UNITY ---
+    private float wanderAngle = 0f;
 
     private void OnEnable()
     {
-        if (EntityManager.Instance != null)
-        {
-            EntityManager.Instance.RegisterBoid(this);
-        }
+        if (EntityManager.Instance != null) { EntityManager.Instance.RegisterBoid(this); }
         velocity = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
     }
 
     private void OnDisable()
     {
-        if (EntityManager.Instance != null)
-        {
-            EntityManager.Instance.UnregisterBoid(this);
-        }
+        if (EntityManager.Instance != null) { EntityManager.Instance.UnregisterBoid(this); }
     }
 
     protected override void Update()
@@ -60,36 +46,96 @@ public class Boid : Agent
         base.Update();
     }
 
-    // --- LÓGICA PRINCIPAL (ÁRBOL DE DECISIÓN) ---
-
     private void ExecuteDecisionTree()
     {
+        if (AvoidWalls())
+        {
+            return;
+        }
+
         Hunter hunter = EntityManager.Instance.hunter;
         GameObject closestFood = FindClosestInList(EntityManager.Instance.foodItems, foodDetectionRadius);
         var flockmates = EntityManager.Instance.boids.Where(b => b != this && b.gameObject.activeInHierarchy && Vector3.Distance(transform.position, b.transform.position) < flockmateDetectionRadius).ToList();
 
-        if (hunter != null && Vector3.Distance(transform.position, hunter.transform.position) < hunterDetectionRadius)
-        {
-            EvadeHunter(hunter);
-            return;
-        }
-
-        if (closestFood != null)
-        {
-            GoToFood(closestFood);
-            return;
-        }
-
-        if (flockmates.Count > 0)
-        {
-            ApplyFlocking(flockmates);
-            return;
-        }
-
+        if (hunter != null && Vector3.Distance(transform.position, hunter.transform.position) < hunterDetectionRadius) { EvadeHunter(hunter); return; }
+        if (closestFood != null) { GoToFood(closestFood); return; }
+        if (flockmates.Count > 0) { ApplyFlocking(flockmates); return; }
         Wander();
     }
 
-    // --- COMPORTAMIENTOS (ACCIONES) ---
+    // --- MÉTODO DE EVASIÓN DE MUROS COMPLETAMENTE REESCRITO ---
+    private bool AvoidWalls()
+    {
+        if (velocity.magnitude < 0.1f) return false;
+
+        // --- CÁLCULO DE LOS "BIGOTES" (WHISKERS) ---
+        Vector3 forwardDirection = velocity.normalized;
+        // Rota la dirección hacia la izquierda para el bigote izquierdo.
+        Vector3 leftWhiskerDirection = Quaternion.Euler(0, -whiskerAngle, 0) * forwardDirection;
+        // Rota la dirección hacia la derecha para el bigote derecho.
+        Vector3 rightWhiskerDirection = Quaternion.Euler(0, whiskerAngle, 0) * forwardDirection;
+
+        bool wallDetected = false;
+        Vector3 steeringForce = Vector3.zero;
+
+        // 1. Comprobar el rayo central (peligro inminente)
+        if (Physics.Raycast(transform.position, forwardDirection, out RaycastHit hitCenter, wallAvoidanceDistance, wallLayer))
+        {
+            debugStatusText = "Evadir Muro!";
+            // Maniobra de pánico: usar la normal del muro para un escape seguro.
+            Vector3 desiredVelocity = hitCenter.normal * maxSpeed;
+            steeringForce = desiredVelocity - velocity;
+            wallDetected = true;
+
+            // Visualización: Rayo central en rojo, normal de escape en cian.
+            Debug.DrawLine(transform.position, hitCenter.point, Color.red);
+            Debug.DrawLine(hitCenter.point, hitCenter.point + hitCenter.normal * 5f, Color.cyan);
+        }
+        // 2. Si el centro está libre, comprobar los bigotes laterales
+        else
+        {
+            bool leftHit = Physics.Raycast(transform.position, leftWhiskerDirection, out RaycastHit hitLeft, wallAvoidanceDistance, wallLayer);
+            bool rightHit = Physics.Raycast(transform.position, rightWhiskerDirection, out RaycastHit hitRight, wallAvoidanceDistance, wallLayer);
+
+            if (leftHit)
+            {
+                debugStatusText = "Evadir Muro";
+                // Si el bigote izquierdo choca, la fuerza de dirección debe ser hacia la DERECHA.
+                // Usamos la dirección del bigote derecho como una buena ruta de escape.
+                Vector3 desiredVelocity = rightWhiskerDirection * maxSpeed;
+                steeringForce += desiredVelocity - velocity;
+                wallDetected = true;
+                Debug.DrawLine(transform.position, hitLeft.point, Color.yellow); // Bigote de aviso en amarillo
+            }
+
+            if (rightHit)
+            {
+                debugStatusText = "Evadir Muro";
+                // Si el bigote derecho choca, la fuerza de dirección debe ser hacia la IZQUIERDA.
+                Vector3 desiredVelocity = leftWhiskerDirection * maxSpeed;
+                steeringForce += desiredVelocity - velocity;
+                wallDetected = true;
+                Debug.DrawLine(transform.position, hitRight.point, Color.yellow); // Bigote de aviso en amarillo
+            }
+        }
+
+        // 3. Aplicar la fuerza y dibujar los sensores restantes
+        if (wallDetected)
+        {
+            ApplyForce(steeringForce * wallAvoidanceWeight);
+            return true;
+        }
+        else
+        {
+            // Si no se detectó nada, dibuja todos los sensores en verde.
+            Debug.DrawLine(transform.position, transform.position + forwardDirection * wallAvoidanceDistance, Color.green);
+            Debug.DrawLine(transform.position, transform.position + leftWhiskerDirection * wallAvoidanceDistance, Color.green);
+            Debug.DrawLine(transform.position, transform.position + rightWhiskerDirection * wallAvoidanceDistance, Color.green);
+            return false;
+        }
+    }
+
+    // --- El resto de los métodos se mantienen exactamente igual ---
 
     private void GoToFood(GameObject food)
     {
@@ -125,28 +171,16 @@ public class Boid : Agent
     {
         debugStatusText = "Wander";
         SetDebugColor(Color.gray);
-
         wanderAngle += Random.Range(-1f, 1f) * wanderJitter * Time.deltaTime;
-
         Vector3 circleCenter = transform.position + velocity.normalized * wanderDistance;
-
-        Vector3 offset = new Vector3(
-            Mathf.Cos(wanderAngle * Mathf.Deg2Rad),
-            0,
-            Mathf.Sin(wanderAngle * Mathf.Deg2Rad)
-        ) * wanderRadius;
-
+        Vector3 offset = new Vector3(Mathf.Cos(wanderAngle * Mathf.Deg2Rad), 0, Mathf.Sin(wanderAngle * Mathf.Deg2Rad)) * wanderRadius;
         Vector3 target = circleCenter + offset;
-
         DebugHelper.DrawCircle(circleCenter, wanderRadius, Color.gray);
         Debug.DrawLine(transform.position, target, Color.white);
         DrawSphere(target, 0.5f, Color.white);
-
         Vector3 desired = (target - transform.position).normalized * maxSpeed;
         ApplyForce(desired - velocity);
     }
-
-    // --- CÁLCULOS DE FLOCKING ---
 
     private Vector3 CalculateCohesion(List<Boid> flockmates)
     {
@@ -194,8 +228,6 @@ public class Boid : Agent
         return Vector3.zero;
     }
 
-    // --- MÉTODOS DE AYUDA ---
-
     private Vector3 Arrive(Vector3 target)
     {
         Vector3 desired = target - transform.position;
@@ -222,10 +254,10 @@ public class Boid : Agent
 
     protected override void OnDrawGizmos()
     {
-        base.OnDrawGizmos();
-        DebugHelper.DrawCircle(transform.position, foodDetectionRadius, Color.green);
+        //base.OnDrawGizmos();
+        //DebugHelper.DrawCircle(transform.position, foodDetectionRadius, Color.green);
         DebugHelper.DrawCircle(transform.position, hunterDetectionRadius, Color.red);
-        DebugHelper.DrawCircle(transform.position, flockmateDetectionRadius, Color.blue);
+        //DebugHelper.DrawCircle(transform.position, flockmateDetectionRadius, Color.blue);
     }
 
     private void DrawSphere(Vector3 position, float radius, Color color)

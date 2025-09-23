@@ -131,6 +131,12 @@ MonoBehaviour:
   wanderDistance: 10
   wanderRadius: 5
   wanderJitter: 40
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  wallAvoidanceDistance: 10
+  wallAvoidanceWeight: 2
+  whiskerAngle: 20
 --- !u!1 &8289275897619623033
 GameObject:
   m_ObjectHideFlags: 0
