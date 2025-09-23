@@ -1,16 +1,25 @@
 using UnityEngine;
 
+/// <summary>
+/// Controla el comportamiento del agente Cazador.
+/// Hereda de la clase base 'Agent' para el movimiento.
+/// Utiliza una Máquina de Estados Finita (FSM) para gestionar sus acciones,
+/// como patrullar, cazar, atacar y descansar.
+/// </summary>
 public class Hunter : Agent
 {
+    // -------------------------------------------------------------------
+    // --- PARÁMETROS PÚBLICOS (Ajustables en el Inspector de Unity) ---
+    // -------------------------------------------------------------------
+
     [Header("Parámetros de la FSM")]
     public float energy = 100f;
     public float maxEnergy = 100f;
 
     [Header("Parámetros de Detección y Ataque")]
     public float sightRadius = 25f;
-    public float attackRadius = 15f; // Aumentado para que tenga más rango de disparo
+    public float attackRadius = 15f;
 
-    // --- NUEVO: Parámetros de Disparo ---
     [Tooltip("El Prefab del proyectil que disparará el cazador.")]
     public GameObject projectilePrefab;
     [Tooltip("Velocidad a la que se mueven los proyectiles.")]
@@ -29,9 +38,80 @@ public class Hunter : Agent
     public int lastWaypointVisitedIndex = -1;
     public float distanceToAttackRange;
 
+    // -------------------------------------------------------------------
+    // --- VARIABLES PRIVADAS ---
+    // -------------------------------------------------------------------
+
+    // Almacena una referencia al estado actual de la FSM.
     private FSMState currentState;
 
-    // --- MÉTODO DE DISPARO ---
+    // -------------------------------------------------------------------
+    // --- MÉTODOS DE UNITY (Ciclo de Vida) ---
+    // -------------------------------------------------------------------
+
+    private void OnEnable()
+    {
+        if (EntityManager.Instance != null)
+        {
+            EntityManager.Instance.RegisterHunter(this);
+        }
+        // Al activarse, el estado inicial siempre será Patrullar.
+        ChangeState(new PatrolState());
+    }
+
+    private void OnDisable()
+    {
+        if (EntityManager.Instance != null)
+        {
+            EntityManager.Instance.UnregisterHunter(this);
+        }
+    }
+
+    protected override void Update()
+    {
+        // Si hay un estado activo, delega la lógica de comportamiento a ese estado.
+        if (currentState != null)
+        {
+            currentState.Execute(this);
+        }
+        // Llama al Update de la clase base (Agent) para aplicar el movimiento físico.
+        base.Update();
+    }
+
+    protected override void OnDrawGizmos()
+    {
+        // Llama al OnDrawGizmos de la clase base para dibujar la etiqueta de texto.
+        base.OnDrawGizmos();
+        // Dibuja los círculos de detección para depuración.
+        //DebugHelper.DrawCircle(transform.position, sightRadius, Color.yellow);
+        DebugHelper.DrawCircle(transform.position, attackRadius, Color.red);
+    }
+
+    // -------------------------------------------------------------------
+    // --- MÉTODOS PÚBLICOS (Control de la FSM y Acciones) ---
+    // -------------------------------------------------------------------
+
+    /// <summary>
+    /// Realiza la transición de un estado a otro de forma segura.
+    /// </summary>
+    public void ChangeState(FSMState newState)
+    {
+        // Ejecuta la lógica de salida del estado actual si existe.
+        if (currentState != null)
+        {
+            currentState.Exit(this);
+        }
+
+        // Cambia al nuevo estado.
+        currentState = newState;
+
+        // Ejecuta la lógica de entrada del nuevo estado si existe.
+        if (currentState != null)
+        {
+            currentState.Enter(this);
+        }
+    }
+
     /// <summary>
     /// Instancia y lanza un proyectil hacia la posición futura predicha de un objetivo.
     /// </summary>
@@ -51,22 +131,34 @@ public class Hunter : Agent
         // Calcula la dirección desde el cazador hasta esa posición futura.
         Vector3 direction = (futurePosition - transform.position).normalized;
 
-        // Instancia el proyectil en la posición del cazador.
+        // Instancia el proyectil en la posición del cazador (un poco adelantado para no chocar consigo mismo).
         GameObject projectileGO = Instantiate(projectilePrefab, transform.position + direction * 2f, Quaternion.LookRotation(direction));
-        // Lanza el proyectil.
+
+        // Lanza el proyectil usando su propio script.
         projectileGO.GetComponent<Projectile>().Launch(direction, projectileSpeed);
     }
 
-    // ... (el resto del script OnEnable, Update, ChangeState, etc., se mantiene igual) ...
-    #region Omitted Code
-    private void OnEnable() { if (EntityManager.Instance != null) { EntityManager.Instance.RegisterHunter(this); } ChangeState(new PatrolState()); }
-    private void OnDisable() { if (EntityManager.Instance != null) { EntityManager.Instance.UnregisterHunter(this); } }
-    protected override void Update() { if (currentState != null) { currentState.Execute(this); } base.Update(); }
-    public void ChangeState(FSMState newState) { if (currentState != null) { currentState.Exit(this); } currentState = newState; if (currentState != null) { currentState.Enter(this); } }
-    public void SetDebugInfo(Color color, string status) { SetDebugColor(color); debugStatusText = status; }
-    protected override void OnDrawGizmos() { base.OnDrawGizmos(); DebugHelper.DrawCircle(transform.position, sightRadius, Color.yellow); DebugHelper.DrawCircle(transform.position, attackRadius, Color.red); }
-    #endregion
+    /// <summary>
+    /// Un método de ayuda para que los estados puedan actualizar la información de depuración.
+    /// </summary>
+    public void SetDebugInfo(Color color, string status)
+    {
+        SetDebugColor(color);
+        debugStatusText = status;
+    }
 }
 
-// El enum se mantiene igual
-public enum HunterState { Patrolling, Hunting, Attacking, Resting }
+// -------------------------------------------------------------------
+// --- ENUMERACIÓN DE ESTADOS ---
+// -------------------------------------------------------------------
+
+/// <summary>
+/// Define los posibles estados de alto nivel del Cazador para una fácil visualización en el Inspector.
+/// </summary>
+public enum HunterState
+{
+    Patrolling,
+    Hunting,
+    Attacking,
+    Resting
+}

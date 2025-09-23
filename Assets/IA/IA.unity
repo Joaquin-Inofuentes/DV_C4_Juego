@@ -3862,7 +3862,7 @@ Transform:
   m_GameObject: {fileID: 1883691227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.4, y: 0, z: 11.1}
+  m_LocalPosition: {x: 28.4, y: 0.91, z: 11.1}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3882,16 +3882,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
-  maxSpeed: 10
+  maxSpeed: 11
   maxForce: 10
   energy: 100
   maxEnergy: 100
   sightRadius: 25
-  attackRadius: 5
+  attackRadius: 12
   projectilePrefab: {fileID: 6921137152827822936, guid: 69c39931243a62b4ebf79c6a78f357fe,
     type: 3}
   projectileSpeed: 50
-  fireRate: 1
+  fireRate: 0.8
   waypointArrivalDistance: 2
   dynamicRepathFactor: 0.8
   currentHunterState: 0

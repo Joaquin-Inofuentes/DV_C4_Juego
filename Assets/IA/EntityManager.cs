@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 // --- NUEVO: Necesitamos esta directiva para usar el método .RemoveAll() de LINQ ---
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Gestor Singleton para registrar y acceder a todas las entidades importantes en la escena.
@@ -103,6 +104,13 @@ public class EntityManager : MonoBehaviour
         // que pueda haber quedado si un objeto fue destruido.
         CleanUpLists();
 
+        // Si no quedan boids y el juego ya había comenzado con boids, reinicia la escena.
+        if (boids.Count == 0)
+        {
+            Debug.Log("<color=orange>¡Todos los boids han sido eliminados! Reiniciando la escena...</color>");
+            // Carga la escena activa actualmente por su nombre.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         // Lógica para activar/desactivar el movimiento con la tecla que asignaste.
         if (Input.GetKeyDown(KeyCode.S)) // Nota: Cambiaste la tecla a 'S'
         {

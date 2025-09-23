@@ -6,19 +6,20 @@ public class PatrolState : FSMState
     // Almacena el índice del waypoint que el cazador está persiguiendo actualmente.
     private int _targetWaypointIndex = 0;
 
+    // --- NUEVO: Temporizador para la cadencia de fuego oportunista ---
+    // Cada estado que puede disparar necesita su propio temporizador.
+    private float _shootTimer;
+
     // Se ejecuta al entrar en el estado de patrulla.
     public override void Enter(Agent agent)
     {
-        // Convierte el 'Agent' genérico a un 'Hunter' para acceder a sus variables específicas.
         Hunter hunter = (Hunter)agent;
-        // Establece la información de depuración (color y texto).
         hunter.SetDebugInfo(Color.yellow, "WayPoints");
-        // Actualiza el enum de estado en el Inspector.
         hunter.currentHunterState = HunterState.Patrolling;
-        // Al entrar, resetea la memoria del último punto visitado.
         hunter.lastWaypointVisitedIndex = -1;
-        // Y encuentra el waypoint más cercano para empezar la patrulla.
         _targetWaypointIndex = FindClosestWaypointIndex(hunter);
+        // Inicializa el temporizador de disparo para que pueda disparar inmediatamente.
+        _shootTimer = 0f;
     }
 
     // Se ejecuta en cada frame mientras está patrullando.
@@ -27,59 +28,80 @@ public class PatrolState : FSMState
         Hunter hunter = (Hunter)agent;
         var waypoints = EntityManager.Instance.patrolWaypoints;
 
-        // --- PRIORIDAD 1: SUPERVIVENCIA Y OPORTUNIDAD ---
-        // Busca boids cercanos. Si encuentra uno, cambia al estado de caza y termina.
-        if (FindClosestBoid(hunter, out Boid closestBoid))
-        {
-            hunter.ChangeState(new HuntingState(closestBoid));
-            return;
-        }
+        // El temporizador de disparo siempre cuenta hacia abajo.
+        _shootTimer -= Time.deltaTime;
 
-        // Si no hay waypoints definidos, no hace nada más.
-        if (waypoints.Count == 0) return;
+        // --- LÓGICA DE DECISIÓN REESTRUCTURADA ---
 
-        // --- LÓGICA DE MOVIMIENTO Y DECISIÓN DE PATRULLA ---
-        Vector3 currentTargetPosition = waypoints[_targetWaypointIndex].position;
-        hunter.distanceToTarget = Vector3.Distance(hunter.transform.position, currentTargetPosition);
+        // 1. Buscar el boid más cercano, sin importar la distancia.
+        FindClosestBoid(hunter, out Boid closestBoid, out float distanceToBoid);
 
-        // 1. Comportamiento Base (Secuencial): ¿Hemos llegado a nuestro objetivo?
-        if (hunter.distanceToTarget < hunter.waypointArrivalDistance)
+        // 2. Decidir qué hacer basándose en ese boid.
+        if (closestBoid != null)
         {
-            Debug.Log($"<color=green>LLEGÓ:</color> Cruzó el waypoint #{_targetWaypointIndex}.");
-            hunter.lastWaypointVisitedIndex = _targetWaypointIndex; // Actualiza la "memoria".
-            _targetWaypointIndex = (hunter.lastWaypointVisitedIndex + 1) % waypoints.Count; // Pasa al siguiente.
-            Debug.Log($"<color=cyan>SECUENCIA:</color> Nuevo objetivo es el waypoint #{_targetWaypointIndex}.");
-            currentTargetPosition = waypoints[_targetWaypointIndex].position; // Actualiza el objetivo para este frame.
-        }
-        else // 2. Comportamiento de Anulación (Dinámico): Si no hemos llegado, ¿hay una mejor opción?
-        {
-            int absoluteClosestIndex = FindClosestWaypointIndex(hunter);
-            // Si el más cercano no es nuestro objetivo Y no es el que acabamos de visitar...
-            if (absoluteClosestIndex != _targetWaypointIndex && absoluteClosestIndex != hunter.lastWaypointVisitedIndex)
+            // --- CASO A: ¡OBJETIVO DE OPORTUNIDAD! ---
+            // Si el boid está dentro del radio de ATAQUE...
+            if (distanceToBoid < hunter.attackRadius)
             {
-                float distanceToClosest = Vector3.Distance(hunter.transform.position, waypoints[absoluteClosestIndex].position);
-                // ...y es significativamente más cercano...
-                if (distanceToClosest < hunter.distanceToTarget * hunter.dynamicRepathFactor)
+                // ...ataca inmediatamente SIN cambiar de estado.
+                hunter.SetDebugInfo(Color.cyan, "Ataque Oportunista"); // Un color especial para este estado
+
+                // Si el temporizador de disparo está listo...
+                if (_shootTimer <= 0f)
                 {
-                    Debug.LogWarning($"<color=orange>ANULACIÓN DINÁMICA:</color> Waypoint #{absoluteClosestIndex} es mucho más cercano. Cambiando de objetivo.");
-                    _targetWaypointIndex = absoluteClosestIndex; // ...cambia de objetivo.
-                    currentTargetPosition = waypoints[_targetWaypointIndex].position;
+                    // ...dispara.
+                    hunter.Shoot(closestBoid);
+                    // ...y reinicia el temporizador.
+                    _shootTimer = 1f / hunter.fireRate;
                 }
+                // NOTA: El cazador seguirá moviéndose hacia su waypoint mientras dispara.
+            }
+            // --- CASO B: OBJETIVO LEJANO ---
+            // Si el boid está dentro del radio de VISIÓN (pero no de ataque)...
+            else if (distanceToBoid < hunter.sightRadius)
+            {
+                // ...debe comprometerse a una caza. CAMBIA DE ESTADO.
+                hunter.ChangeState(new HuntingState(closestBoid));
+                return; // Termina la ejecución de este estado.
             }
         }
 
-        // 3. Acción: Calcula la fuerza para llegar al objetivo y la aplica.
-        hunter.ApplyForce(Arrive(currentTargetPosition, hunter));
+        // 3. Si no hay boids relevantes, continuar con la patrulla normal.
+        if (waypoints.Count > 0)
+        {
+            Vector3 currentTargetPosition = waypoints[_targetWaypointIndex].position;
+            hunter.distanceToTarget = Vector3.Distance(hunter.transform.position, currentTargetPosition);
 
-        // Dibuja las líneas de depuración.
-        Debug.DrawLine(hunter.transform.position, currentTargetPosition, Color.yellow);
-        DebugHelper.DrawCircle(currentTargetPosition, hunter.waypointArrivalDistance, Color.cyan);
+            if (hunter.distanceToTarget < hunter.waypointArrivalDistance)
+            {
+                hunter.lastWaypointVisitedIndex = _targetWaypointIndex;
+                _targetWaypointIndex = (hunter.lastWaypointVisitedIndex + 1) % waypoints.Count;
+                currentTargetPosition = waypoints[_targetWaypointIndex].position;
+            }
+            else
+            {
+                int absoluteClosestIndex = FindClosestWaypointIndex(hunter);
+                if (absoluteClosestIndex != _targetWaypointIndex && absoluteClosestIndex != hunter.lastWaypointVisitedIndex)
+                {
+                    float distanceToClosest = Vector3.Distance(hunter.transform.position, waypoints[absoluteClosestIndex].position);
+                    if (distanceToClosest < hunter.distanceToTarget * hunter.dynamicRepathFactor)
+                    {
+                        _targetWaypointIndex = absoluteClosestIndex;
+                        currentTargetPosition = waypoints[_targetWaypointIndex].position;
+                    }
+                }
+            }
+
+            hunter.ApplyForce(Arrive(currentTargetPosition, hunter));
+            Debug.DrawLine(hunter.transform.position, currentTargetPosition, Color.yellow);
+            DebugHelper.DrawCircle(currentTargetPosition, hunter.waypointArrivalDistance, Color.cyan);
+        }
 
         // --- GESTIÓN DE ENERGÍA ---
-        hunter.energy -= 2 * Time.deltaTime; // Gasta energía lentamente.
+        hunter.energy -= 2 * Time.deltaTime;
         if (hunter.energy <= 0)
         {
-            hunter.ChangeState(new IdleState()); // Si se agota, descansa.
+            hunter.ChangeState(new IdleState());
         }
     }
 
@@ -87,11 +109,11 @@ public class PatrolState : FSMState
     public override void Exit(Agent agent)
     {
         Hunter hunter = (Hunter)agent;
-        hunter.distanceToTarget = 0; // Resetea la distancia.
-        hunter.lastWaypointVisitedIndex = -1; // Resetea la memoria.
+        hunter.distanceToTarget = 0;
+        hunter.lastWaypointVisitedIndex = -1;
     }
 
-    // --- MÉTODOS DE AYUDA ---
+    // --- MÉTODOS DE AYUDA (FindClosestBoid modificado) ---
     private int FindClosestWaypointIndex(Hunter hunter)
     {
         var waypoints = EntityManager.Instance.patrolWaypoints;
@@ -110,21 +132,38 @@ public class PatrolState : FSMState
         return closestIndex;
     }
 
-    private bool FindClosestBoid(Hunter hunter, out Boid foundBoid)
+    // --- MÉTODO MODIFICADO para devolver también la distancia ---
+    private bool FindClosestBoid(Hunter hunter, out Boid foundBoid, out float distance)
     {
-        foundBoid = EntityManager.Instance.boids
-            .Where(b => b != null && b.gameObject.activeInHierarchy)
-            .Where(b => Vector3.Distance(hunter.transform.position, b.transform.position) < hunter.sightRadius)
-            .OrderBy(b => Vector3.Distance(hunter.transform.position, b.transform.position))
-            .FirstOrDefault();
-        return foundBoid != null;
+        foundBoid = null;
+        distance = float.MaxValue;
+        float closestDistSqr = float.MaxValue;
+
+        foreach (var boid in EntityManager.Instance.boids)
+        {
+            if (boid == null || !boid.gameObject.activeInHierarchy) continue;
+
+            float distSqr = (hunter.transform.position - boid.transform.position).sqrMagnitude;
+            if (distSqr < closestDistSqr)
+            {
+                closestDistSqr = distSqr;
+                foundBoid = boid;
+            }
+        }
+
+        if (foundBoid != null)
+        {
+            distance = Mathf.Sqrt(closestDistSqr);
+            return true;
+        }
+        return false;
     }
 
     private Vector3 Arrive(Vector3 target, Agent agent)
     {
         Vector3 desired = target - agent.transform.position;
         float distance = desired.magnitude;
-        float slowingRadius = 15f; // Un radio de frenado más grande para el cazador.
+        float slowingRadius = 15f;
         if (distance < slowingRadius)
         {
             desired = desired.normalized * agent.maxSpeed * (distance / slowingRadius);

@@ -34,8 +34,8 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Terrain") return; // Ignora colisiones con el terreno
-        Debug.Log($"<color=orange>Proyectil impactó con:</color> {collision.gameObject.name}");
         if (collision.gameObject.CompareTag("Hunter")) return; // Ignora colisiones con el cazador
+        Debug.Log($"<color=orange>Proyectil impactó con:</color> {collision.gameObject.name}");
         
         // Comprueba si el objeto con el que chocamos tiene la etiqueta "Boid".
         if (collision.gameObject.CompareTag("Boid"))
