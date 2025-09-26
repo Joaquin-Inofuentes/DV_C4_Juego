@@ -6,6 +6,7 @@ public class M_Stick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerD
 {
     [SerializeField] private RectTransform fondo, handle;
 
+
     private Vector2 inputVector;
     private bool presionado;
 
