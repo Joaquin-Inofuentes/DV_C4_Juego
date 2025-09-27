@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-public class M_TecladoInput : MonoBehaviour
+public class C_in_Tecladov2 : MonoBehaviour // Cnotroller
 {
     public event Action<Vector2> OnStickFloat;
 

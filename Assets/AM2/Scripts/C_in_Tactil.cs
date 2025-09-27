@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class M_Pan_Tactil : MonoBehaviour
+public class C_in_Tactil : MonoBehaviour
 {
-    [SerializeField] private V_InputManager manager;
+    [SerializeField] private C_InputManager manager;
     [SerializeField] private float sensibilidad = 0.2f;
 
     [Header("Config")]

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class C_SoldadoIA : C_SoldadoMoverse
+public class C_acc_SoldadoIA : C_SoldadoTransform
 {
     [Header("IA")]
     public Transform target;

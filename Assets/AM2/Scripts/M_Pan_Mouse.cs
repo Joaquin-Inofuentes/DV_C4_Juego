@@ -5,7 +5,7 @@ public class M_Pan_Mouse : MonoBehaviour
 {
     [Button(nameof(CambiarBloqueo))]
 
-    [SerializeField] private V_InputManager manager;
+    [SerializeField] private C_InputManager manager;
     [SerializeField] private float sensibilidad = 0.2f;
     [SerializeField] private bool bloquearCursor = true;
 

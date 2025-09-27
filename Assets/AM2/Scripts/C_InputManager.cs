@@ -1,7 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
-public class V_InputManager : MonoBehaviour
+public class C_InputManager : MonoBehaviour  // controller
 {
     public event Action<Vector2> OnMoveInput;
     public event Action<Vector2> OnPanInput;
@@ -11,7 +11,7 @@ public class V_InputManager : MonoBehaviour
     public event Action Levantarse;
     public event Action Saltar;
 
-    [SerializeField] private bool usarTactil = true; // decide cu�l input usar
+    [SerializeField] private bool usarTactil = true; // decide cuál input usar
 
 
     public void RecibirMove(Vector2 input)
@@ -31,3 +31,32 @@ public class V_InputManager : MonoBehaviour
     public void RecibirSaltar() => Saltar?.Invoke();
 
 }
+/*
+Capa	Qué hace	¿Toca Unity?	Ejemplo
+Model	
+- Guarda y 
+- gestiona los datos y 
+- lógica del juego	
+❌ No	
+Vida, daño, energía, reglas de combate
+
+Controller	
+- Escucha inputs/eventos, 
+- decide acciones, 
+- modifica componentes	
+✅ Sí	
+Detecta input y aplica fuerza para saltar
+
+View	
+- Muestra lo visual, 
+- UI, 
+- animaciones, 
+- efectos	
+✅ Sí (solo estético)	
+Animación de ataque, sonido de golpe
+
+
+
+
+
+ */ 

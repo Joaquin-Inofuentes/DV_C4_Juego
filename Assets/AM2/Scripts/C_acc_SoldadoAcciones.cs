@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class C_SoldadoAcciones : MonoBehaviour
+public class C_acc_SoldadoAcciones : MonoBehaviour // View 
 {
-    [SerializeField] private V_InputManager input;
+    [SerializeField] private C_InputManager input;
     private void OnEnable()
     {
         if (input != null)

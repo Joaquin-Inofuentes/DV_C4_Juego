@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class C_SoldadoJugador : C_SoldadoMoverse
+public class C_SoldadoJugador : C_SoldadoTransform
 {
     [Header("Jugador")]
     [SerializeField] private Transform camara;
-    [SerializeField] private V_InputManager Manager;
+    [SerializeField] private C_InputManager Manager;
 
     private Vector2 moveInput;
     private Vector2 panInput;

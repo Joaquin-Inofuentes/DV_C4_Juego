@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class C_SoldadoMoverse : MonoBehaviour
+public abstract class C_SoldadoTransform : MonoBehaviour
 {
     [Header("Ajustes Comunes")]
     [SerializeField] protected float velocidad = 5f;

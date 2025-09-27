@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 
-public class M_Stick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
+public class C_in_Stick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
     [SerializeField] private RectTransform fondo, handle;
 
@@ -11,7 +11,7 @@ public class M_Stick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerD
     private bool presionado;
 
     public event Action<Vector2> OnStickFloat;
-    [SerializeField] private V_InputManager Input; // referencia al manager
+    [SerializeField] private C_InputManager Input; // referencia al manager
 
     private void Update()
     {

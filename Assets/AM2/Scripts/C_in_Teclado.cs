@@ -1,9 +1,10 @@
+
 using UnityEngine;
 using System;
 
-public class M_Mov_Teclado : MonoBehaviour
+public class C_in_Teclado : MonoBehaviour
 {
-    [SerializeField] private V_InputManager Manager; // referencia al manager para enviar el input
+    [SerializeField] private C_InputManager Manager; // referencia al manager para enviar el input
     [SerializeField] private float sensibilidad = 1f; // opcional, multiplicador
 
     private Vector2 inputVector;
