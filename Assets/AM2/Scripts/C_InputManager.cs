@@ -5,7 +5,7 @@ public class C_InputManager : MonoBehaviour  // controller
 {
     public event Action<Vector2> OnMoveInput;
     public event Action<Vector2> OnPanInput;
-    public event Action Disparar;
+    public event Action OnDisparar;
     public event Action Recargar;
     public event Action Agacharse;
     public event Action Levantarse;
@@ -24,7 +24,12 @@ public class C_InputManager : MonoBehaviour  // controller
         OnPanInput?.Invoke(input);
     }
 
-    public void RecibirDisparar() => Disparar?.Invoke();
+    
+    public void InvokeDisparar()
+    {
+        OnDisparar?.Invoke();
+    }
+
     public void RecibirRecargar() => Recargar?.Invoke();
     public void RecibirAgacharse() => Agacharse?.Invoke();
     public void RecibirLevantarse() => Levantarse?.Invoke();

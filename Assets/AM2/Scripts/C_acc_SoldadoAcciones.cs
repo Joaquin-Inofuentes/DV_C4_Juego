@@ -7,8 +7,8 @@ public class C_acc_SoldadoAcciones : MonoBehaviour // View
     {
         if (input != null)
         {
-            input.Disparar -= Disparar;
-            input.Disparar += Disparar;
+            input.OnDisparar -= Disparar;
+            input.OnDisparar += Disparar;
 
             input.Recargar -= Recargar;
             input.Recargar += Recargar;
@@ -28,7 +28,7 @@ public class C_acc_SoldadoAcciones : MonoBehaviour // View
     {
         if (input != null)
         {
-            input.Disparar -= Disparar;
+            input.OnDisparar -= Disparar;
             input.Recargar -= Recargar;
             input.Agacharse -= Agacharse;
             input.Levantarse -= Levantarse;
@@ -36,7 +36,15 @@ public class C_acc_SoldadoAcciones : MonoBehaviour // View
         }
     }
 
-    private void Disparar() => Debug.Log("Disparar");
+    private void Disparar()
+    {
+        // Crear Proyectil
+
+
+        // Crear efecto de disparo
+
+        Debug.Log("Disparar");
+    }
     private void Recargar() => Debug.Log("Recargar");
     private void Agacharse() => Debug.Log("Agacharse");
     private void Levantarse() => Debug.Log("Levantarse");

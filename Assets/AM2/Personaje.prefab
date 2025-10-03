@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 1821909340234705069}
   - component: {fileID: 8103419273951738861}
   - component: {fileID: 5385316630032593812}
-  - component: {fileID: 3751809780834739928}
   m_Layer: 0
   m_Name: Arma
   m_TagString: Untagged
@@ -221,27 +220,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3751809780834739928
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5811795439262883972}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7892911929852392305
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +234,7 @@ GameObject:
   - component: {fileID: 4804011637284606973}
   - component: {fileID: 4220691219617565773}
   - component: {fileID: 7272107537985980780}
+  - component: {fileID: 1598210412763968145}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Untagged
@@ -382,3 +361,18 @@ MonoBehaviour:
   maxPitchAbajo: -30
   camara: {fileID: 8851499999510526462}
   Manager: {fileID: 0}
+--- !u!114 &1598210412763968145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892911929852392305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd8d44d414fc884a86b52118b7be5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootPoint: {fileID: 0}
+  DamageProyectil: 25
+  SpeedProyectil: 30

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a87a46435542e841a1f7b9407e49895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usarTactil: 1
+  usarTactil: 0
 --- !u!114 &6033556853124882927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 1177729698935193728}
   sensibilidad: 0.1
-  usarMouse: 1
+  usarMouse: 0
 --- !u!114 &7601791985182747669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,14 +87,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6234096117168085389}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 464344cfb25686340aa1796de09bc015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1177729698935193728}
-  sensibilidad: 0.2
-  bloquearCursor: 0
+  sensibilidad: 2
+  bloquearCursor: 1
 --- !u!114 &192536800584409546
 MonoBehaviour:
   m_ObjectHideFlags: 0

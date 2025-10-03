@@ -1,7 +1,7 @@
 using UnityEngine;
 using CustomInspector;
 
-public class M_Pan_Mouse : MonoBehaviour
+public class C_Pan_Mouse : MonoBehaviour
 {
     [Button(nameof(CambiarBloqueo))]
 
