@@ -7,7 +7,6 @@ public class M_Pool
     [SerializeField] private List<GameObject> activeObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> inactiveObjects = new List<GameObject>();
 
-    // Acceso seguro
     public void AddActive(GameObject obj) => activeObjects.Add(obj);
     public void RemoveActive(GameObject obj) => activeObjects.Remove(obj);
     public void AddInactive(GameObject obj) => inactiveObjects.Add(obj);

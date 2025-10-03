@@ -35,15 +35,15 @@ public class C_acc_SoldadoAcciones : MonoBehaviour // View
             input.Saltar -= Saltar;
         }
     }
+    public C_Shooter ArmaActual;
 
     private void Disparar()
     {
-        // Crear Proyectil
+        Debug.Log("Disparar", gameObject);
 
+        if (ArmaActual == null) return;
 
-        // Crear efecto de disparo
-
-        Debug.Log("Disparar");
+        ArmaActual.Interactuar();
     }
     private void Recargar() => Debug.Log("Recargar");
     private void Agacharse() => Debug.Log("Agacharse");

@@ -37,22 +37,23 @@ public class C_Projectile : MonoBehaviour
         lifeTimer += Time.deltaTime;
         if (lifeTimer >= lifeTime)
         {
-            C_ProjectilePool.Instance.ReturnProjectile(gameObject);
+            C_PoolManager.Instance.Return(gameObject,"proyectil");
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
         view.ShowCollision(collision.gameObject);
 
         var damageable = collision.gameObject.GetComponent<I_ReceivesDamage>();
         if (damageable != null)
         {
-            damageable.ReceiveDamage(Model.Damage);
+            damageable.ReceiveDamage(Model.Damage); // Daño de proyectil
             Debug.Log($"[C_Projectile] Hizo {Model.Damage} de daño a {collision.gameObject.name}");
         }
 
-        C_ProjectilePool.Instance.ReturnProjectile(gameObject);
+        C_PoolManager.Instance.Return(gameObject, "proyectil");
     }
 
     public void ResetState()

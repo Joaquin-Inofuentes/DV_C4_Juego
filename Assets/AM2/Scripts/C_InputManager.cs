@@ -13,6 +13,15 @@ public class C_InputManager : MonoBehaviour  // controller
 
     [SerializeField] private bool usarTactil = true; // decide cuál input usar
 
+    public static C_InputManager Instance { get; private set; }
+    public void Awake()
+    {
+        Instance = this;
+    }
+    public void OnEnable()
+    {
+        Instance = this;
+    }
 
     public void RecibirMove(Vector2 input)
     {

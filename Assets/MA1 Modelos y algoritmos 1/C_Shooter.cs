@@ -6,19 +6,26 @@ public class C_Shooter : MonoBehaviour
     public int DamageProyectil = 25;
     public float SpeedProyectil = 30f;
 
-    void Update()
+    public void Interactuar()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        Debug.Log("[C_Shooter] Disparar!", gameObject);
+        Vector3 spawnPos = transform.position + transform.forward * 2f;
+
+        // Pedir proyectil
+        GameObject proj = C_PoolManager.Instance.Request("proyectil", spawnPos);
+
+        // Opcional: si tenés C_Projectile con Init(model)
+        var controller = proj.GetComponent<C_Projectile>();
+        if (controller != null)
         {
-            M_Projectile model = new M_Projectile
+            M_Projectile modelData = new M_Projectile()
             {
-                Damage = DamageProyectil,
-                Speed = DamageProyectil,
+                Damage = 10,
+                Speed = 20f,
                 Direction = transform.forward,
                 Owner = gameObject
             };
-
-            C_ProjectilePool.Instance.GetProjectile(model, ShootPoint.position);
+            controller.Init(modelData);
         }
     }
 }

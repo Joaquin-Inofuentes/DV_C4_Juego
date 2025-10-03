@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class F_Factory : MonoBehaviour
 {
-    public GameObject projectilePrefab;
+    public GameObject prefab;
 
-    public GameObject CreateProjectile(Vector3 spawnPosition)
+    public GameObject Create(Vector3 spawnPosition)
     {
-        GameObject proj = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
-        proj.SetActive(false);
-        return proj;
+        GameObject obj = Instantiate(prefab, spawnPosition, Quaternion.identity);
+        obj.SetActive(false);
+        return obj;
     }
 }
