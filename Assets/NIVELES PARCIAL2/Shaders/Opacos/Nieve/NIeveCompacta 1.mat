@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NIeveCompacta
+  m_Name: NIeveCompacta 1
   m_Shader: {fileID: -6465566751694194690, guid: 5d03ff437a75da7428c6b6ef3187f998,
     type: 3}
   m_Parent: {fileID: 0}
@@ -58,7 +58,7 @@ Material:
     - _metallic: 0.27
     - _normal: 1
     - _normal_level_snow: 0.31
-    - _normal_noise_scale: 150
+    - _normal_noise_scale: 25
     - _rougness: 0.57
     m_Colors:
     - _Color: {r: 0.8228907, g: 0.85291326, b: 0.8679245, a: 0}
