@@ -70,7 +70,7 @@ Material:
     - _Snow_angle: 0
     - _roughnnes: 0
     - _snow_2: 1500
-    - _snow_level: 0.57
+    - _snow_level: 0.544
     - _snow_noise: 500
     - _snow_noise_angle: 0
     m_Colors:
