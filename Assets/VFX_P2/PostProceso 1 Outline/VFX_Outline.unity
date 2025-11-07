@@ -619,12 +619,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RenderShadows: 0
+  m_RequiresDepthTextureOption: 0
+  m_RequiresOpaqueTextureOption: 0
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -703,8 +703,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -718,13 +718,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298589109}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.048217867, y: -0, z: -0, w: 0.9988368}
-  m_LocalPosition: {x: -0.64, y: 1.45, z: -1.89}
+  m_LocalRotation: {x: -0.083450995, y: -0.016066829, z: 0.04751466, w: 0.9952488}
+  m_LocalPosition: {x: -1.03, y: 1.45, z: -1.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -5.528, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -9.473, y: -2.319, z: 5.659}
 --- !u!1 &2023519266
 GameObject:
   m_ObjectHideFlags: 0
