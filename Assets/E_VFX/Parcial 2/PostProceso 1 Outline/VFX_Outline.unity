@@ -2625,6 +2625,7 @@ GameObject:
   - component: {fileID: 1966508403952133227}
   - component: {fileID: 4372581480815382689}
   - component: {fileID: 4372581480815382690}
+  - component: {fileID: 4372581480815382691}
   m_Layer: 0
   m_Name: Fal (2)
   m_TagString: Untagged
@@ -3273,6 +3274,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjetoDeFondo: {fileID: 654039606}
+--- !u!65 &4372581480815382691
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2859358880907686260}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.73020303, y: 9.724874, z: 2.221938}
+  m_Center: {x: 0.07731868, y: 0.365057, z: -0.5431181}
 --- !u!1 &4396332671868702119
 GameObject:
   m_ObjectHideFlags: 0

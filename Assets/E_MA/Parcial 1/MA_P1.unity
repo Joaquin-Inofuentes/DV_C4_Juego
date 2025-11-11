@@ -1331,7 +1331,7 @@ GameObject:
   - component: {fileID: 9054309846508455630}
   - component: {fileID: 9054309846508455631}
   m_Layer: 0
-  m_Name: Personaje (1)
+  m_Name: EnemigoInmovil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1383,9 +1383,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 75338333}
   - {fileID: 3971393706398688431}
-  - {fileID: 2247517680997785684}
   - {fileID: 1717061735}
+  - {fileID: 2247517680997785684}
+  - {fileID: 1548404487}
   - {fileID: 285423172}
   - {fileID: 1812337290}
   - {fileID: 950781764}
-  - {fileID: 1548404487}
