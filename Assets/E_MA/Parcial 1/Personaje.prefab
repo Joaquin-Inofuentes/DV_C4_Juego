@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1821909340234705069}
   - component: {fileID: 8103419273951738861}
   - component: {fileID: 5385316630032593812}
+  - component: {fileID: 7066392935256317466}
   m_Layer: 0
   m_Name: Arma
   m_TagString: Untagged
@@ -220,6 +221,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7066392935256317466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811795439262883972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd8d44d414fc884a86b52118b7be5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootPoint: {fileID: 1821909340234705069}
+  DamageProyectil: 25
+  SpeedProyectil: 30
 --- !u!1 &7892911929852392305
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +251,7 @@ GameObject:
   - component: {fileID: 4220691219617565773}
   - component: {fileID: 7272107537985980780}
   - component: {fileID: 1598210412763968145}
+  - component: {fileID: 6901060109028181494}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Untagged
@@ -343,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 0}
+  ArmaActual: {fileID: 7066392935256317466}
 --- !u!114 &7272107537985980780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +391,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd8d44d414fc884a86b52118b7be5b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShootPoint: {fileID: 0}
+  ShootPoint: {fileID: 1821909340234705069}
   DamageProyectil: 25
   SpeedProyectil: 30
+--- !u!54 &6901060109028181494
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892911929852392305}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
