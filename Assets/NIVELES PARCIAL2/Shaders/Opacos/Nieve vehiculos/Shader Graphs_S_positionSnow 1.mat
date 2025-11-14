@@ -55,16 +55,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Metallic: 0.268
+    - _Metallic: 0.359
     - _Normal_high: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Snow_angle: 1
-    - _roughnnes: 0
+    - _Snow_angle: 0
+    - _roughnnes: 0.404
     - _snow_2: 1500
-    - _snow_level: 1.1
-    - _snow_noise: 600
+    - _snow_level: 0.563
+    - _snow_noise: 1000
     - _snow_noise_angle: 10000
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 0.79983985, g: 0.8113208, b: 0.8113208, a: 0}
   m_BuildTextureStacks: []
