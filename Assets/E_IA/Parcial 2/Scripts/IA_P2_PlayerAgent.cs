@@ -7,7 +7,6 @@ public class PlayerAgent : MonoBehaviour
     [Button(nameof(GoToGameobject), true)]
     public GameObject targetObject;
 
-    public static PlayerAgent Instance;
 
     [Header("Movimiento")]
     public float moveSpeed = 5f;
@@ -20,11 +19,6 @@ public class PlayerAgent : MonoBehaviour
 
     private float currentSpeed = 0f; // velocidad actual, aumenta al inicio
 
-    void OnEnable()
-    {
-        Instance = this;
-    }
-
     public void GoToGameobject(GameObject target)
     {
         GoTo(target.transform.position);
@@ -32,7 +26,11 @@ public class PlayerAgent : MonoBehaviour
 
     public void GoTo(Vector3 targetPosition)
     {
-        currentPath = PathfindingManager.RequestPath(targetPosition);
+
+        Vector3 Origen = transform.position;
+        Origen.y = 0;
+        targetPosition.y = 0;
+        currentPath = PathfindingManager.RequestPath(Origen,targetPosition);
         // 1) Línea roja solo la primera vez
         if (currentPath.Count > 1)
         {

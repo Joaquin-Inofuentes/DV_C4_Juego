@@ -45,7 +45,7 @@ public class PathNode : MonoBehaviour
             if (selectedParent)
             {
                 // Si está seleccionado el padre → recortar 20% inicial y final
-                Vector3 p80 = Vector3.Lerp(start, end, 1f - cutPercent);
+                Vector3 p80 = Vector3.Lerp(start, end, 1f - cutPercent - 0.2f);
                 Gizmos.DrawLine(p20, p80);
             }
             else
