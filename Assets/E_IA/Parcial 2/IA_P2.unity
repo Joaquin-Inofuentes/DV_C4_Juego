@@ -9575,6 +9575,7 @@ GameObject:
   - component: {fileID: 1070459446}
   - component: {fileID: 1070459445}
   - component: {fileID: 1070459449}
+  - component: {fileID: 1070459450}
   m_Layer: 0
   m_Name: Agente 1
   m_TagString: Untagged
@@ -9681,6 +9682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 384311174}
+  patrolWaypoints: []
   moveSpeed: 5
   nodeReachDistance: 0.5
   acceleration: 10
@@ -9688,6 +9690,26 @@ MonoBehaviour:
   currentIndex: 0
   isMoving: 0
   currentSpeed: 0
+--- !u!114 &1070459450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070459444}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed00b1fe09407348b40067257539963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1070459449}
+  patrolWaypoints:
+  - {fileID: 550029451}
+  - {fileID: 1156744292}
+  - {fileID: 572057796}
+  - {fileID: 660455706}
+  - {fileID: 2011003362}
+  target: {fileID: 0}
 --- !u!1 &1073690216
 GameObject:
   m_ObjectHideFlags: 0

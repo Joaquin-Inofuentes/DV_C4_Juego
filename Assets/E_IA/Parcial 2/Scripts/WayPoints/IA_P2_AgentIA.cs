@@ -7,6 +7,8 @@ public class IA_P2_AgentIA : MonoBehaviour
     [Button(nameof(GoToGameobject), true)]
     public GameObject targetObject;
 
+    // --- NUEVO: Waypoints de patrulla ---
+    public List<Transform> patrolWaypoints;
 
     [Header("Movimiento")]
     public float moveSpeed = 5f;
@@ -23,7 +25,7 @@ public class IA_P2_AgentIA : MonoBehaviour
     {
         GoTo(target.transform.position);
     }
-
+    
     public void GoTo(Vector3 targetPosition)
     {
 
