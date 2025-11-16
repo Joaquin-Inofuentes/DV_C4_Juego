@@ -8,9 +8,6 @@ public class IA_P2_AgentIA : MonoBehaviour
     [Button(nameof(GoToGameobject), true)]
     public GameObject targetObject;
 
-    // --- NUEVO: Waypoints de patrulla ---
-    public List<Transform> patrolWaypoints;
-
     [Header("Movimiento")]
     public float moveSpeed = 5f;
     public float nodeReachDistance = 0.5f;
@@ -34,7 +31,7 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     public void GoTo(Vector3 targetPosition)
     {
-        Debug.Log("Se pide re calcular");
+        //Debug.Log("Se pide re calcular");
         Vector3 Origen = transform.position;
         Origen.y = 0;
         targetPosition.y = 0;

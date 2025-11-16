@@ -1,60 +1,83 @@
+// --- IA_P2_ST_PatrolState.cs ---
+// (Modificado para usar el Contexto)
+
 using UnityEngine;
 using System.Collections.Generic;
 
 public class IA_P2_ST_PatrolState : IA_P2_INT_gentState
 {
     private int _currentWaypoint = 0;
+    private Vector3 _registrada; // Almacena el último destino solicitado
 
     public IA_P2_ST_PatrolState() { }
 
-    public void Enter(IA_P2_AgentIA agent)
+    // Recibe el contexto (MoveAgent)
+    public void Enter(IA_P2_MoveAgent context)
     {
-        agent.AsignarColor(Color.blue);
+        context.agent.AsignarColor(Color.blue);
         _currentWaypoint = 0;
+        _registrada = Vector3.positiveInfinity; // Resetea el destino
 
-        if (agent.patrolWaypoints != null && agent.patrolWaypoints.Count > 0)
-            agent.GoTo(agent.patrolWaypoints[_currentWaypoint].position);
+        // Accede a los waypoints desde el contexto
+        if (context.patrolWaypoints != null && context.patrolWaypoints.Count > 0)
+        {
+            // Le dice al agente (la herramienta) que vaya al punto
+            Vector3 targetPos = context.patrolWaypoints[_currentWaypoint].position;
+            context.agent.GoTo(targetPos);
+            _registrada = targetPos; // Registra el primer destino
+        }
 
-        // Dibuja todos los waypoints conectados al inicio
-        DrawAllWaypoints(agent);
+        DrawAllWaypoints(context);
     }
-    private Vector3 Registrada;
-    public void Execute(IA_P2_AgentIA agent)
+
+    // Recibe el contexto (MoveAgent)
+    public void Execute(IA_P2_MoveAgent context)
     {
-        if (agent.patrolWaypoints == null || agent.patrolWaypoints.Count == 0) return;
+        // Saca las variables del contexto para legibilidad
+        IA_P2_AgentIA agent = context.agent;
+        List<Transform> wps = context.patrolWaypoints;
 
-        Vector3 target = agent.patrolWaypoints[_currentWaypoint].position;
+        if (wps == null || wps.Count == 0) return;
 
-        // Solo pedir ir si cambió el objetivo
-        if (Registrada != target && !agent.isMoving)
-        {
-            agent.GoTo(target);
-            Registrada = target;
-        }
-
-        // Avanza al siguiente waypoint si está suficientemente cerca
-        float distanciaParaCambiar = 0.1f; // <-- X distancia
-        if (Vector3.Distance(agent.transform.position, target) <= distanciaParaCambiar)
-        {
-            _currentWaypoint = (_currentWaypoint + 1) % agent.patrolWaypoints.Count; // vuelve a 0 si se acabaron
-        }
+        Vector3 target = wps[_currentWaypoint].position;
 
         // Dibuja línea hacia waypoint actual
         Debug.DrawLine(agent.transform.position, target, Color.yellow);
 
         // Dibuja todos los waypoints conectados
-        DrawAllWaypoints(agent);
+        DrawAllWaypoints(context);
+
+        // Si el agente NO se está moviendo (porque ya llegó), d
+        // dale el siguiente punto.
+        float distanciaParaCambiar = 0.1f; // <-- Se puede ajustar
+
+        // Comprueba si ha llegado al destino actual
+        if (!agent.isMoving || Vector3.Distance(agent.transform.position, target) <= distanciaParaCambiar)
+        {
+            // Avanza al siguiente waypoint
+            _currentWaypoint = (_currentWaypoint + 1) % wps.Count; // vuelve a 0 si se acabaron
+            Vector3 newTarget = wps[_currentWaypoint].position;
+
+            // Solo pide ir si cambió el objetivo
+            if (_registrada != newTarget)
+            {
+                agent.GoTo(newTarget);
+                _registrada = newTarget;
+            }
+        }
     }
 
-
-    public void Exit(IA_P2_AgentIA agent)
+    // Recibe el contexto (MoveAgent)
+    public void Exit(IA_P2_MoveAgent context)
     {
-        agent.StopAgent();
+        // Usa el agente del contexto
+        context.agent.StopAgent();
     }
 
-    private void DrawAllWaypoints(IA_P2_AgentIA agent)
+    private void DrawAllWaypoints(IA_P2_MoveAgent context)
     {
-        var wps = agent.patrolWaypoints;
+        // Usa los waypoints del contexto
+        var wps = context.patrolWaypoints;
         if (wps == null || wps.Count < 2) return;
 
         for (int i = 0; i < wps.Count; i++)
