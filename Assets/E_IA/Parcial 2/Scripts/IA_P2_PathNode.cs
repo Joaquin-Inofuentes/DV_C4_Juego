@@ -1,13 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using CustomInspector;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PathNode : MonoBehaviour
+public class IA_P2_PathNode : MonoBehaviour
 {
+    [Button(nameof(ReCalcularCercanos))]
     public float movementCost = 1f;
-    public List<PathNode> neighbors = new List<PathNode>();
+    public List<IA_P2_PathNode> neighbors = new List<IA_P2_PathNode>();
 
-
+    public void ReCalcularCercanos()
+    {
+        if (IA_P2_PathfindingModel.Instance != null)
+        {
+            IA_P2_PathfindingModel.Instance.ReCalcularVecinos();
+        }
+    }
 #if UNITY_EDITOR
 
     void OnDrawGizmos()

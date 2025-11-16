@@ -2,7 +2,7 @@
 using UnityEngine;
 using CustomInspector;
 
-public class PlayerAgent : MonoBehaviour
+public class IA_P2_AgentIA : MonoBehaviour
 {
     [Button(nameof(GoToGameobject), true)]
     public GameObject targetObject;
@@ -14,10 +14,10 @@ public class PlayerAgent : MonoBehaviour
     public float acceleration = 10f; // m/s²
 
     public List<Vector3> currentPath;
-    int currentIndex = 0;
-    bool isMoving = false;
+    public int currentIndex = 0;
+    public bool isMoving = false;
 
-    private float currentSpeed = 0f; // velocidad actual, aumenta al inicio
+    public float currentSpeed = 0f; // velocidad actual, aumenta al inicio
 
     public void GoToGameobject(GameObject target)
     {
@@ -30,7 +30,7 @@ public class PlayerAgent : MonoBehaviour
         Vector3 Origen = transform.position;
         Origen.y = 0;
         targetPosition.y = 0;
-        currentPath = PathfindingManager.RequestPath(Origen,targetPosition);
+        currentPath = IA_P2_PathfindingManager.RequestPath(Origen,targetPosition);
         // 1) Línea roja solo la primera vez
         if (currentPath.Count > 1)
         {
@@ -87,9 +87,6 @@ public class PlayerAgent : MonoBehaviour
         int lastIndex = currentPath.Count - 1;
 
         // --- DIBUJO DE LINEAS ---
-
-
-
         // 2) Tramos completados: amarillo
         for (int i = 0; i < currentIndex - 1; i++)
             Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.yellow, 3f);
