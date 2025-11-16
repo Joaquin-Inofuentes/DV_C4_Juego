@@ -262,19 +262,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
   - {fileID: 72300453}
-  - {fileID: 930740594}
+  - {fileID: 317008522}
   - {fileID: 550029447}
-  - {fileID: 1085171048}
-  - {fileID: 1492777982}
-  - {fileID: 1323169677}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
   - {fileID: 711679519}
+  - {fileID: 930740594}
+  - {fileID: 1085171048}
+  - {fileID: 1156744288}
+  - {fileID: 1323169677}
+  - {fileID: 1492777982}
+  - {fileID: 1523728381}
+  - {fileID: 2011003358}
 --- !u!135 &17313470
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -395,12 +395,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1440326368}
-  - {fileID: 787582217}
-  - {fileID: 1329373302}
-  - {fileID: 1004742568}
   - {fileID: 266564238}
   - {fileID: 306600989}
+  - {fileID: 787582217}
+  - {fileID: 1004742568}
+  - {fileID: 1329373302}
+  - {fileID: 1440326368}
 --- !u!135 &45875989
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -626,18 +626,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
   - {fileID: 1492777982}
+  - {fileID: 1523728381}
   - {fileID: 1843988871}
+  - {fileID: 2011003358}
 --- !u!135 &72300454
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -863,11 +863,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
+  - {fileID: 461293795}
   - {fileID: 787582217}
+  - {fileID: 1247476814}
   - {fileID: 1440852153}
   - {fileID: 1694578471}
-  - {fileID: 461293795}
-  - {fileID: 1247476814}
 --- !u!135 &111581379
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3020,13 +3020,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1440326368}
-  - {fileID: 787582217}
-  - {fileID: 1694578471}
-  - {fileID: 1004742568}
   - {fileID: 45875988}
-  - {fileID: 1463673091}
+  - {fileID: 787582217}
+  - {fileID: 1004742568}
   - {fileID: 1379756605}
+  - {fileID: 1440326368}
+  - {fileID: 1463673091}
+  - {fileID: 1694578471}
 --- !u!135 &266564239
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3357,9 +3357,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1495605076}
   - {fileID: 45875988}
   - {fileID: 711679519}
+  - {fileID: 1495605076}
   - {fileID: 1843988871}
 --- !u!135 &306600990
 SphereCollider:
@@ -3481,17 +3481,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
   - {fileID: 1492777982}
+  - {fileID: 1523728381}
+  - {fileID: 2011003358}
 --- !u!135 &317008523
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4572,12 +4572,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1492777982}
-  - {fileID: 1731416662}
   - {fileID: 111581378}
+  - {fileID: 711679519}
   - {fileID: 1082915652}
   - {fileID: 1247476814}
-  - {fileID: 711679519}
+  - {fileID: 1492777982}
+  - {fileID: 1731416662}
   - {fileID: 1843988871}
 --- !u!135 &461293796
 SphereCollider:
@@ -4789,11 +4789,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
+  - {fileID: 837546410}
   - {fileID: 1440326368}
   - {fileID: 1440852153}
-  - {fileID: 1841327222}
   - {fileID: 1596364278}
-  - {fileID: 837546410}
+  - {fileID: 1841327222}
 --- !u!135 &485933218
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4914,12 +4914,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1323169677}
-  - {fileID: 1440326368}
   - {fileID: 984731831}
   - {fileID: 1247476814}
   - {fileID: 1310807580}
+  - {fileID: 1323169677}
   - {fileID: 1379756605}
+  - {fileID: 1440326368}
 --- !u!135 &503434623
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5250,18 +5250,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
   - {fileID: 1492777982}
+  - {fileID: 1523728381}
   - {fileID: 1843988871}
+  - {fileID: 2011003358}
 --- !u!135 &550029448
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5487,16 +5487,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 0.5
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
+  - {fileID: 1523728381}
+  - {fileID: 2011003358}
 --- !u!135 &572057793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6037,11 +6037,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1731416662}
-  - {fileID: 1440852153}
-  - {fileID: 1252987726}
-  - {fileID: 1694578471}
   - {fileID: 837546410}
+  - {fileID: 1252987726}
+  - {fileID: 1440852153}
+  - {fileID: 1694578471}
+  - {fileID: 1731416662}
 --- !u!135 &645638309
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6254,16 +6254,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
+  - {fileID: 1523728381}
+  - {fileID: 2011003358}
 --- !u!135 &660455703
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6595,11 +6595,11 @@ MonoBehaviour:
   movementCost: 1
   neighbors:
   - {fileID: 17313469}
-  - {fileID: 1492777982}
-  - {fileID: 1323169677}
-  - {fileID: 461293795}
   - {fileID: 306600989}
+  - {fileID: 461293795}
   - {fileID: 1247476814}
+  - {fileID: 1323169677}
+  - {fileID: 1492777982}
   - {fileID: 1843988871}
 --- !u!135 &711679520
 SphereCollider:
@@ -7246,12 +7246,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 111581378}
-  - {fileID: 1329373302}
-  - {fileID: 1004742568}
-  - {fileID: 266564238}
   - {fileID: 45875988}
+  - {fileID: 111581378}
+  - {fileID: 266564238}
   - {fileID: 984731831}
+  - {fileID: 1004742568}
+  - {fileID: 1329373302}
   - {fileID: 1379756605}
 --- !u!135 &787582218
 SphereCollider:
@@ -7586,49 +7586,49 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   allNodes:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
-  - {fileID: 1085171048}
-  - {fileID: 1492777982}
-  - {fileID: 1323169677}
-  - {fileID: 1657037947}
-  - {fileID: 1440326368}
-  - {fileID: 787582217}
-  - {fileID: 485933217}
-  - {fileID: 1731416662}
-  - {fileID: 1440852153}
-  - {fileID: 1252987726}
-  - {fileID: 645638308}
+  - {fileID: 45875988}
+  - {fileID: 72300453}
   - {fileID: 111581378}
-  - {fileID: 1082915652}
-  - {fileID: 1694578471}
-  - {fileID: 1841327222}
-  - {fileID: 1329373302}
-  - {fileID: 1049817417}
-  - {fileID: 1596364278}
-  - {fileID: 837546410}
-  - {fileID: 461293795}
-  - {fileID: 1495605076}
-  - {fileID: 1004742568}
   - {fileID: 266564238}
   - {fileID: 306600989}
-  - {fileID: 45875988}
-  - {fileID: 984731831}
-  - {fileID: 1247476814}
+  - {fileID: 317008522}
+  - {fileID: 461293795}
+  - {fileID: 485933217}
   - {fileID: 503434622}
-  - {fileID: 1463673091}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 645638308}
+  - {fileID: 660455702}
   - {fileID: 711679519}
+  - {fileID: 787582217}
+  - {fileID: 837546410}
+  - {fileID: 930740594}
+  - {fileID: 984731831}
+  - {fileID: 1004742568}
+  - {fileID: 1049817417}
+  - {fileID: 1082915652}
+  - {fileID: 1085171048}
+  - {fileID: 1156744288}
+  - {fileID: 1247476814}
+  - {fileID: 1252987726}
   - {fileID: 1310807580}
+  - {fileID: 1323169677}
+  - {fileID: 1329373302}
   - {fileID: 1379756605}
+  - {fileID: 1440326368}
+  - {fileID: 1440852153}
+  - {fileID: 1463673091}
+  - {fileID: 1492777982}
+  - {fileID: 1495605076}
+  - {fileID: 1523728381}
+  - {fileID: 1596364278}
+  - {fileID: 1657037947}
+  - {fileID: 1694578471}
+  - {fileID: 1731416662}
+  - {fileID: 1841327222}
   - {fileID: 1843988871}
+  - {fileID: 2011003358}
 --- !u!65 &810681837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7812,15 +7812,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1657037947}
   - {fileID: 485933217}
-  - {fileID: 1440852153}
   - {fileID: 645638308}
+  - {fileID: 1049817417}
+  - {fileID: 1440852153}
+  - {fileID: 1463673091}
+  - {fileID: 1596364278}
+  - {fileID: 1657037947}
   - {fileID: 1694578471}
   - {fileID: 1841327222}
-  - {fileID: 1049817417}
-  - {fileID: 1596364278}
-  - {fileID: 1463673091}
 --- !u!135 &837546411
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8451,18 +8451,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
   - {fileID: 1492777982}
+  - {fileID: 1523728381}
   - {fileID: 1843988871}
+  - {fileID: 2011003358}
 --- !u!135 &930740595
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9003,11 +9003,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 787582217}
-  - {fileID: 1082915652}
-  - {fileID: 1004742568}
-  - {fileID: 1247476814}
   - {fileID: 503434622}
+  - {fileID: 787582217}
+  - {fileID: 1004742568}
+  - {fileID: 1082915652}
+  - {fileID: 1247476814}
   - {fileID: 1310807580}
 --- !u!135 &984731832
 SphereCollider:
@@ -9234,16 +9234,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1440326368}
-  - {fileID: 787582217}
-  - {fileID: 1440852153}
-  - {fileID: 1329373302}
-  - {fileID: 266564238}
   - {fileID: 45875988}
+  - {fileID: 266564238}
+  - {fileID: 787582217}
   - {fileID: 984731831}
   - {fileID: 1247476814}
   - {fileID: 1310807580}
+  - {fileID: 1329373302}
   - {fileID: 1379756605}
+  - {fileID: 1440326368}
+  - {fileID: 1440852153}
 --- !u!135 &1004742569
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9379,12 +9379,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
+  - {fileID: 837546410}
+  - {fileID: 1329373302}
   - {fileID: 1440852153}
+  - {fileID: 1596364278}
   - {fileID: 1694578471}
   - {fileID: 1841327222}
-  - {fileID: 1329373302}
-  - {fileID: 1596364278}
-  - {fileID: 837546410}
 --- !u!135 &1049817418
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9575,7 +9575,6 @@ GameObject:
   - component: {fileID: 1070459445}
   - component: {fileID: 1070459449}
   - component: {fileID: 1070459450}
-  - component: {fileID: 1070459451}
   m_Layer: 0
   m_Name: Agente 1
   m_TagString: Untagged
@@ -9702,22 +9701,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1070459449}
-  patrolWaypoints: []
+  patrolWaypoints:
+  - {fileID: 550029451}
+  - {fileID: 1156744292}
+  - {fileID: 572057796}
+  - {fileID: 660455706}
+  - {fileID: 2011003362}
   target: {fileID: 384311174}
---- !u!114 &1070459451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070459444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b1ecb2fbbd60cd46b89d07bba51356e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rutaDeLaCarpeta: C:\Users\PC_JOACO\Downloads\Rutas
-  extensionArchivoSalida2: .txt
 --- !u!1 &1073690216
 GameObject:
   m_ObjectHideFlags: 0
@@ -9962,11 +9952,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1694578471}
   - {fileID: 461293795}
   - {fileID: 984731831}
   - {fileID: 1247476814}
   - {fileID: 1310807580}
+  - {fileID: 1694578471}
 --- !u!135 &1082915653
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10087,18 +10077,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
+  - {fileID: 1156744288}
   - {fileID: 1492777982}
+  - {fileID: 1523728381}
   - {fileID: 1843988871}
+  - {fileID: 2011003358}
 --- !u!135 &1085171049
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10639,16 +10629,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1523728381}
+  - {fileID: 2011003358}
 --- !u!135 &1156744289
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10874,15 +10864,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1731416662}
   - {fileID: 111581378}
-  - {fileID: 1082915652}
   - {fileID: 461293795}
-  - {fileID: 1004742568}
-  - {fileID: 984731831}
   - {fileID: 503434622}
   - {fileID: 711679519}
+  - {fileID: 984731831}
+  - {fileID: 1004742568}
+  - {fileID: 1082915652}
   - {fileID: 1310807580}
+  - {fileID: 1731416662}
 --- !u!135 &1247476815
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11003,9 +10993,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1731416662}
-  - {fileID: 1440852153}
   - {fileID: 645638308}
+  - {fileID: 1440852153}
+  - {fileID: 1731416662}
 --- !u!135 &1252987727
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11422,12 +11412,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1323169677}
-  - {fileID: 1082915652}
-  - {fileID: 1004742568}
-  - {fileID: 984731831}
-  - {fileID: 1247476814}
   - {fileID: 503434622}
+  - {fileID: 984731831}
+  - {fileID: 1004742568}
+  - {fileID: 1082915652}
+  - {fileID: 1247476814}
+  - {fileID: 1323169677}
 --- !u!1 &1323169676
 GameObject:
   m_ObjectHideFlags: 0
@@ -11463,11 +11453,11 @@ MonoBehaviour:
   movementCost: 1
   neighbors:
   - {fileID: 17313469}
-  - {fileID: 1492777982}
-  - {fileID: 1440852153}
   - {fileID: 503434622}
   - {fileID: 711679519}
   - {fileID: 1310807580}
+  - {fileID: 1440852153}
+  - {fileID: 1492777982}
 --- !u!135 &1323169678
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11603,10 +11593,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 787582217}
-  - {fileID: 1049817417}
-  - {fileID: 1004742568}
   - {fileID: 45875988}
+  - {fileID: 787582217}
+  - {fileID: 1004742568}
+  - {fileID: 1049817417}
 --- !u!135 &1329373303
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12355,15 +12345,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1657037947}
-  - {fileID: 1440326368}
-  - {fileID: 787582217}
-  - {fileID: 1440852153}
-  - {fileID: 1694578471}
-  - {fileID: 1004742568}
   - {fileID: 266564238}
   - {fileID: 503434622}
+  - {fileID: 787582217}
+  - {fileID: 1004742568}
+  - {fileID: 1440326368}
+  - {fileID: 1440852153}
   - {fileID: 1463673091}
+  - {fileID: 1657037947}
+  - {fileID: 1694578471}
 --- !u!1 &1412526329
 GameObject:
   m_ObjectHideFlags: 0
@@ -12608,15 +12598,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 485933217}
-  - {fileID: 1694578471}
-  - {fileID: 1596364278}
-  - {fileID: 1004742568}
-  - {fileID: 266564238}
   - {fileID: 45875988}
+  - {fileID: 266564238}
+  - {fileID: 485933217}
   - {fileID: 503434622}
-  - {fileID: 1463673091}
+  - {fileID: 1004742568}
   - {fileID: 1379756605}
+  - {fileID: 1463673091}
+  - {fileID: 1596364278}
+  - {fileID: 1694578471}
 --- !u!135 &1440326369
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12737,21 +12727,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1323169677}
-  - {fileID: 1657037947}
-  - {fileID: 485933217}
-  - {fileID: 1731416662}
-  - {fileID: 1252987726}
-  - {fileID: 645638308}
   - {fileID: 111581378}
-  - {fileID: 1694578471}
-  - {fileID: 1841327222}
-  - {fileID: 1049817417}
-  - {fileID: 1596364278}
+  - {fileID: 485933217}
+  - {fileID: 645638308}
   - {fileID: 837546410}
   - {fileID: 1004742568}
-  - {fileID: 1463673091}
+  - {fileID: 1049817417}
+  - {fileID: 1252987726}
+  - {fileID: 1323169677}
   - {fileID: 1379756605}
+  - {fileID: 1463673091}
+  - {fileID: 1596364278}
+  - {fileID: 1657037947}
+  - {fileID: 1694578471}
+  - {fileID: 1731416662}
+  - {fileID: 1841327222}
 --- !u!135 &1440852154
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12872,15 +12862,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1657037947}
+  - {fileID: 266564238}
+  - {fileID: 837546410}
+  - {fileID: 1379756605}
   - {fileID: 1440326368}
   - {fileID: 1440852153}
+  - {fileID: 1596364278}
+  - {fileID: 1657037947}
   - {fileID: 1694578471}
   - {fileID: 1841327222}
-  - {fileID: 1596364278}
-  - {fileID: 837546410}
-  - {fileID: 266564238}
-  - {fileID: 1379756605}
 --- !u!135 &1463673092
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13211,19 +13201,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 1523728381}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 461293795}
+  - {fileID: 550029447}
+  - {fileID: 711679519}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
   - {fileID: 1323169677}
+  - {fileID: 1523728381}
   - {fileID: 1731416662}
-  - {fileID: 461293795}
-  - {fileID: 711679519}
   - {fileID: 1843988871}
+  - {fileID: 2011003358}
 --- !u!135 &1492777983
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13780,17 +13770,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 2011003358}
-  - {fileID: 660455702}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
   - {fileID: 1492777982}
+  - {fileID: 2011003358}
 --- !u!135 &1523728382
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14556,15 +14546,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1657037947}
-  - {fileID: 1440326368}
   - {fileID: 485933217}
+  - {fileID: 837546410}
+  - {fileID: 1049817417}
+  - {fileID: 1440326368}
   - {fileID: 1440852153}
+  - {fileID: 1463673091}
+  - {fileID: 1657037947}
   - {fileID: 1694578471}
   - {fileID: 1841327222}
-  - {fileID: 1049817417}
-  - {fileID: 837546410}
-  - {fileID: 1463673091}
 --- !u!135 &1596364279
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15195,13 +15185,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
+  - {fileID: 837546410}
+  - {fileID: 1379756605}
   - {fileID: 1440852153}
+  - {fileID: 1463673091}
+  - {fileID: 1596364278}
   - {fileID: 1694578471}
   - {fileID: 1841327222}
-  - {fileID: 1596364278}
-  - {fileID: 837546410}
-  - {fileID: 1463673091}
-  - {fileID: 1379756605}
 --- !u!135 &1657037948
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15322,19 +15312,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1657037947}
+  - {fileID: 111581378}
+  - {fileID: 266564238}
+  - {fileID: 645638308}
+  - {fileID: 837546410}
+  - {fileID: 1049817417}
+  - {fileID: 1082915652}
+  - {fileID: 1379756605}
   - {fileID: 1440326368}
   - {fileID: 1440852153}
-  - {fileID: 645638308}
-  - {fileID: 111581378}
-  - {fileID: 1082915652}
-  - {fileID: 1841327222}
-  - {fileID: 1049817417}
-  - {fileID: 1596364278}
-  - {fileID: 837546410}
-  - {fileID: 266564238}
   - {fileID: 1463673091}
-  - {fileID: 1379756605}
+  - {fileID: 1596364278}
+  - {fileID: 1657037947}
+  - {fileID: 1841327222}
 --- !u!135 &1694578472
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15770,12 +15760,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1492777982}
-  - {fileID: 1440852153}
-  - {fileID: 1252987726}
-  - {fileID: 645638308}
   - {fileID: 461293795}
+  - {fileID: 645638308}
   - {fileID: 1247476814}
+  - {fileID: 1252987726}
+  - {fileID: 1440852153}
+  - {fileID: 1492777982}
 --- !u!135 &1731416663
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16856,14 +16846,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 1657037947}
   - {fileID: 485933217}
-  - {fileID: 1440852153}
-  - {fileID: 1694578471}
-  - {fileID: 1049817417}
-  - {fileID: 1596364278}
   - {fileID: 837546410}
+  - {fileID: 1049817417}
+  - {fileID: 1440852153}
   - {fileID: 1463673091}
+  - {fileID: 1596364278}
+  - {fileID: 1657037947}
+  - {fileID: 1694578471}
 --- !u!135 &1841327223
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17173,15 +17163,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 2011003358}
   - {fileID: 72300453}
-  - {fileID: 930740594}
+  - {fileID: 306600989}
+  - {fileID: 461293795}
   - {fileID: 550029447}
+  - {fileID: 711679519}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
   - {fileID: 1492777982}
-  - {fileID: 461293795}
-  - {fileID: 306600989}
-  - {fileID: 711679519}
+  - {fileID: 2011003358}
 --- !u!1 &1959134835
 GameObject:
   m_ObjectHideFlags: 0
@@ -17912,17 +17902,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   neighbors:
-  - {fileID: 317008522}
-  - {fileID: 660455702}
-  - {fileID: 1523728381}
-  - {fileID: 572057792}
-  - {fileID: 1156744288}
-  - {fileID: 72300453}
-  - {fileID: 930740594}
-  - {fileID: 550029447}
   - {fileID: 17313469}
+  - {fileID: 72300453}
+  - {fileID: 317008522}
+  - {fileID: 550029447}
+  - {fileID: 572057792}
+  - {fileID: 660455702}
+  - {fileID: 930740594}
   - {fileID: 1085171048}
+  - {fileID: 1156744288}
   - {fileID: 1492777982}
+  - {fileID: 1523728381}
   - {fileID: 1843988871}
 --- !u!135 &2011003359
 SphereCollider:
