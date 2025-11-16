@@ -28,7 +28,6 @@ public class IA_P2_MoveAgent : MonoBehaviour
         if (_currentState != null)
         {
             _currentState.Execute(agent);
-            Debug.Log("IA_P2_MoveAgent: Estado activo → " + _currentState.GetType().Name);
         }
         else
         {

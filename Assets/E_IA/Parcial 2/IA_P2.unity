@@ -5497,7 +5497,6 @@ MonoBehaviour:
   - {fileID: 550029447}
   - {fileID: 17313469}
   - {fileID: 1085171048}
-  - {fileID: 1492777982}
 --- !u!135 &572057793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5578,7 +5577,7 @@ Transform:
   m_GameObject: {fileID: 572057791}
   serializedVersion: 2
   m_LocalRotation: {x: 0.500066, y: 0.49993417, z: 0.499925, w: 0.500075}
-  m_LocalPosition: {x: 2.3519058, y: -2.2591014, z: 0.7467913}
+  m_LocalPosition: {x: 2.3517468, y: -2.8237116, z: 0.74687153}
   m_LocalScale: {x: 0.05646101, y: 0.4418957, z: 0.05646101}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -9663,7 +9662,7 @@ Transform:
   m_GameObject: {fileID: 1070459444}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 0.49, z: 32.5}
+  m_LocalPosition: {x: 9, y: 0.49, z: 22}
   m_LocalScale: {x: 0.4078, y: 0.4078, z: 0.4078}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9682,9 +9681,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 384311174}
-  patrolWaypoints: []
+  patrolWaypoints:
+  - {fileID: 550029451}
+  - {fileID: 1156744292}
+  - {fileID: 572057796}
+  - {fileID: 660455706}
+  - {fileID: 2011003362}
   moveSpeed: 5
-  nodeReachDistance: 0.5
+  nodeReachDistance: 0.1
   acceleration: 10
   currentPath: []
   currentIndex: 0
@@ -9697,18 +9701,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070459444}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ed00b1fe09407348b40067257539963, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1070459449}
-  patrolWaypoints:
-  - {fileID: 550029451}
-  - {fileID: 1156744292}
-  - {fileID: 572057796}
-  - {fileID: 660455706}
-  - {fileID: 2011003362}
+  patrolWaypoints: []
   target: {fileID: 0}
 --- !u!1 &1073690216
 GameObject:
@@ -10721,7 +10720,7 @@ Transform:
   m_GameObject: {fileID: 1156744287}
   serializedVersion: 2
   m_LocalRotation: {x: 0.500066, y: 0.49993417, z: 0.499925, w: 0.500075}
-  m_LocalPosition: {x: 2.3517733, y: -2.72961, z: 0.7468581}
+  m_LocalPosition: {x: 2.3518794, y: -2.353203, z: 0.74680465}
   m_LocalScale: {x: 0.05646101, y: 0.4418957, z: 0.05646101}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -13206,7 +13205,6 @@ MonoBehaviour:
   - {fileID: 317008522}
   - {fileID: 2011003358}
   - {fileID: 1523728381}
-  - {fileID: 572057792}
   - {fileID: 72300453}
   - {fileID: 930740594}
   - {fileID: 550029447}

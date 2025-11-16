@@ -9,6 +9,7 @@ public class IA_P2_ST_PatrolState : IA_P2_INT_gentState
 
     public void Enter(IA_P2_AgentIA agent)
     {
+        agent.AsignarColor(Color.blue);
         _currentWaypoint = 0;
 
         if (agent.patrolWaypoints != null && agent.patrolWaypoints.Count > 0)
@@ -27,7 +28,6 @@ public class IA_P2_ST_PatrolState : IA_P2_INT_gentState
         // Solo pedir ir si cambió el objetivo
         if (Registrada != target && !agent.isMoving)
         {
-            Debug.Log("Se pidio q vaya a un punto");
             agent.GoTo(target);
             Registrada = target;
         }

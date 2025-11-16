@@ -3,7 +3,10 @@ using UnityEngine;
 public class IA_P2_ST_ChaseState : IA_P2_INT_gentState
 {
 
-    public void Enter(IA_P2_AgentIA agent) { }
+    public void Enter(IA_P2_AgentIA agent)
+    {
+        agent.AsignarColor(Color.red);
+    }
 
     public void Execute(IA_P2_AgentIA agent)
     {

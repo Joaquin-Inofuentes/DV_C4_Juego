@@ -22,6 +22,11 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     public float currentSpeed = 0f; // velocidad actual, aumenta al inicio
 
+    public void AsignarColor(Color color)
+    {
+        gameObject.GetComponent<Renderer>().material.color = color;
+    }
+
     public void GoToGameobject(GameObject target)
     {
         GoTo(target.transform.position);
@@ -33,7 +38,7 @@ public class IA_P2_AgentIA : MonoBehaviour
         Vector3 Origen = transform.position;
         Origen.y = 0;
         targetPosition.y = 0;
-        currentPath = IA_P2_PathfindingManager.RequestPath(Origen,targetPosition);
+        currentPath = IA_P2_PathfindingManager.RequestPath(Origen, targetPosition);
         // 1) Línea roja solo la primera vez
         if (currentPath.Count > 1)
         {
@@ -65,17 +70,17 @@ public class IA_P2_AgentIA : MonoBehaviour
 
         bool isLastNode = currentIndex == currentPath.Count - 1;
 
-        // --- Velocidad acumulativa al inicio y arrive al final ---
-        if (!isLastNode)
+        float step = moveSpeed * Time.deltaTime;
+        if (step >= distance)
         {
-            currentSpeed += acceleration * Time.deltaTime;
-            if (currentSpeed > moveSpeed) currentSpeed = moveSpeed;
+            transform.position = target;
+            currentIndex++;
+            if (currentIndex >= currentPath.Count)
+                isMoving = false;
         }
         else
         {
-            float minSpeed = 1f; // velocidad mínima, ajustar según quieras
-            float targetSpeed = (distance / nodeReachDistance) * moveSpeed;
-            currentSpeed = Mathf.Max(minSpeed, Mathf.Min(currentSpeed, targetSpeed));
+            transform.position += toTarget.normalized * step;
         }
 
         // --- Mover ---
@@ -94,7 +99,10 @@ public class IA_P2_AgentIA : MonoBehaviour
         // --- DIBUJO DE LINEAS ---
         // 2) Tramos completados: amarillo
         for (int i = 0; i < currentIndex - 1; i++)
-            Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.yellow, 3f);
+        {
+            if (currentPath.Count > i+1)
+                Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.yellow, 3f);
+        }
 
         // 3) Tramos por recorrer: blanco
         for (int i = Mathf.Max(currentIndex - 1, 0); i < lastIndex; i++)
