@@ -17,26 +17,35 @@ public class IA_P2_ST_PatrolState : IA_P2_INT_gentState
         // Dibuja todos los waypoints conectados al inicio
         DrawAllWaypoints(agent);
     }
-    private int IndiceActual;
+    private Vector3 Registrada;
     public void Execute(IA_P2_AgentIA agent)
     {
         if (agent.patrolWaypoints == null || agent.patrolWaypoints.Count == 0) return;
-        _currentWaypoint = agent.currentIndex;
-        Vector3 target = agent.patrolWaypoints[_currentWaypoint].position;
-        Debug.Log("Se intento pedir q vaya");
-        if (IndiceActual == _currentWaypoint && agent.isMoving) return;
-        agent.GoTo(target);
 
-        if (!agent.IsMoving())
-            _currentWaypoint = (_currentWaypoint + 1) % agent.patrolWaypoints.Count;
+        Vector3 target = agent.patrolWaypoints[_currentWaypoint].position;
+
+        // Solo pedir ir si cambió el objetivo
+        if (Registrada != target && !agent.isMoving)
+        {
+            Debug.Log("Se pidio q vaya a un punto");
+            agent.GoTo(target);
+            Registrada = target;
+        }
+
+        // Avanza al siguiente waypoint si está suficientemente cerca
+        float distanciaParaCambiar = 0.1f; // <-- X distancia
+        if (Vector3.Distance(agent.transform.position, target) <= distanciaParaCambiar)
+        {
+            _currentWaypoint = (_currentWaypoint + 1) % agent.patrolWaypoints.Count; // vuelve a 0 si se acabaron
+        }
 
         // Dibuja línea hacia waypoint actual
         Debug.DrawLine(agent.transform.position, target, Color.yellow);
 
-        // Opcional: siempre dibujar todos los waypoints conectados cada frame
+        // Dibuja todos los waypoints conectados
         DrawAllWaypoints(agent);
-        IndiceActual = _currentWaypoint;
     }
+
 
     public void Exit(IA_P2_AgentIA agent)
     {

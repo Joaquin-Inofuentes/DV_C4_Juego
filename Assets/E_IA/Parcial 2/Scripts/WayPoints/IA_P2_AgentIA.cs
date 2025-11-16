@@ -1,51 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using CustomInspector;
+using System.Collections.Generic;
 using UnityEngine;
-using CustomInspector;
 
 public class IA_P2_AgentIA : MonoBehaviour
 {
     [Button(nameof(GoToGameobject), true)]
     public GameObject targetObject;
 
-    // --- NUEVO: Waypoints de patrulla ---
     public List<Transform> patrolWaypoints;
 
     [Header("Movimiento")]
     public float moveSpeed = 5f;
     public float nodeReachDistance = 0.5f;
-    public float acceleration = 10f; // m/s²
 
     public List<Vector3> currentPath;
     public int currentIndex = 0;
     public bool isMoving = false;
 
-    public float currentSpeed = 0f; // velocidad actual, aumenta al inicio
-
     public void GoToGameobject(GameObject target)
     {
         GoTo(target.transform.position);
     }
-    
+
     public void GoTo(Vector3 targetPosition)
     {
-
+        Debug.Log("Se pide re calcular");
         Vector3 Origen = transform.position;
         Origen.y = 0;
         targetPosition.y = 0;
-        currentPath = IA_P2_PathfindingManager.RequestPath(Origen,targetPosition);
-        // 1) Línea roja solo la primera vez
+        currentPath = IA_P2_PathfindingManager.RequestPath(Origen, targetPosition);
+
         if (currentPath.Count > 1)
-        {
             Debug.DrawLine(transform.position, currentPath[0], Color.red, 4f);
-        }
+
         currentIndex = 0;
         isMoving = currentPath != null && currentPath.Count > 0;
 
-        currentSpeed = 0f; // reset velocidad al iniciar
-
         if (currentPath == null || currentPath.Count < 2) return;
 
-        // DEBUG
+        // DEBUG: dibuja todo el path
         for (int i = 0; i < currentPath.Count - 1; i++)
             Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.cyan, 3f);
     }
@@ -62,24 +55,11 @@ public class IA_P2_AgentIA : MonoBehaviour
         if (distance < 0.001f)
             return;
 
-        bool isLastNode = currentIndex == currentPath.Count - 1;
-
-        // --- Velocidad acumulativa al inicio y arrive al final ---
-        if (!isLastNode)
-        {
-            currentSpeed += acceleration * Time.deltaTime;
-            if (currentSpeed > moveSpeed) currentSpeed = moveSpeed;
-        }
-        else
-        {
-            currentSpeed = Mathf.Min(currentSpeed, distance / nodeReachDistance * moveSpeed);
-        }
-
-        // --- Mover ---
-        transform.position += toTarget.normalized * currentSpeed * Time.deltaTime;
+        // --- Mover a velocidad constante ---
+        transform.position += toTarget.normalized * moveSpeed * Time.deltaTime;
 
         // --- Revisar llegada ---
-        if (Vector3.Distance(transform.position, target) <= nodeReachDistance)
+        if (distance <= nodeReachDistance)
         {
             currentIndex++;
             if (currentIndex >= currentPath.Count)
@@ -89,16 +69,11 @@ public class IA_P2_AgentIA : MonoBehaviour
         int lastIndex = currentPath.Count - 1;
 
         // --- DIBUJO DE LINEAS ---
-        // 2) Tramos completados: amarillo
         for (int i = 0; i < currentIndex - 1; i++)
             Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.yellow, 3f);
-
-        // 3) Tramos por recorrer: blanco
         for (int i = Mathf.Max(currentIndex - 1, 0); i < lastIndex; i++)
             Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.white, 0.1f);
     }
-
-
 
     public void StopAgent()
     {

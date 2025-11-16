@@ -17,7 +17,7 @@ public class IA_P2_MoveAgent : MonoBehaviour
     void OnEnable()
     {
         _patrolState = new IA_P2_ST_PatrolState();
-        _chaseState = new IA_P2_ST_ChaseState(target);
+        _chaseState = new IA_P2_ST_ChaseState();
 
         _currentState = null;
         ToggleState(); // Empieza con el primero disponible

@@ -10,6 +10,11 @@ public static class IA_P2_PathfindingManager
         var nodes = IA_P2_PathfindingModel.Instance.allNodes;
         if (nodes == null || nodes.Count == 0) return null;
 
+        // 🔹 Si el target es visible desde el origen, devolvemos solo la posición exacta
+        if (LineOfSight3D.Check(Origen, targetPos, IA_P2_PathfindingModel.Instance.obstacleLayer))
+        {
+            return new List<Vector3>() { targetPos };
+        }
 
         // 1) Nodo más cercano al jugador
         IA_P2_PathNode startNode = FindClosestNode(Origen);
