@@ -4,7 +4,21 @@ using System.Linq; // Necesario para OrderBy
 
 public static class IA_P2_PathfindingManager
 {
-    // [NUEVO] Helper interno para ordenar nodos por distancia
+    // [NUEVO] Helper para que A* devuelva el camino Y su costo 'g'
+    private class AStarResult
+    {
+        public List<IA_P2_PathNode> path;
+        public float cost; // Este es el costo 'g' (Dijkstra) del camino
+    }
+
+    // [NUEVO] Helper para almacenar el camino final y su costo total
+    private class FinalPathResult
+    {
+        public List<Vector3> path;
+        public float totalCost;
+    }
+
+    // Helper interno para ordenar nodos por distancia
     private class NodeDistance
     {
         public IA_P2_PathNode node;
@@ -12,73 +26,74 @@ public static class IA_P2_PathfindingManager
     }
 
     /// <summary>
-    /// [MODIFICADO] Solicita un camino, probando múltiples nodos para encontrar el más corto.
+    /// [MODIFICADO] Solicita un camino, probando múltiples nodos para encontrar el de menor COSTO total.
     /// </summary>
     public static List<Vector3> RequestPath(Vector3 Origen, Vector3 targetPos)
     {
         var model = IA_P2_PathfindingModel.Instance;
         if (model == null) return null;
-
         var nodes = model.allNodes;
         if (nodes == null || nodes.Count == 0) return null;
 
         LayerMask obstacleLayer = model.obstacleLayer;
 
-        // 🔹 Optimización 1: Si el target es visible desde el origen, esa es la respuesta.
+        // 🔹 Optimización 1: Línea de visión directa
         if (LineOfSight3D.Check(Origen, targetPos, obstacleLayer))
         {
             return new List<Vector3>() { targetPos };
         }
 
         // 🔹 Optimización 2: Estrategia KNN (K-Nearest Neighbors)
-        // Buscamos los K nodos más cercanos y visibles desde el inicio y el final.
         const int K = 3;
-
-        // 1) Encontrar K nodos más cercanos (y visibles) al Origen
         List<IA_P2_PathNode> startNodes = FindKClosestVisibleNodes(Origen, K, obstacleLayer);
-
-        // 2) Encontrar K nodos más cercanos (y visibles) al Target
         List<IA_P2_PathNode> endNodes = FindKClosestVisibleNodes(targetPos, K, obstacleLayer);
 
-        // Si no se encontró ningún nodo visible desde el origen o el destino, no hay camino.
         if (startNodes.Count == 0 || endNodes.Count == 0)
         {
-            Debug.LogWarning("PathfindingManager: No se encontraron nodos visibles desde el Origen o el Destino.");
+            Debug.LogWarning("PathfindingManager: No se encontraron nodos visibles.");
             return null;
         }
 
-        List<Vector3> bestPath = null;
-        float bestPathLength = float.MaxValue;
+        // [MODIFICADO] Usamos una lista para almacenar todos los caminos válidos
+        List<FinalPathResult> allValidPaths = new List<FinalPathResult>();
 
-        // 3) Probar todas las combinaciones (K*K) de nodos de inicio y fin
+        // 3) Probar todas las combinaciones (K*K)
         foreach (var startNode in startNodes)
         {
             foreach (var endNode in endNodes)
             {
                 // 4) Ejecutar A* para esta combinación
-                List<IA_P2_PathNode> nodePath = RunAStar(startNode, endNode, targetPos);
-                if (nodePath == null) continue; // No se encontró camino entre estos dos nodos
+                // [MODIFICADO] A* ahora devuelve el camino de nodos Y su costo 'g'
+                var g = g_costs; // ← Añadido: inicializa el diccionario 'g' para cada llamada
+                AStarResult nodePathResult = RunAStar(startNode, endNode, targetPos, g);
 
-                // 5) Construir la lista final de Vector3
-                List<Vector3> currentPath = new List<Vector3>();
-                foreach (var n in nodePath)
-                    currentPath.Add(n.transform.position);
+                if (nodePathResult == null) continue; // No se encontró camino
 
-                currentPath.Add(targetPos); // Siempre añadimos la posición exacta al final
+                // 5) Calcular el COSTO TOTAL
+                float costOriginToStart = Vector3.Distance(Origen, startNode.transform.position);
+                float costAStarPath = nodePathResult.cost;
+                float costLastNodeToTarget = Vector3.Distance(nodePathResult.path.Last().transform.position, targetPos);
 
-                // 6) Calcular la longitud total del camino (Origen -> ... -> Target)
-                float currentPathLength = CalculateTotalPathLength(currentPath, Origen);
+                float currentTotalCost = costOriginToStart + costAStarPath + costLastNodeToTarget;
 
-                // 7) Guardar si es el mejor camino encontrado hasta ahora
-                if (currentPathLength < bestPathLength)
-                {
-                    bestPathLength = currentPathLength;
-                    bestPath = currentPath;
-                }
+                // 6) Construir la lista final de Vector3
+                List<Vector3> finalPathVectors = new List<Vector3>();
+                foreach (var n in nodePathResult.path)
+                    finalPathVectors.Add(n.transform.position);
+
+                finalPathVectors.Add(targetPos);
+
+                // 7) Guardar este resultado
+                allValidPaths.Add(new FinalPathResult { path = finalPathVectors, totalCost = currentTotalCost });
             }
         }
 
-        return bestPath; // Devuelve el camino más corto de todas las combinaciones
+        // 8) [MODIFICADO] De todos los caminos encontrados, devolver el de MENOR COSTO
+        if (allValidPaths.Count == 0) return null; // No se encontró ningún camino
+
+        // Ordena todos los caminos que encontramos por su 'totalCost' y devuelve el primero.
+        var bestPath = allValidPaths.OrderBy(p => p.totalCost).First();
+        return bestPath.path;
     }
 
     /// <summary>
@@ -92,6 +107,11 @@ public static class IA_P2_PathfindingManager
         List<NodeDistance> allNodeDistances = new List<NodeDistance>();
         foreach (var n in model.allNodes)
         {
+            if (n == null)
+            {
+                model.ReCalcularVecinos();
+                continue;
+            }
             allNodeDistances.Add(new NodeDistance
             {
                 node = n,
@@ -119,39 +139,32 @@ public static class IA_P2_PathfindingManager
     }
 
     /// <summary>
-    /// [NUEVO] Calcula la longitud total de un camino (lista de Vector3), empezando desde el origen.
+    /// [ELIMINADO] CalculateTotalPathLength() -> Esta función era incorrecta y se eliminó.
     /// </summary>
-    static float CalculateTotalPathLength(List<Vector3> path, Vector3 origin)
-    {
-        if (path == null || path.Count == 0) return float.MaxValue;
-
-        float totalLength = 0f;
-        Vector3 lastPoint = origin;
-
-        foreach (Vector3 point in path)
-        {
-            totalLength += Vector3.Distance(lastPoint, point);
-            lastPoint = point;
-        }
-
-        return totalLength;
-    }
 
 
     // -------------------------------------------------------------------
-    // --- MÉTODOS A* (SIN CAMBIOS) ---
+    // --- MÉTODOS A* (MODIFICADOS PARA DEVOLVER COSTO) ---
     // -------------------------------------------------------------------
 
-    static List<IA_P2_PathNode> RunAStar(IA_P2_PathNode start, IA_P2_PathNode end, Vector3 targetPos)
+    // [MODIFICADO] El diccionario 'g' se crea UNA VEZ y se pasa como referencia.
+    // Esto evita crear un diccionario nuevo en cada uno de los 9 bucles de A*
+    static Dictionary<IA_P2_PathNode, float> g_costs = new Dictionary<IA_P2_PathNode, float>();
+    static Dictionary<IA_P2_PathNode, float> f_costs = new Dictionary<IA_P2_PathNode, float>();
+
+
+    static AStarResult RunAStar(IA_P2_PathNode start, IA_P2_PathNode end, Vector3 targetPos, Dictionary<IA_P2_PathNode, float> g)
     {
         LayerMask obstacle = IA_P2_PathfindingModel.Instance.obstacleLayer;
 
         var open = new List<IA_P2_PathNode>();
         var closed = new HashSet<IA_P2_PathNode>();
-
         var came = new Dictionary<IA_P2_PathNode, IA_P2_PathNode>();
-        var g = new Dictionary<IA_P2_PathNode, float>();
-        var f = new Dictionary<IA_P2_PathNode, float>();
+
+        // [MODIFICADO] Reutilizamos los diccionarios para performance
+        var f = f_costs;
+        g_costs.Clear(); // Limpiamos el diccionario 'g'
+        f.Clear();
 
         foreach (var n in IA_P2_PathfindingModel.Instance.allNodes)
         {
@@ -166,10 +179,8 @@ public static class IA_P2_PathfindingManager
 
         while (open.Count > 0)
         {
-            // Node con menor F
             IA_P2_PathNode current = open[0];
             float bestF = f[current];
-
             for (int i = 1; i < open.Count; i++)
             {
                 if (f[open[i]] < bestF)
@@ -179,27 +190,25 @@ public static class IA_P2_PathfindingManager
                 }
             }
 
-            // 🔥 Si desde este nodo veo el objetivo → recorto el camino
+            // [MODIFICADO] Devolvemos un AStarResult (camino + costo 'g')
             if (LineOfSight3D.Check(current.transform.position, targetPos, obstacle))
-                return ReconstructPartial(came, current);
+                return new AStarResult { path = ReconstructPartial(came, current), cost = g[current] };
 
-            // Llegué al objetivo normal
+            // [MODIFICADO] Devolvemos un AStarResult (camino + costo 'g')
             if (current == end)
-                return Reconstruct(came, end);
+                return new AStarResult { path = Reconstruct(came, end), cost = g[end] };
 
             open.Remove(current);
             closed.Add(current);
 
-            // Vecinos válidos
             foreach (var nb in current.neighbors)
             {
                 if (nb == null || closed.Contains(nb)) continue;
-
-                // 🔥 Chequeo de visibilidad entre nodos
                 if (!LineOfSight3D.Check(current.transform.position, nb.transform.position, obstacle))
                     continue;
 
-                float tentative = g[current] + nb.movementCost;
+                // ESTA LÍNEA ES EL CORAZÓN DE DIJKSTRA / A*
+                float tentative = g[current] + nb.movementCost; // <-- ¡AQUÍ SE USAN LOS PESOS!
 
                 if (!open.Contains(nb))
                     open.Add(nb);
@@ -207,7 +216,7 @@ public static class IA_P2_PathfindingManager
                 if (tentative >= g[nb]) continue;
 
                 came[nb] = current;
-                g[nb] = tentative;
+                g[nb] = tentative; // <-- Guardamos el costo Dijkstra
                 f[nb] = tentative + Vector3.Distance(nb.transform.position, end.transform.position);
             }
         }
@@ -220,13 +229,11 @@ public static class IA_P2_PathfindingManager
     {
         List<IA_P2_PathNode> path = new List<IA_P2_PathNode>();
         IA_P2_PathNode node = end;
-
         while (came.ContainsKey(node))
         {
             path.Add(node);
             node = came[node];
         }
-
         path.Add(node);
         path.Reverse();
         return path;
@@ -237,13 +244,11 @@ public static class IA_P2_PathfindingManager
     {
         List<IA_P2_PathNode> path = new List<IA_P2_PathNode>();
         IA_P2_PathNode node = end;
-
         while (came.ContainsKey(node))
         {
             path.Add(node);
             node = came[node];
         }
-
         path.Add(node);
         path.Reverse();
         return path;
