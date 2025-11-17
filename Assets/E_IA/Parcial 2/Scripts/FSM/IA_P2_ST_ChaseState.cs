@@ -17,6 +17,7 @@ public class IA_P2_ST_ChaseState : IA_P2_INT_gentState
             context.agent.GoTo(_lastKnownPosition,context.agent.DistanceStop);
         }
         IA_P2_BusEvent_Manager.NotificarEncontrado(context.gameObject, context);
+        context.agent.SetSpeed(5);
     }
 
     public void Execute(IA_P2_FSM context)

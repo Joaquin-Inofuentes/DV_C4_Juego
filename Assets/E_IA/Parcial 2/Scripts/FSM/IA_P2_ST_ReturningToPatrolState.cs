@@ -56,7 +56,7 @@ public class IA_P2_ST_ReturningToPatrolState : IA_P2_INT_gentState
         if (!context.agent.isMoving && Vector3.Distance(context.agent.transform.position, _patrolDestination) < arrivalDistance)
         {
             // Llegamos. Ahora podemos empezar a patrullar normalmente.
-            Debug.Log("Returning: En posición. Reanudando patrulla.");
+            //Debug.Log("Returning: En posición. Reanudando patrulla.");
             context.TransitionTo(AgentState.Patrolling);
         }
     }

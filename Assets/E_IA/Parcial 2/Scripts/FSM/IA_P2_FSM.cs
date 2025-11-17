@@ -14,6 +14,7 @@ public enum AgentState
 public class IA_P2_FSM : MonoBehaviour
 {
     [Button(nameof(ToggleState))]
+    [Button(nameof(DibujarRutaPatrulla))]
     public IA_P2_AgentIA agent; // El "movedor" (ahora también los "ojos")
 
     [Header("Datos de Estados")]
@@ -77,13 +78,13 @@ public class IA_P2_FSM : MonoBehaviour
 
     public void LoPerdiDeVision(GameObject target)
     {
-        Debug.Log("changing to searching state",gameObject);
-        TransitionTo(AgentState.Searching);
+        //Debug.Log("changing to searching state",gameObject);
+        //TransitionTo(AgentState.Searching);
     }
 
     public void PerseguirEnemigo(GameObject enemigo)
     {
-        Debug.Log("changing to chasing state",gameObject);
+        //Debug.Log("changing to chasing state",gameObject);
         target = enemigo;
         TransitionTo(AgentState.Chasing);
     }
@@ -184,4 +185,22 @@ public class IA_P2_FSM : MonoBehaviour
             TransitionTo(AgentState.Patrolling);
         }
     }
+
+
+    public void DibujarRutaPatrulla()
+    {
+        if (patrolWaypoints == null || patrolWaypoints.Count < 2)
+            return;
+
+        for (int i = 0; i < patrolWaypoints.Count - 1; i++)
+        {
+            Debug.DrawLine(
+                patrolWaypoints[i].position,
+                patrolWaypoints[i + 1].position,
+                Color.cyan,
+                10f
+            );
+        }
+    }
+
 }
