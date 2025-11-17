@@ -10,11 +10,12 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     [Header("Movimiento")]
     public float moveSpeed = 5f;
+    public float rotationSpeed = 10f; 
     public float nodeReachDistance = 0.5f;
-    public float acceleration = 10f;
 
     [Header("Debug")]
     public bool debug_BlockMovement = false;
+    public bool debug_BlockRotation = false; 
 
     // --- SECCIÓN DE DETECCIÓN (ELIMINADA) ---
     // (Aquí estaban fieldOfView, viewDistance, etc.)
@@ -23,6 +24,8 @@ public class IA_P2_AgentIA : MonoBehaviour
     public int currentIndex = 0;
     public bool isMoving = false;
     public float currentSpeed = 0f;
+
+    public float DistanceStop = 1f;
 
     public void SetSpeed(float speed)
     {
@@ -38,12 +41,12 @@ public class IA_P2_AgentIA : MonoBehaviour
         GoTo(target.transform.position);
     }
 
-    public void GoTo(Vector3 targetPosition)
+    public void GoTo(Vector3 targetPosition, float Offset = 0)
     {
         Vector3 Origen = transform.position;
         Origen.y = 0;
         targetPosition.y = 0;
-        currentPath = IA_P2_PathfindingManager.RequestPath(Origen, targetPosition);
+        currentPath = IA_P2_PathfindingManager.RequestPath(Origen, targetPosition, Offset);
 
         if (currentPath != null && currentPath.Count > 1)
         {
@@ -62,46 +65,59 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     void Update()
     {
-        if (!isMoving || currentPath == null || currentPath.Count == 0 || debug_BlockMovement)
+        // 1. Salida si no nos movemos o no hay camino
+        if (!isMoving || currentPath == null || currentPath.Count == 0)
             return;
 
+        // 2. Obtener el objetivo actual del camino
         Vector3 target = currentPath[currentIndex];
         Vector3 toTarget = target - transform.position;
         float distance = toTarget.magnitude;
 
-        if (distance < 0.001f)
+        // 3. Lógica de Rotación
+        // Solo rota si no está bloqueado y si no está ya en el destino (evita error de LookRotation)
+        if (!debug_BlockRotation && distance > 0.001f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(toTarget.normalized);
+            // Usa Slerp para una rotación suave
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
+
+        // 4. Lógica de Movimiento
+        // Salir si el movimiento está bloqueado por debug
+        if (debug_BlockMovement)
             return;
 
-        float step = moveSpeed * Time.deltaTime;
-        if (step >= distance)
+        // Comprobar si hemos llegado al nodo actual
+        if (distance <= nodeReachDistance)
         {
-            transform.position = target;
+            // Estamos "en" el nodo, pasamos al siguiente
             currentIndex++;
             if (currentIndex >= currentPath.Count)
+            {
+                // Llegamos al final del camino
                 isMoving = false;
+                transform.position = target; // Opcional: "snap" a la posición final
+            }
         }
         else
         {
+            // Aún no llegamos, moverse hacia el nodo
+            float step = moveSpeed * Time.deltaTime;
             transform.position += toTarget.normalized * step;
         }
 
-        transform.position += toTarget.normalized * currentSpeed * Time.deltaTime;
-
-        if (Vector3.Distance(transform.position, target) <= nodeReachDistance)
-        {
-            currentIndex++;
-            if (currentIndex >= currentPath.Count)
-                isMoving = false;
-        }
-
+        // 5. Lógica de Dibujo de Líneas (sin cambios)
         int lastIndex = currentPath.Count - 1;
 
+        // Tramos completados: amarillo
         for (int i = 0; i < currentIndex - 1; i++)
         {
             if (currentPath.Count > i + 1)
                 Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.yellow, 3f);
         }
 
+        // Tramos por recorrer: blanco
         for (int i = Mathf.Max(currentIndex - 1, 0); i < lastIndex; i++)
             Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.white, 0.1f);
     }

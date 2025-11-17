@@ -14,8 +14,9 @@ public class IA_P2_ST_ChaseState : IA_P2_INT_gentState
         if (context.target != null)
         {
             _lastKnownPosition = context.target.transform.position;
-            context.agent.GoTo(_lastKnownPosition);
+            context.agent.GoTo(_lastKnownPosition,context.agent.DistanceStop);
         }
+        IA_P2_BusEvent_Manager.NotificarEncontrado(context.gameObject, context);
     }
 
     public void Execute(IA_P2_FSM context)
@@ -45,7 +46,7 @@ public class IA_P2_ST_ChaseState : IA_P2_INT_gentState
 
             // Actualizamos la última posición conocida MIENTRAS perseguimos
             _lastKnownPosition = targetPosition;
-            context.agent.GoTo(targetPosition);
+            context.agent.GoTo(targetPosition, context.agent.DistanceStop);
         }
     }
 

@@ -65,7 +65,7 @@ public class IA_P2_PathfindingModel : MonoBehaviour
             // vector perpendicular en el plano XZ
             Vector3 right = Vector3.Cross(dir, Vector3.up).normalized;
 
-            bool centerClear = LineOfSight3D.Check(start, end, obstacleLayer);
+            bool centerClear = IA_P2_LineOfSight3D.Check(start, end, obstacleLayer);
             if (!centerClear) continue;
 
             // laterales
@@ -75,8 +75,8 @@ public class IA_P2_PathfindingModel : MonoBehaviour
             Vector3 endLeft = end - right * sideOffset;
             Vector3 endRight = end + right * sideOffset;
 
-            bool leftClear = LineOfSight3D.Check(startLeft, endLeft, obstacleLayer);
-            bool rightClear = LineOfSight3D.Check(startRight, endRight, obstacleLayer);
+            bool leftClear = IA_P2_LineOfSight3D.Check(startLeft, endLeft, obstacleLayer);
+            bool rightClear = IA_P2_LineOfSight3D.Check(startRight, endRight, obstacleLayer);
 
             if (!leftClear || !rightClear)
                 continue;

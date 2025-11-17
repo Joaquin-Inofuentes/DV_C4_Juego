@@ -33,7 +33,7 @@ public class IA_P2_ST_PatrolState : IA_P2_INT_gentState
         context.agent.GoTo(targetPos);
         _registrada = targetPos;
 
-        context.agent.SetSpeed(3.0f);
+        context.agent.SetSpeed(2.0f);
 
         // (Sacamos el DrawAllWaypoints de aquí para que no se
         // ejecute solo una vez)
@@ -81,7 +81,6 @@ public class IA_P2_ST_PatrolState : IA_P2_INT_gentState
     public void Exit(IA_P2_FSM context)
     {
         context.agent.StopAgent();
-        context.agent.SetSpeed(5.0f);
     }
 
     // ... (El método DrawAllWaypoints no cambia)

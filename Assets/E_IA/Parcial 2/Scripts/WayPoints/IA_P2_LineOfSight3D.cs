@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class LineOfSight3D
+public static class IA_P2_LineOfSight3D
 {
     public static bool Check(Vector3 from, Vector3 to,LayerMask obstacleLayer)
     {

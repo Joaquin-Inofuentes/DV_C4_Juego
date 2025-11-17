@@ -45,32 +45,3 @@ public class C_InputManager : MonoBehaviour  // controller
     public void RecibirSaltar() => Saltar?.Invoke();
 
 }
-/*
-Capa	Qué hace	¿Toca Unity?	Ejemplo
-Model	
-- Guarda y 
-- gestiona los datos y 
-- lógica del juego	
-❌ No	
-Vida, daño, energía, reglas de combate
-
-Controller	
-- Escucha inputs/eventos, 
-- decide acciones, 
-- modifica componentes	
-✅ Sí	
-Detecta input y aplica fuerza para saltar
-
-View	
-- Muestra lo visual, 
-- UI, 
-- animaciones, 
-- efectos	
-✅ Sí (solo estético)	
-Animación de ataque, sonido de golpe
-
-
-
-
-
- */ 

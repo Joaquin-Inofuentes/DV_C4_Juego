@@ -8,7 +8,7 @@ public class IA_P2_ST_ReturningToPatrolState : IA_P2_INT_gentState
 
     public void Enter(IA_P2_FSM context)
     {
-        Debug.Log("Returning: Volviendo a la patrulla.");
+        //Debug.Log("Returning: Volviendo a la patrulla.");
         context.agent.AsignarColor(Color.cyan); // Un color "tranquilo"
 
         // 1. Encontrar el waypoint de patrulla MÁS CERCANO
@@ -65,6 +65,6 @@ public class IA_P2_ST_ReturningToPatrolState : IA_P2_INT_gentState
     {
         // No necesita parar al agente, porque el estado Patrolling
         // tomará el control del movimiento.
-        context.agent.SetSpeed(5.0f);
+        context.agent.SetSpeed(3.0f); // Sali de returnat patrullaje a velocidad normal
     }
 }

@@ -35,6 +35,9 @@ public class IA_P2_FSM : MonoBehaviour
 
     public IA_P2_INT_gentState _currentState;
 
+    // Escucha llamados de perseguir enemigo
+    public IA_P2_FOV NotificacionDeEnemigoVisible;
+
     void OnEnable()
     {
         // Instanciamos TODOS los estados
@@ -65,6 +68,24 @@ public class IA_P2_FSM : MonoBehaviour
         {
             _currentState.Enter(this);
         }
+
+        NotificacionDeEnemigoVisible.OnTargetDetected += PerseguirEnemigo;
+        IA_P2_BusEvent_Manager.OnEnemyFound += PerseguirEnemigo;
+        NotificacionDeEnemigoVisible.OnTargetLost += LoPerdiDeVision;
+        IA_P2_BusEvent_Manager.OnEnemyLost += LoPerdiDeVision;
+    }
+
+    public void LoPerdiDeVision(GameObject target)
+    {
+        Debug.Log("changing to searching state",gameObject);
+        TransitionTo(AgentState.Searching);
+    }
+
+    public void PerseguirEnemigo(GameObject enemigo)
+    {
+        Debug.Log("changing to chasing state",gameObject);
+        target = enemigo;
+        TransitionTo(AgentState.Chasing);
     }
 
     void Update()
@@ -124,7 +145,7 @@ public class IA_P2_FSM : MonoBehaviour
             _currentState.Exit(this);
         }
 
-        Debug.Log("IA_P2_FSM: Cambiando a " + stateKey.ToString());
+        //Debug.Log("IA_P2_FSM: Cambiando a " + stateKey.ToString());
 
         if (target != null && agent != null)
         {
@@ -139,10 +160,6 @@ public class IA_P2_FSM : MonoBehaviour
         _previousStateTracker = stateKey;
     }
 
-    // ******************************************************
-    // [MÉTODO CORREGIDO]
-    // Ajustado para que compile después de quitar CanSeeTarget() del Agente.
-    // ******************************************************
     public bool IsPlayerVisible()
     {
         if (target == null || agent == null)
