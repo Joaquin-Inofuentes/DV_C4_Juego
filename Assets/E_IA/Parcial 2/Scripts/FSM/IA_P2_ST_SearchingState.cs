@@ -1,4 +1,4 @@
-// --- Guarda este archivo como IA_P2_ST_SearchingState.cs ---
+ï»¿// --- Guarda este archivo como IA_P2_ST_SearchingState.cs ---
 
 using UnityEngine;
 
@@ -9,37 +9,37 @@ public class IA_P2_ST_SearchingState : IA_P2_INT_gentState
     // [NUEVO] Variable para la velocidad de parpadeo
     private float _blinkSpeed = 6f; // 6 veces por segundo (3 rojas, 3 amarillas)
 
-    // [NUEVO] Variables para guardar la configuración original del agente
+    // [NUEVO] Variables para guardar la configuraciÃ³n original del agente
     private float _originalRotationSpeed;
-    private float _searchRotationSpeed = 3f; // Una velocidad de "escaneo" más lenta y deliberada
+    private float _searchRotationSpeed = 3f; // Una velocidad de "escaneo" mÃ¡s lenta y deliberada
 
     public void Enter(IA_P2_FSM context)
     {
         //Debug.Log("Searching: Entrando a 'Buscar' en: " + context.lastKnownPosition);
         context.agent.AsignarColor(Color.yellow);
 
-        // Guardamos la velocidad de rotación original
+        // Guardamos la velocidad de rotaciÃ³n original
         _originalRotationSpeed = context.agent.rotationSpeed;
 
-        // Ir a la última posición conocida
+        // Ir a la Ãºltima posiciÃ³n conocida
         context.agent.GoTo(context.lastKnownPosition);
 
-        _searchTimer = 3f; // Tiempo que se quedará "buscando" al llegar
+        _searchTimer = 3f; // Tiempo que se quedarÃ¡ "buscando" al llegar
     }
 
     public void Execute(IA_P2_FSM context)
     {
-        // 1. ¿Vemos al jugador mientras buscamos? (Máxima prioridad)
+        // 1. Â¿Vemos al jugador mientras buscamos? (MÃ¡xima prioridad)
         if (context.IsPlayerVisible())
         {
             context.TransitionTo(AgentState.Chasing);
             return;
         }
 
-        // 2. ¿Llegamos al punto de búsqueda?
+        // 2. Â¿Llegamos al punto de bÃºsqueda?
         if (!context.agent.isMoving)
         {
-            // --- EL AGENTE LLEGÓ AL PUNTO ---
+            // --- EL AGENTE LLEGÃ“ AL PUNTO ---
 
             // [NUEVO] Tarea 1: Parpadear colores
             if (Mathf.PingPong(Time.time * _blinkSpeed, 1f) < 0.5f)
@@ -52,14 +52,14 @@ public class IA_P2_ST_SearchingState : IA_P2_INT_gentState
             }
 
             // [NUEVO] Tarea 2: Mirar (rotar) hacia el objetivo
-            // (Asumimos que el agente "sabe" dónde está el jugador pero no lo "ve")
+            // (Asumimos que el agente "sabe" dÃ³nde estÃ¡ el jugador pero no lo "ve")
             if (context.target != null)
             {
-                // Ralentizamos la rotación para que parezca que "escanea"
+                // Ralentizamos la rotaciÃ³n para que parezca que "escanea"
                 context.agent.rotationSpeed = _searchRotationSpeed;
 
                 Vector3 dirToTarget = context.target.transform.position - context.agent.transform.position;
-                dirToTarget.y = 0; // Rotación horizontal
+                dirToTarget.y = 0; // RotaciÃ³n horizontal
 
                 if (dirToTarget.sqrMagnitude > 0.001f)
                 {
@@ -76,15 +76,15 @@ public class IA_P2_ST_SearchingState : IA_P2_INT_gentState
             _searchTimer -= Time.deltaTime;
             if (_searchTimer <= 0f)
             {
-                //Debug.Log("Searching: No se encontró al jugador. Volviendo a patrulla.");
+                //Debug.Log("Searching: No se encontrÃ³ al jugador. Volviendo a patrulla.");
                 context.TransitionTo(AgentState.ReturningToPatrol);
             }
         }
         else
         {
-            // --- EL AGENTE AÚN ESTÁ YENDO AL PUNTO ---
+            // --- EL AGENTE AÃšN ESTÃ YENDO AL PUNTO ---
 
-            // Mantenemos la velocidad de rotación normal mientras se mueve
+            // Mantenemos la velocidad de rotaciÃ³n normal mientras se mueve
             context.agent.rotationSpeed = _originalRotationSpeed;
             // Mantenemos el color amarillo fijo (sin parpadear)
             context.agent.AsignarColor(Color.yellow);
@@ -93,10 +93,10 @@ public class IA_P2_ST_SearchingState : IA_P2_INT_gentState
 
     public void Exit(IA_P2_FSM context)
     {
-        // [NUEVO] Restaurar la velocidad de rotación original
+        // [NUEVO] Restaurar la velocidad de rotaciÃ³n original
         context.agent.rotationSpeed = _originalRotationSpeed;
 
-        // El agente se detiene (o su próximo estado tomará el control)
+        // El agente se detiene (o su prÃ³ximo estado tomarÃ¡ el control)
         context.agent.StopAgent();
     }
 }
