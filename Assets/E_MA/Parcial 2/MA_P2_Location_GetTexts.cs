@@ -9,7 +9,7 @@ using CustomInspector;
 using UnityEditor;
 #endif
 
-public class FindTextsInScene : MonoBehaviour
+public class MA_P2_Location_GetTexts : MonoBehaviour
 {
     [Button(nameof(BuscarTextos))]
     public string Algo1;
@@ -37,14 +37,14 @@ public class FindTextsInScene : MonoBehaviour
 }
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(FindTextsInScene))]
+[CustomEditor(typeof(MA_P2_Location_GetTexts))]
 public class FindTextsInSceneEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        FindTextsInScene script = (FindTextsInScene)target;
+        MA_P2_Location_GetTexts script = (MA_P2_Location_GetTexts)target;
 
         EditorGUILayout.Space();
 
