@@ -117,8 +117,8 @@ public class IA_P2_PathNode : MonoBehaviour
 
         Vector2 textSize = style.CalcSize(new GUIContent(text));
 
-        // bajar 1.2x
-        screenPos.y += textSize.y * 1.2f;
+        
+        screenPos.y += textSize.y * 0.8f;
 
         Rect rect = new Rect(
             screenPos.x - textSize.x / 2f,

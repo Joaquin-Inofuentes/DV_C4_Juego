@@ -47,8 +47,8 @@ public class IA_P2_FOV : MonoBehaviour
                 enemiesInTrigger.RemoveAt(i);
                 continue;
             }
-
-            ProcessTarget(enemy);
+            if (enemy != null)
+                ProcessTarget(enemy);
         }
 
         for (int i = _visibleTargets.Count - 1; i >= 0; i--)
