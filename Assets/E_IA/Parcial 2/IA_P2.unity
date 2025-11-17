@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 44714559}
   - component: {fileID: 44714558}
   m_Layer: 0
-  m_Name: Agente 5
+  m_Name: _Agente 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3368,7 +3368,7 @@ GameObject:
   - component: {fileID: 155631569}
   - component: {fileID: 155631568}
   m_Layer: 0
-  m_Name: Agente 1
+  m_Name: _Agente 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3542,10 +3542,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 810154065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -66}
-  m_SizeDelta: {x: -49.2241, y: 120.2595}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162088183
 MonoBehaviour:
@@ -3594,7 +3594,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.1
+  m_fontSize: 28.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3630,7 +3630,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 20, y: 0, z: 20, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6244,7 +6244,7 @@ GameObject:
   - component: {fileID: 311386494}
   - component: {fileID: 311386493}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Texto de inicio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6395,7 +6395,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 31.6964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 685128375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -14039,7 +14040,7 @@ GameObject:
   - component: {fileID: 685128374}
   - component: {fileID: 685128373}
   m_Layer: 0
-  m_Name: Text (TMP) (1)
+  m_Name: Flecha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14186,16 +14187,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685128372}
-  m_LocalRotation: {x: 0.000026874244, y: 0.7071068, z: -0.7071068, w: 0.000026874244}
-  m_LocalPosition: {x: 0, y: 0, z: 29.986841}
+  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0.00003800592}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 311386495}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -179.996}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9580889, y: 0}
+  m_AnchoredPosition: {x: -0.59368896, y: -1.7095587}
   m_SizeDelta: {x: 2.4931, y: 2.5221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &690472293
@@ -16422,7 +16423,7 @@ GameObject:
   - component: {fileID: 810154067}
   - component: {fileID: 810154066}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BTN_Reiniciar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16446,7 +16447,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 361}
-  m_SizeDelta: {x: 553.4328, y: 131.9055}
+  m_SizeDelta: {x: 254.0951, y: 60.5612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &810154066
 MonoBehaviour:
@@ -20373,6 +20374,7 @@ GameObject:
   - component: {fileID: 1016724286}
   - component: {fileID: 1016724285}
   - component: {fileID: 1016724288}
+  - component: {fileID: 1016724289}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -20440,6 +20442,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70d2fbe42da8ff2438db250bac5af759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1016724289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016724284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97dcadd297fe6ee45a0bc970be620387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1030638411
@@ -24021,7 +24035,7 @@ GameObject:
   - component: {fileID: 1269027804}
   - component: {fileID: 1269027803}
   m_Layer: 0
-  m_Name: Agente 3
+  m_Name: _Agente 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24490,7 +24504,7 @@ GameObject:
   - component: {fileID: 1297547139}
   - component: {fileID: 1297547138}
   m_Layer: 0
-  m_Name: Agente 2
+  m_Name: _Agente 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38533,7 +38547,7 @@ GameObject:
   - component: {fileID: 2047452468}
   - component: {fileID: 2047452467}
   m_Layer: 0
-  m_Name: Agente 4
+  m_Name: _Agente 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40398,7 +40412,7 @@ GameObject:
   - component: {fileID: 8607124817029311681}
   - component: {fileID: 2957731773989595616}
   m_Layer: 8
-  m_Name: Personaje
+  m_Name: Jugador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40546,8 +40560,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 1378026127}
   - {fileID: 1016724287}
+  - {fileID: 311386495}
   - {fileID: 1262488869}
   - {fileID: 4827463026701972836}
+  - {fileID: 648768100}
   - {fileID: 155631573}
   - {fileID: 1297547143}
   - {fileID: 1269027808}
@@ -40556,6 +40572,3 @@ SceneRoots:
   - {fileID: 1842395933}
   - {fileID: 1834709750}
   - {fileID: 142948942}
-  - {fileID: 648768100}
-  - {fileID: 311386495}
-  - {fileID: 685128375}
