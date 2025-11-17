@@ -55,7 +55,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _distancia: 1
-    - _falloff: 1.5
+    - _distancia: 3.88
+    - _falloff: 0.93
+    - _velocidad: 0
     m_Colors: []
   m_BuildTextureStacks: []
