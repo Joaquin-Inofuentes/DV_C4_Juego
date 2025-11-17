@@ -1,6 +1,7 @@
 ﻿using CustomInspector;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class IA_P2_AgentIA : MonoBehaviour
@@ -50,7 +51,7 @@ public class IA_P2_AgentIA : MonoBehaviour
 
         if (currentPath != null && currentPath.Count > 1)
         {
-            Debug.DrawLine(transform.position, currentPath[0], Color.red, 4f);
+            //Debug.DrawLine(transform.position, currentPath[0], Color.red, 4f);
         }
 
         currentIndex = 0;
@@ -79,8 +80,7 @@ public class IA_P2_AgentIA : MonoBehaviour
         if (!debug_BlockRotation && distance > 0.001f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(toTarget.normalized);
-            // Usa Slerp para una rotación suave
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            transform.rotation = targetRotation;
         }
 
         // 4. Lógica de Movimiento
@@ -98,6 +98,7 @@ public class IA_P2_AgentIA : MonoBehaviour
                 // Llegamos al final del camino
                 isMoving = false;
                 transform.position = target; // Opcional: "snap" a la posición final
+                //Debug.DrawLine(transform.position, target, Color.red);
             }
         }
         else

@@ -47,7 +47,7 @@ public class IA_P2_FSM : MonoBehaviour
         _searchingState = new IA_P2_ST_SearchingState();
         _returningState = new IA_P2_ST_ReturningToPatrolState();
 
-        // [MODIFICADO] Asignar el estado inicial basado en 'currentStateEnum'
+        
         switch (currentStateEnum) // <-- Lee el valor del Inspector
         {
             case AgentState.Patrolling:
@@ -73,19 +73,18 @@ public class IA_P2_FSM : MonoBehaviour
         NotificacionDeEnemigoVisible.OnTargetDetected += PerseguirEnemigo;
         IA_P2_BusEvent_Manager.OnEnemyFound += PerseguirEnemigo;
         NotificacionDeEnemigoVisible.OnTargetLost += LoPerdiDeVision;
-        IA_P2_BusEvent_Manager.OnEnemyLost += LoPerdiDeVision;
     }
 
     public void LoPerdiDeVision(GameObject target)
     {
         //Debug.Log("changing to searching state",gameObject);
-        //TransitionTo(AgentState.Searching);
+        TransitionTo(AgentState.Searching);
     }
 
     public void PerseguirEnemigo(GameObject enemigo)
     {
-        //Debug.Log("changing to chasing state",gameObject);
         target = enemigo;
+        Debug.Log("changing to chasing state",enemigo);
         TransitionTo(AgentState.Chasing);
     }
 
@@ -150,7 +149,7 @@ public class IA_P2_FSM : MonoBehaviour
 
         if (target != null && agent != null)
         {
-            Debug.DrawLine(agent.transform.position, target.transform.position, Color.magenta, 3.0f);
+            //ebug.DrawLine(agent.transform.position, target.transform.position, Color.blue, 3.0f);
         }
 
         _currentState = newState;

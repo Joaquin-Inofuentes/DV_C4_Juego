@@ -11,7 +11,6 @@ public class IA_P2_BusEvent_Manager : MonoBehaviour
     public static List<IA_P2_FSM> agentes = new List<IA_P2_FSM>();
 
     public static Action<GameObject> OnEnemyFound;
-    public static Action<GameObject> OnEnemyLost;
 
     public static Vector3 ultimaPosicionVisto;
     public static GameObject ultimoEnemigoVisto;
@@ -37,10 +36,6 @@ public class IA_P2_BusEvent_Manager : MonoBehaviour
         OnEnemyFound?.Invoke(enemigo);
     }
 
-    public static void NotificarPerdido(GameObject enemigo, IA_P2_FSM quienLoVio)
-    {
-        OnEnemyLost?.Invoke(enemigo);
-    }
 
     void Update()
     {

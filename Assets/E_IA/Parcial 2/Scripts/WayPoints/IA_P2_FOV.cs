@@ -90,14 +90,14 @@ public class IA_P2_FOV : MonoBehaviour
         // 3. Chequeo de Línea de Visión (Obstáculos)
         if (!HasLineOfSight(targetTransform))
         {
-            Debug.DrawLine(transform.position + Vector3.up * 0.5f, targetTransform.position + Vector3.up * 0.5f, lostTargetColor);
+            //Debug.DrawLine(transform.position + Vector3.up * 0.5f, targetTransform.position + Vector3.up * 0.5f, lostTargetColor);
             return;
         }
 
         // --- ÉXITO TOTAL ---
         _currentlyVisibleTargets.Add(target);
 
-        Debug.DrawLine(transform.position + Vector3.up * 0.5f, targetTransform.position + Vector3.up * 0.5f, detectionColor);
+        //Debug.DrawLine(transform.position + Vector3.up * 0.5f, targetTransform.position + Vector3.up * 0.5f, detectionColor);
 
         if (!_visibleTargets.Contains(target))
         {
