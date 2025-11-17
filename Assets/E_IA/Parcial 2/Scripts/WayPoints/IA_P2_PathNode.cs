@@ -7,13 +7,13 @@ public class IA_P2_PathNode : MonoBehaviour
 {
     [Button(nameof(ReCalcularCercanos))]
     public float movementCost = 1f;
-    public List<IA_P2_PathNode> neighbors = new List<IA_P2_PathNode>();
+    public List<IA_P2_PathNode> Vecinos = new List<IA_P2_PathNode>();
 
     public void ReCalcularCercanos()
     {
         if (IA_P2_PathfindingModel.Instance != null)
         {
-            IA_P2_PathfindingModel.Instance.ReCalcularVecinos();
+            IA_P2_PathfindingModel.Instance.OnEnable();
         }
     }
 #if UNITY_EDITOR
@@ -28,100 +28,115 @@ public class IA_P2_PathNode : MonoBehaviour
         if (!selectedSelf && !selectedParent) return;
 
         float verticalOffset = 0.5f;
-        float cutPercent = 0.2f;   // 20%
+        float cutPercent = 0.2f;
 
-        foreach (var n in neighbors)
+        foreach (var n in Vecinos)
         {
             if (n == null) continue;
 
             Vector3 start = transform.position;
             Vector3 end = n.transform.position;
 
-            // ------------------------------------
-            // 1) Tramo 20% → AZUL (sin desplazamiento vertical)
-            // ------------------------------------
+            // 20% azul
             Vector3 p20 = Vector3.Lerp(start, end, cutPercent);
-
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(start, p20);
 
-            // ------------------------------------
-            // 2) Tramo restante → AMARILLO o recortado
-            // ------------------------------------
+            // 80% amarillo
             Gizmos.color = Color.yellow;
 
             if (selectedParent)
             {
-                // Si está seleccionado el padre → recortar 20% inicial y final
                 Vector3 p80 = Vector3.Lerp(start, end, 1f - cutPercent - 0.2f);
                 Gizmos.DrawLine(p20, p80);
             }
             else
             {
-                // Nodo seleccionado → línea completa desde el 20% hasta el final
                 Gizmos.DrawLine(p20, end);
             }
 
-            // ------------------------------------
-            // MARCA vertical en el vecino
-            // ------------------------------------
+            // Marca vertical en vecino
             Vector3 top = end + Vector3.up * verticalOffset;
             Gizmos.DrawLine(end, top);
-
-            // ------------------------------------
-            // LABEL
-            // ------------------------------------
-            string value =
-                selectedSelf
-                ? Vector3.Distance(start, end).ToString("F2") + "m"
-                : movementCost.ToString("F2");
-
-            DrawLabelWithBackground(top + Vector3.up * 0.05f, value, 1.3f);
         }
     }
 
-    void DrawLabelWithBackground(Vector3 worldPos, string text, float bgScale)
+
+
+    void OnDrawGizmosSelected()
     {
-        GUIStyle textStyle = new GUIStyle(EditorStyles.label);
-        textStyle.normal.textColor = Color.white;
-        textStyle.alignment = TextAnchor.MiddleCenter;
-        textStyle.fontSize = 12;
+        float verticalOffset = 0.5f;
 
-        Handles.BeginGUI();
-        Vector3 guiPoint = HandleUtility.WorldToGUIPoint(worldPos);
+        bool selectedSelf = Selection.activeTransform == transform;
+        bool selectedParent = transform.parent != null && Selection.activeTransform == transform.parent;
 
-        Camera sceneCam = SceneView.lastActiveSceneView?.camera;
-        if (sceneCam != null)
+        if (!selectedSelf && !selectedParent) return;
+
+        // --- COSTO DEL NODO ---
+        Vector3 topSelf = transform.position + Vector3.up * (verticalOffset + 0.3f);
+        DrawLabel(topSelf, Mathf.RoundToInt(movementCost) + "C");
+
+        // --- VECINOS ---
+        foreach (var n in Vecinos)
         {
-            Vector3 camCheck = sceneCam.WorldToViewportPoint(worldPos);
-            if (camCheck.z < 0f)
+            if (n == null) continue;
+
+            Vector3 start = transform.position;
+            Vector3 end = n.transform.position;
+
+            string value;
+
+            if (selectedSelf)
             {
-                Handles.EndGUI();
-                return;
+                float dist = Vector3.Distance(start, end);
+                value =
+                    dist.ToString("F2") + "m\n" +
+                    Mathf.RoundToInt(n.movementCost) + "C";
             }
+            else // selectedParent
+            {
+                value = Mathf.RoundToInt(n.movementCost) + "C";
+            }
+
+            Vector3 top = end + Vector3.up * (verticalOffset + 0.05f);
+            DrawLabel(top, value);
         }
+    }
 
-        Vector2 textSize = textStyle.CalcSize(new GUIContent(text));
-        Vector2 bgSize = textSize * bgScale;
+    void DrawLabel(Vector3 worldPos, string text)
+    {
+#if UNITY_EDITOR
+        Handles.BeginGUI();
 
-        Rect bgRect = new Rect(
-            guiPoint.x - bgSize.x / 2f,
-            guiPoint.y - bgSize.y / 2f,
-            bgSize.x,
-            bgSize.y
-        );
+        Vector3 screenPos = HandleUtility.WorldToGUIPoint(worldPos);
 
-        Rect textRect = new Rect(
-            guiPoint.x - textSize.x / 2f,
-            guiPoint.y - textSize.y / 2f,
+        GUIStyle style = new GUIStyle(GUI.skin.label);
+        style.fontSize = 12;
+        style.alignment = TextAnchor.MiddleCenter;
+        style.normal.textColor = Color.white;
+
+        Vector2 textSize = style.CalcSize(new GUIContent(text));
+
+        // bajar 1.2x
+        screenPos.y += textSize.y * 1.2f;
+
+        Rect rect = new Rect(
+            screenPos.x - textSize.x / 2f,
+            screenPos.y - textSize.y / 2f,
             textSize.x,
             textSize.y
         );
 
-        EditorGUI.DrawRect(bgRect, Color.black);
-        GUI.Label(textRect, text, textStyle);
+        // Fondo NEGRO
+        EditorGUI.DrawRect(rect, Color.black);
+
+        // Texto
+        GUI.Label(rect, text, style);
 
         Handles.EndGUI();
+#endif
     }
+
+
 #endif
 }

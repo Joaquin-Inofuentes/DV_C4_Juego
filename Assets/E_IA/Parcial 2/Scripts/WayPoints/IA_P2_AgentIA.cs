@@ -11,15 +11,12 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     [Header("Movimiento")]
     public float moveSpeed = 5f;
-    public float rotationSpeed = 10f; 
+    public float rotationSpeed = 10f;
     public float nodeReachDistance = 0.5f;
 
     [Header("Debug")]
     public bool debug_BlockMovement = false;
-    public bool debug_BlockRotation = false; 
-
-    // --- SECCIÓN DE DETECCIÓN (ELIMINADA) ---
-    // (Aquí estaban fieldOfView, viewDistance, etc.)
+    public bool debug_BlockRotation = false;
 
     public List<Vector3> currentPath;
     public int currentIndex = 0;
@@ -80,7 +77,10 @@ public class IA_P2_AgentIA : MonoBehaviour
         if (!debug_BlockRotation && distance > 0.001f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(toTarget.normalized);
-            transform.rotation = targetRotation;
+            // Rotacion instantanea
+            //transform.rotation = targetRotation;
+            // Rotacion suave
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
         // 4. Lógica de Movimiento
@@ -131,6 +131,33 @@ public class IA_P2_AgentIA : MonoBehaviour
     public bool IsMoving()
     {
         return isMoving;
+    }
+
+
+    public bool IsOnFinalPathSegment()
+    {
+        if (currentPath == null || currentPath.Count == 0)
+            return false;
+
+        if (currentPath.Count == 1)
+            return true;
+
+        if (currentPath == null || currentPath.Count < 2)
+            return false;
+        
+        return currentIndex == currentPath.Count;
+    }
+
+    public void LookAtTarget(Vector3 targetPosition)
+    {
+        Vector3 direction = targetPosition - transform.position;
+        direction.y = 0; // opcional: evita inclinarse hacia arriba/abajo
+
+        if (direction.sqrMagnitude < 0.0001f)
+            return; // evita errores de LookRotation
+
+        Quaternion targetRot = Quaternion.LookRotation(direction.normalized);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
     }
 
 }

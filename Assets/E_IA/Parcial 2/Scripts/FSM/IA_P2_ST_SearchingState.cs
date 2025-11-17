@@ -9,7 +9,7 @@ public class IA_P2_ST_SearchingState : IA_P2_INT_gentState
 
     public void Enter(IA_P2_FSM context)
     {
-        Debug.Log("Se entro en modo SEARCHING");
+        //Debug.Log("Se entro en modo SEARCHING");
         context.agent.AsignarColor(Color.yellow);
 
         _originalRotationSpeed = context.agent.rotationSpeed;
@@ -22,11 +22,20 @@ public class IA_P2_ST_SearchingState : IA_P2_INT_gentState
 
     public void Execute(IA_P2_FSM context)
     {
-        // 1. Si vemos al jugador → CHASING inmediatamente
-        if (context.IsPlayerVisible())
+        // Mira al objetivo
+        context.agent.LookAtTarget(context.target.transform.position);
+
+        if(Vector3.Distance(context.lastKnownPosition, context.agent.transform.position) > 3f)
         {
-            context.agent.GoTo(context.target.transform.position);
+            // Va a la ultima a completar su mision de llegar
             context.TransitionTo(AgentState.Chasing);
+        }
+
+        // Si, lo puedo ver va hacia el
+        if (IA_P2_LineOfSight3D.Check(context.agent.gameObject.transform.position, context.target.transform.position, context.NotificacionDeEnemigoVisible.visionObstacles))
+        {
+            context.TransitionTo(AgentState.Chasing);
+            Debug.DrawLine(context.agent.transform.position, context.target.transform.position, Color.red, 2f);
             return;
         }
 

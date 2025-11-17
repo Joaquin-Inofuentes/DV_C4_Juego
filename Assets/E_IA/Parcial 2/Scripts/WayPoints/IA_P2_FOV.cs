@@ -101,9 +101,16 @@ public class IA_P2_FOV : MonoBehaviour
 
         if (!_visibleTargets.Contains(target))
         {
-            _visibleTargets.Add(target);
-            //Debug.Log("¡Objetivo VALIDADO!: " + target.name, target);
-            OnTargetDetected?.Invoke(target);
+            if (IA_P2_LineOfSight3D.Check(transform.parent.position, target.transform.position, visionObstacles))
+            {
+                _visibleTargets.Add(target);
+                OnTargetDetected?.Invoke(target);
+                Debug.DrawLine(transform.parent.position, target.transform.position, detectionColor, 2f);
+            }
+            else
+            {
+                //Debug.DrawLine(transform.parent.position, target.transform.position, lostTargetColor, 2f);
+            }
         }
     }
 
@@ -139,7 +146,7 @@ public class IA_P2_FOV : MonoBehaviour
         // 3. Quitar de la lista pública
         if (enemiesInTrigger.Remove(enemyRoot))
         {
-            Debug.Log(enemyRoot.name + " salió del trigger.", enemyRoot);
+            //Debug.Log(enemyRoot.name + " salió del trigger.", enemyRoot);
 
             // 4. Si lo quitamos, comprobar si además estaba en la lista de VISIBLES
             if (_visibleTargets.Remove(enemyRoot))
@@ -222,7 +229,6 @@ public class IA_P2_FOV : MonoBehaviour
         Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.1f);
         Matrix4x4 oldMatrix = Gizmos.matrix;
         Gizmos.matrix = Matrix4x4.TRS(transform.TransformPoint(col.center), transform.rotation, transform.lossyScale);
-        Gizmos.DrawCube(Vector3.zero, col.size);
         Gizmos.matrix = oldMatrix;
 
 

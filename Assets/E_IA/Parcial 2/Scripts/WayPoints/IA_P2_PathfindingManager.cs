@@ -233,15 +233,12 @@ public static class IA_P2_PathfindingManager
             open.Remove(current);
             closed.Add(current);
 
-            foreach (var nb in current.neighbors)
+            foreach (var nb in current.Vecinos)
             {
                 if (nb == null || closed.Contains(nb)) continue;
                 if (!IA_P2_LineOfSight3D.Check(current.transform.position, nb.transform.position, obstacle))
                     continue;
                 
-                // Usamos la distancia real como costo base si no hay 'movementCost'
-                // float costToNeighbor = Vector3.Distance(current.transform.position, nb.transform.position);
-                // float tentative = g[current] + costToNeighbor;
 
                 // [CORRECCIÓN] Usamos el 'movementCost' de tu código original
                 float tentative = g[current] + nb.movementCost; 

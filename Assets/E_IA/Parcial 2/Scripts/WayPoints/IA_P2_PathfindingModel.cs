@@ -16,7 +16,7 @@ public class IA_P2_PathfindingModel : MonoBehaviour
 
     public static IA_P2_PathfindingModel Instance;
 
-    void OnEnable()
+    public void OnEnable()
     {
         Instance = this;
         ReCalcularVecinos();
@@ -48,7 +48,7 @@ public class IA_P2_PathfindingModel : MonoBehaviour
     {
         if (node == null) return;
 
-        node.neighbors.Clear();
+        node.Vecinos.Clear();
 
         foreach (var other in allNodes)
         {
@@ -82,7 +82,7 @@ public class IA_P2_PathfindingModel : MonoBehaviour
                 continue;
 
             // Si pasó los 3 raycasts → es vecino válido
-            node.neighbors.Add(other);
+            node.Vecinos.Add(other);
         }
     }
 

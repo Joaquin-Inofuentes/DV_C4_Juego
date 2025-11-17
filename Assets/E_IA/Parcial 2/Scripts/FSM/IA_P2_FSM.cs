@@ -47,7 +47,7 @@ public class IA_P2_FSM : MonoBehaviour
         _searchingState = new IA_P2_ST_SearchingState();
         _returningState = new IA_P2_ST_ReturningToPatrolState();
 
-        
+
         switch (currentStateEnum) // <-- Lee el valor del Inspector
         {
             case AgentState.Patrolling:
@@ -84,7 +84,7 @@ public class IA_P2_FSM : MonoBehaviour
     public void PerseguirEnemigo(GameObject enemigo)
     {
         target = enemigo;
-        Debug.Log("changing to chasing state",enemigo);
+        //Debug.Log("changing to chasing state", enemigo);
         TransitionTo(AgentState.Chasing);
     }
 
@@ -107,6 +107,11 @@ public class IA_P2_FSM : MonoBehaviour
         else
         {
             Debug.LogWarning("IA_P2_FSM: No hay estado activo");
+        }
+
+        if (agent.currentPath == null || agent.currentPath.Count == 0)
+        {
+            TransitionTo(AgentState.ReturningToPatrol);
         }
     }
 
@@ -200,6 +205,11 @@ public class IA_P2_FSM : MonoBehaviour
                 10f
             );
         }
+    }
+
+    public void SePerdioElObjetivo()
+    {
+        target = null;
     }
 
 }
