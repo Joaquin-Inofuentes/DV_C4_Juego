@@ -29,6 +29,11 @@ public class C_Pan_Mouse : MonoBehaviour
         {
             manager?.RecibirPan(Vector2.zero);
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            CambiarBloqueo();
+        }
     }
     [ContextMenu("CambiarBloqueo")]
     public void CambiarBloqueo()
