@@ -1,10 +1,13 @@
 using CustomInspector;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class C_Enemy : MonoBehaviour, I_ReceivesDamage
 {
     [Button(nameof(Atacar), true)]
     public Collider ObjetivoPosible;
+    [Button(nameof(ReceiveDamage), true)]
+    public int DañoPosible = 10;
 
 
     public int Health = 100;
@@ -48,10 +51,11 @@ public class C_Enemy : MonoBehaviour, I_ReceivesDamage
         }
     }
 
-
+    public VisualEffect EfectoDeSangre;
     public void ReceiveDamage(int damage)
     {
         Health -= damage;
+        EfectoDeSangre.Play();
         Debug.Log($"[C_Enemy] {gameObject.name} recibió {damage} daño. Vida restante: {Health}");
 
         if (Health <= 0)
