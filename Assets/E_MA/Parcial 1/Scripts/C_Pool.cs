@@ -4,6 +4,7 @@ public class C_Pool : MonoBehaviour
 {
     public M_Pool Model = new M_Pool();
     public F_Factory Factory;
+    public string NombreDelProyectil = "proyectil";
 
     // Pide un objeto con posición
     public GameObject Request(Vector3 spawnPosition)
@@ -18,11 +19,13 @@ public class C_Pool : MonoBehaviour
         else
         {
             obj = Factory.Create(spawnPosition);
+            obj.GetComponent<C_Projectile>().NombreDelProyectil = NombreDelProyectil;
             Debug.Log("[Pool] Nuevo objeto creado por Factory");
         }
 
         obj.transform.position = spawnPosition;
         obj.transform.SetParent(transform);
+        Debug.Log("Se asocio como padre a " + transform.name, gameObject);
         obj.SetActive(true);
 
         Model.AddActive(obj);

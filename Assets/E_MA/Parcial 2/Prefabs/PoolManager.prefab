@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 538700470999043026}
+  - {fileID: 4628673599931316700}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1527661658298013821
@@ -48,6 +49,71 @@ MonoBehaviour:
   pools:
   - key: proyectil
     pool: {fileID: 6470438850819759629}
+  - key: Melee
+    pool: {fileID: 6090479081914030022}
+--- !u!1 &2719902204250013095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4628673599931316700}
+  - component: {fileID: 6090479081914030022}
+  - component: {fileID: 8007559313068845157}
+  m_Layer: 0
+  m_Name: FactoryMelee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4628673599931316700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719902204250013095}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5670676, y: -2.6974802, z: 11.190773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 391720875598750767}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6090479081914030022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719902204250013095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56234a1ef9569b944a23bbafc9959406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Model:
+    activeObjects: []
+    inactiveObjects: []
+  Factory: {fileID: 8007559313068845157}
+  NombreDelProyectil: Melee
+--- !u!114 &8007559313068845157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2719902204250013095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdbe722e69ee0048938b123bcf7638f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1286943702380257639, guid: f7eefb7664e387d4ca39eb71f1c34f40, type: 3}
 --- !u!1 &6701208828251117065
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +163,7 @@ MonoBehaviour:
     activeObjects: []
     inactiveObjects: []
   Factory: {fileID: 4258553292759528522}
+  NombreDelProyectil: proyectil
 --- !u!114 &4258553292759528522
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,9 +5,11 @@ public class C_Projectile : MonoBehaviour
 {
     public M_Projectile Model { get; private set; }
     public V_Projectile view;
+    public GameObject Owner;
 
     public float lifeTimer = 0f;
     public float lifeTime = 3f; // 3 segundos
+    public string NombreDelProyectil  = "proyectil";
 
     void OnEnable()
     {
@@ -24,6 +26,7 @@ public class C_Projectile : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(Model.Direction);
 
         lifeTimer = 0f; // reset del timer
+        Owner = model.Owner;
     }
 
     void Update()
@@ -37,12 +40,14 @@ public class C_Projectile : MonoBehaviour
         lifeTimer += Time.deltaTime;
         if (lifeTimer >= lifeTime)
         {
-            C_PoolManager.Instance.Return(gameObject,"proyectil");
+            C_PoolManager.Instance.Return(gameObject,NombreDelProyectil);
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Colisiono con " + collision.gameObject.name, gameObject);
+        if (Model.Owner.layer.ToString() == collision.gameObject.layer.ToString()) return;
         Debug.Log(collision.gameObject.name);
         view.ShowCollision(collision.gameObject);
 

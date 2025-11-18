@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class C_SoldadoJugador : C_SoldadoTransform
+public class C_SoldadoJugador : C_SoldadoTransform,I_ReceivesDamage
 {
     [Header("Jugador")]
     [SerializeField] private Transform camara;
     [SerializeField] private C_InputManager Manager;
 
+    public int Vida = 100;
     private Vector2 moveInput;
     private Vector2 panInput;
 
@@ -71,5 +72,25 @@ public class C_SoldadoJugador : C_SoldadoTransform
     {
         Vector3 delta = new Vector3(input.x, 0, input.y) * velocidad * Time.deltaTime;
         transform.position += delta;
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        if(Vida <= 0)
+        {
+            Vida = 0;
+            Debug.Log(
+                "El jugador ha muerto."
+                , gameObject);
+            // Aquí puedes agregar lógica adicional para manejar la muerte del jugador
+            return;
+        }
+        Vida -= damage;
+        Debug.Log(
+            "Se daño al jugador: " 
+            + damage 
+            + ". Vida restante: " 
+            + Vida, 
+            gameObject);
     }
 }
