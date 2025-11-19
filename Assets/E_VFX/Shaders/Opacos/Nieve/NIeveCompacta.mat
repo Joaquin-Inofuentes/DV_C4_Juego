@@ -33,7 +33,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _normal_level_snow
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -54,13 +54,13 @@ Material:
     - _Direccion: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Snow_level: 0.9
-    - _metallic: 0.27
+    - _Snow_level: 0.2
+    - _metallic: 0.1
     - _normal: 1
-    - _normal_level_snow: 0.31
-    - _normal_noise_scale: 150
-    - _rougness: 0.57
+    - _normal_level_snow: 1
+    - _normal_noise_scale: 188.09
+    - _rougness: 0.5
     m_Colors:
-    - _Color: {r: 0.8228907, g: 0.85291326, b: 0.8679245, a: 0}
-    - _Color_1: {r: 1, g: 1, b: 1, a: 0.80784315}
+    - _Color: {r: 0.7729619, g: 0.8213858, b: 0.8490566, a: 0}
+    - _Color_1: {r: 0.6907262, g: 0.7288475, b: 0.735849, a: 0.80784315}
   m_BuildTextureStacks: []

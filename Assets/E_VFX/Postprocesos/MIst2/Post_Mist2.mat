@@ -37,6 +37,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _Distance: 29
+    - _Nieblatranspa: 0.012
+    - _alloff: 0.392
+    m_Colors:
+    - _Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
   m_BuildTextureStacks: []
