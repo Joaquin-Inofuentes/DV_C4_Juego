@@ -10,7 +10,7 @@ public class C_Shooter : MonoBehaviour, I_Interactuar
     public string Proyectil = "proyectil";
     public void Interactuar()
     {
-        Debug.Log("[C_Shooter] Disparar!", gameObject);
+        //Debug.Log("[C_Shooter] Disparar!", gameObject);
         Vector3 spawnPos = ShootPoint.position + ShootPoint.forward * 2f;
 
         // Pedir proyectil

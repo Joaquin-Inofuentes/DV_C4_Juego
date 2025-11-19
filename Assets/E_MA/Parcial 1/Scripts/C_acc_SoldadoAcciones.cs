@@ -39,7 +39,7 @@ public class C_acc_SoldadoAcciones : MonoBehaviour // View
 
     private void Disparar()
     {
-        Debug.Log("Disparar", gameObject);
+        //Debug.Log("Disparar", gameObject);
 
         if (ArmaActual == null) return;
 

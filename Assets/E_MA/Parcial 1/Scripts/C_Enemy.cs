@@ -16,7 +16,7 @@ public class C_Enemy : MonoBehaviour, I_ReceivesDamage
 
     public void Atacar(Collider Enemigo) // Llamado desde trigger Unity Event
     {
-        Debug.Log("Colisiono con ",Enemigo.gameObject);
+        Debug.Log("Colisiono con " + Enemigo.gameObject.name,Enemigo.gameObject);
         if (Enemigo.name != "Player") return;
         if (Weapon == null)
         {
