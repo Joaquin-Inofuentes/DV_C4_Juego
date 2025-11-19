@@ -20,7 +20,7 @@ public class C_PoolManager : MonoBehaviour
     public GameObject Request(string key, Vector3 position)
     {
         C_Pool pool = pools.Find(p => p.key == key)?.pool;
-        Debug.Log("Se usara el pool " + pool.gameObject.name, gameObject);
+        //Debug.Log("Se usara el pool " + pool.gameObject.name, gameObject);
         if (pool != null)
         {
             return pool.Request(position);

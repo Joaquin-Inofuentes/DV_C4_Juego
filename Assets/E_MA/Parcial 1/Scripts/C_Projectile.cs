@@ -9,7 +9,7 @@ public class C_Projectile : MonoBehaviour
 
     public float lifeTimer = 0f;
     public float lifeTime = 3f; // 3 segundos
-    public string NombreDelProyectil  = "proyectil";
+    public string NombreDelProyectil = "proyectil";
 
     void OnEnable()
     {
@@ -40,13 +40,13 @@ public class C_Projectile : MonoBehaviour
         lifeTimer += Time.deltaTime;
         if (lifeTimer >= lifeTime)
         {
-            C_PoolManager.Instance.Return(gameObject,NombreDelProyectil);
+            C_PoolManager.Instance.Return(gameObject, NombreDelProyectil);
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Colisiono con " + collision.gameObject.name, gameObject);
+        Debug.Log("Colisiono con " + collision.gameObject.name + " | " + Model.Owner.layer.ToString() + "==" + collision.gameObject.layer.ToString(), collision.gameObject);
         if (Model.Owner.layer.ToString() == collision.gameObject.layer.ToString()) return;
         Debug.Log(collision.gameObject.name);
         view.ShowCollision(collision.gameObject);
@@ -54,13 +54,21 @@ public class C_Projectile : MonoBehaviour
         var damageable = collision.gameObject.GetComponent<I_ReceivesDamage>();
         if (damageable != null)
         {
-            damageable.ReceiveDamage(Model.Damage); // Daño de proyectil
             Debug.Log($"[C_Projectile] Hizo {Model.Damage} de daño a {collision.gameObject.name}");
+            damageable.ReceiveDamage(Model.Damage); // Daño de proyectil
+        }
+        else
+        {
+            Debug.Log($"[C_Projectile] {collision.gameObject.name} no puede recibir daño.");
         }
 
         C_PoolManager.Instance.Return(gameObject, "proyectil");
     }
 
+    void OnCollisionStay(Collision collision)
+    {
+        Debug.Log("Colisiono con " + collision.gameObject.name, collision.gameObject);
+    }
     public void ResetState()
     {
         Model = null;
