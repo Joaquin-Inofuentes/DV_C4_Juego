@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DitherEffect
-  m_Shader: {fileID: -6465566751694194690, guid: f1286ee81a9945c4fa90ee1fc9812541,
+  m_Name: Post_mist
+  m_Shader: {fileID: -6465566751694194690, guid: 8abd10eff8e7ebb428114e951da00b99,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -38,7 +38,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ColorResolucion: 160
-    - _DhiterSpread: 0.001
-    m_Colors: []
+    - _Falloff: 0.98
+    - _distance: 29.7
+    - _nieblaTransparencia: 0.7
+    m_Colors:
+    - _Color: {r: 0.5943396, g: 0.58032215, b: 0.58032215, a: 0}
   m_BuildTextureStacks: []

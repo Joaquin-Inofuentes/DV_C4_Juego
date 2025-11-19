@@ -45,10 +45,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0.9728173, g: 1, b: 0, a: 0}
+    - _Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 0}
     - _Vector2: {r: 0, g: 0, b: 0, a: 0}
-    - _coloemissive: {r: 0.5754717, g: 0.5231304, b: 0.019001435, a: 1}
-    - _step: {r: 0.52, g: 0.7, b: 0.45, a: 0}
+    - _coloemissive: {r: 0.3273478, g: 0.3679245, b: 0.012148458, a: 1}
+    - _step: {r: 0.64, g: 0.7, b: 0.45, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &212888878174297658
 MonoBehaviour:

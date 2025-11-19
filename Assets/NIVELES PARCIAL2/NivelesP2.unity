@@ -11574,13 +11574,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664798138}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25602874, y: -0, z: -0, w: 0.9666692}
-  m_LocalPosition: {x: 0, y: 20.35, z: -7.88}
+  m_LocalRotation: {x: 0.21819155, y: -0, z: -0, w: 0.975906}
+  m_LocalPosition: {x: 0, y: 14.4, z: -11.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 397639912}
-  m_LocalEulerAnglesHint: {x: 29.669, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.206, y: 0, z: 0}
 --- !u!199 &1664798140
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -12371,7 +12371,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 4.0584607
+      value: 8.8
       mode: 0
       spread: 0
       speed:
@@ -24783,7 +24783,7 @@ WindZone:
   m_WindMain: 8
   m_WindTurbulence: 1
   m_WindPulseMagnitude: 0.35
-  m_WindPulseFrequency: 0.01
+  m_WindPulseFrequency: 2.7
 --- !u!4 &127533922913004000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4893554665415045471, guid: ab0522f5284cf4a4f9b73ddfdcf5c745,
