@@ -5,9 +5,7 @@ using TMPro;
 using CustomInspector;
 
 
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
 
 public class MA_P2_Location_GetTexts : MonoBehaviour
 {
@@ -23,7 +21,6 @@ public class MA_P2_Location_GetTexts : MonoBehaviour
     [Header("TextMeshPro (3D Mesh)")]
     public List<TextMeshPro> tmp3DTexts = new List<TextMeshPro>();
 
-#if UNITY_EDITOR
     [ContextMenu("Buscar todos los textos")]
     public void BuscarTextos()
     {
@@ -33,7 +30,6 @@ public class MA_P2_Location_GetTexts : MonoBehaviour
 
         Debug.Log($"🟢 Encontrados: Legacy = {legacyTexts.Count}, TMP UGUI = {tmpGUITexts.Count}, TMP 3D = {tmp3DTexts.Count}");
     }
-#endif
 }
 
 #if UNITY_EDITOR

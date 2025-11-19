@@ -8,9 +8,18 @@ public class VFX_OutLiner_Resize : MonoBehaviour
     [Button(nameof(Start))]
     public Vector2 Resolucion = Vector2.zero;
     public RenderTexture ResolucionTexture;
+
+    public RenderTexture ResolucionBajada;
     // Update is called once per frame
     void Start()
     {
+        if(ResolucionBajada != null)
+        {
+            ResolucionBajada.height = ResolucionTexture.height;
+            ResolucionBajada.width = ResolucionTexture.width;
+            return;
+        }
+
         if (Resolucion != new Vector2(Screen.width, Screen.height))
         {
             if (Screen.width > 0 && Screen.height > 0)

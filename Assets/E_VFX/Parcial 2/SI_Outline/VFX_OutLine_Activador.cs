@@ -30,10 +30,11 @@ public class VFX_OutLine_Activador : MonoBehaviour, VFX_P2_INT_Apuntable
             }
         }
     }
-
+    public GameObject LuzDeFondo;
     public void RecojerArma()
     {
         SoldadoJugador.Recojer(transform);
+        LuzDeFondo.SetActive(false);
     }
 
     public void OnMouseOver()
