@@ -11,7 +11,7 @@ public class C_Shooter : MonoBehaviour, I_Interactuar
     public void Interactuar()
     {
         Debug.Log("[C_Shooter] Disparar!", gameObject);
-        Vector3 spawnPos = transform.position + transform.forward * 2f;
+        Vector3 spawnPos = ShootPoint.position + ShootPoint.forward * 2f;
 
         // Pedir proyectil
         GameObject proj = C_PoolManager.Instance.Request(Proyectil, spawnPos);
@@ -24,7 +24,7 @@ public class C_Shooter : MonoBehaviour, I_Interactuar
             {
                 Damage = DamageProyectil,
                 Speed = SpeedProyectil,
-                Direction = transform.forward,
+                Direction = ShootPoint.forward,
                 Owner = gameObject
             };
             controller.Init(modelData);
