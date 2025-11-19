@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class C_SoldadoJugador : C_SoldadoTransform,I_ReceivesDamage
@@ -92,5 +93,70 @@ public class C_SoldadoJugador : C_SoldadoTransform,I_ReceivesDamage
             + ". Vida restante: " 
             + Vida, 
             gameObject);
+    }
+
+    
+
+    public Transform destinoDelArma; // Arrastra aquí el objeto "Mano" o "WeaponHolder"
+    public float duracion = 1.0f;    // Tiempo que tarda en llegar
+
+    // Llama a esta función cuando hagas click o presiones E
+    public void Recojer(Transform arma)
+    {
+        GameObject armaGO = arma.gameObject;
+        // Si tiene rigbody. Lo desactivamos para evitar problemas
+        Rigidbody rb = armaGO.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+        }
+
+        // Si tiene collider lo desactivamos para evitar problemas
+        Collider col = armaGO.GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        StartCoroutine(AnimacionRecojer(arma));
+    }
+
+    IEnumerator AnimacionRecojer(Transform arma)
+    {
+        // 1. Hacemos que el arma sea hija del destino INMEDIATAMENTE
+        // El segundo parámetro 'true' mantiene su posición mundial por un instante
+        arma.SetParent(destinoDelArma, true);
+
+        // 2. Guardamos la posición y rotación iniciales (locales respecto a la mano)
+        Vector3 posInicial = arma.localPosition;
+        Quaternion rotInicial = arma.localRotation;
+
+        // 3. Definimos el destino (0,0,0 local y rotación 0)
+        Vector3 posFinal = Vector3.zero;
+        Quaternion rotFinal = Quaternion.identity;
+
+        float tiempoPasado = 0;
+
+        while (tiempoPasado < duracion)
+        {
+            tiempoPasado += Time.deltaTime;
+
+            // Calculamos el porcentaje completado (0 a 1)
+            float t = tiempoPasado / duracion;
+
+            // OPCIONAL: "SmoothStep" hace que empiece lento y termine lento (más natural)
+            t = t * t * (3f - 2f * t);
+
+            // Movemos y rotamos suavemente
+            arma.localPosition = Vector3.Lerp(posInicial, posFinal, t);
+            arma.localRotation = Quaternion.Lerp(rotInicial, rotFinal, t);
+
+            // Esperamos al siguiente frame
+            yield return null;
+        }
+
+        // 4. Nos aseguramos de que quede EXACTO al final (por si hubo decimales)
+        arma.localPosition = posFinal;
+        arma.localRotation = rotFinal;
     }
 }

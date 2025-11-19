@@ -1,8 +1,13 @@
+using CustomInspector;
 using UnityEngine;
 
-public class VFX_OutLine_Activador : MonoBehaviour
+public class VFX_OutLine_Activador : MonoBehaviour, VFX_P2_INT_Apuntable
 {
+    [Button(nameof(RecojerArma))]
     public GameObject ObjetoDeFondo;
+
+    public C_SoldadoJugador SoldadoJugador;
+    public bool Recogido = false;
 
     void Start()
     {
@@ -15,15 +20,30 @@ public class VFX_OutLine_Activador : MonoBehaviour
 
     public void Update()
     {
-        // Esto es solo para pruebas en el editor, se puede eliminar en producción
-        if (Input.GetKeyDown(KeyCode.O))
+        if (SoldadoJugador == null) return;
+        if (Input.GetKeyDown(KeyCode.E) && !Recogido)
         {
-            Activar();
+            if (Vector3.Distance(SoldadoJugador.transform.position, transform.position) < 3f)
+            {
+                Recogido = true;
+                RecojerArma();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Desactivar();
-        }
+    }
+
+    public void RecojerArma()
+    {
+        SoldadoJugador.Recojer(transform);
+    }
+
+    public void OnMouseOver()
+    {
+        Activar();
+    }
+
+    public void OnMouseExit()
+    {
+        Desactivar();
     }
 
     void Activar()
@@ -44,5 +64,11 @@ public class VFX_OutLine_Activador : MonoBehaviour
             Debug.Log("Se desactivo el outline");
             ObjetoDeFondo.SetActive(false);
         }
+    }
+
+    public void Apuntado()
+    {
+        // Falto implementar este método
+        throw new System.NotImplementedException();
     }
 }
