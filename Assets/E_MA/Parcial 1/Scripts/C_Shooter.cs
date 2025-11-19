@@ -1,5 +1,8 @@
 using CustomInspector;
+using JetBrains.Annotations;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class C_Shooter : MonoBehaviour, I_Interactuar
 {
@@ -8,9 +11,15 @@ public class C_Shooter : MonoBehaviour, I_Interactuar
     public int DamageProyectil = 25;
     public float SpeedProyectil = 30f;
     public string Proyectil = "proyectil";
+    public GameObject EfectoVisual;
     public void Interactuar()
     {
-        //Debug.Log("[C_Shooter] Disparar!", gameObject);
+        if (EfectoVisual != null)
+        {
+            // Activar el efecto visual
+            StartCoroutine(ActivarEfectoVisual());
+        }
+
         Vector3 spawnPos = ShootPoint.position + ShootPoint.forward * 2f;
 
         // Pedir proyectil
@@ -29,6 +38,13 @@ public class C_Shooter : MonoBehaviour, I_Interactuar
             };
             controller.Init(modelData);
         }
+    }
+
+    private IEnumerator ActivarEfectoVisual()
+    {
+        EfectoVisual.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        EfectoVisual.gameObject.SetActive(false);
     }
 
     public void Recargar()
