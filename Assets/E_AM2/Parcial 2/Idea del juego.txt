@@ -1,0 +1,57 @@
+Nombre del juego : Eternauta (la del actor argentino q logro estar en Netflix)
+Categoria : Tower Defense
+
+Loop
+0. Seleccionas 1 nivel
+1. Colocas torretas
+2. Vienen hordas de cascarudos a atacarte
+3. Defiendes la base
+4. Terminan las 3 hordas.
+5. Obtienes currency
+6. Mejoras equipo
+
+2 Comportamientos complejos (Parcial 1)
+Kit medico
+	Recojes 1 kit medico del suelo
+	Aprietas 1 boton
+	Te carga una barra de curandose por 5 segundos. Queda vulnerable a ataques
+	Al terminar de curarse se cura un 30% de vida
+
+Construir torreta
+	Al conseguir X puntos puedes comprar 1 torreta
+	Compras 1 torreta
+	Aprietas 1 boton
+	Te quedas bloqueado para construirla por 10 segundos y te quedas vulnerable
+	La torreta dispara automaticamente
+
+Variables remote
+1. string dificultad
+2. int Vida maxima del jugador
+3. int Balas maximas
+4. float Velocidad de caminar
+5. float Coeficiente de obtencion de currency
+
+Animaciones ? 
+Para cascarudos. 
+Al caminar, atacar y morirse (Solo cascarudos)
+Shaders ?
+Al recibir daño, salpica sangre
+
+Esta ok ?
+
+Para selector de niveles
+Nivel 1 
+Nivel 2
+El nivel 1 es para parcial 1 
+y nivel 2 para final
+¿ Esta bien o falta mas?
+
+Opciones (puede ser el menu de pausa ?. Asi simplifico)
+Slider Volumen de musica de fondo
+Slider Volumen de efectos sonoros
+Slider Sensibilidad de desplazamiento
+Toggle Disparo automatico
+
+Tienda
+-Torreta automatica
+-Ametralladora manual
