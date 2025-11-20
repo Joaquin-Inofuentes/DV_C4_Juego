@@ -55,3 +55,4 @@ Toggle Disparo automatico
 Tienda
 -Torreta automatica
 -Ametralladora manual
+-balas
