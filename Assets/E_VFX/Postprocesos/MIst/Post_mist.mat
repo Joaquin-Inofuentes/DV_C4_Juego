@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _Falloff: 0.98
     - _distance: 40
-    - _nieblaTransparencia: 0.85
+    - _nieblaTransparencia: 0.94
     m_Colors:
     - _Color: {r: 0.5943396, g: 0.58032215, b: 0.58032215, a: 0}
   m_BuildTextureStacks: []

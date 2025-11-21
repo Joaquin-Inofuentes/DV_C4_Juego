@@ -71,7 +71,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EmissiveForce: 0.9
+    - _EmissiveForce: 0.44
     - _QueueControl: 0
     - _QueueOffset: 0
     - _normalStreng: 1.83
