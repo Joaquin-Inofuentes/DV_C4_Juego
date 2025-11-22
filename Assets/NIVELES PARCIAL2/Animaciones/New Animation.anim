@@ -554,7 +554,8 @@ AnimationClip:
   - time: 1.1
     functionName: PlayAnim
     data: Recorrido
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 7400000, guid: 5153969a71b908748b337ec381fdb546,
+      type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
