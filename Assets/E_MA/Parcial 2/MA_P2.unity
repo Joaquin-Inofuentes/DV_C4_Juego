@@ -2474,7 +2474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555250052}
   - component: {fileID: 1555250056}
-  - component: {fileID: 1555250055}
+  - component: {fileID: 1555250057}
   - component: {fileID: 1555250054}
   - component: {fileID: 1555250053}
   m_Layer: 5
@@ -2548,27 +2548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb24cad3eda7834a8bfbe9b307b7e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1555250055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555250051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a30293f77f12144863e4359288ba5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoPopConfirmDialog: 1
-  screens:
-  - {ScreenObject: {fileID: 1982891511}, blocksInput: 0}
-  - {ScreenObject: {fileID: 420064185}, blocksInput: 0}
-  - {ScreenObject: {fileID: 458824243}, blocksInput: 0}
-  - {ScreenObject: {fileID: 658956113}, blocksInput: 0}
-  - {ScreenObject: {fileID: 1223685749}, blocksInput: 1}
-  view: {fileID: 1555250054}
-  <InputBlocked>k__BackingField: 0
 --- !u!222 &1555250056
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2577,6 +2556,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555250051}
   m_CullTransparentMesh: 1
+--- !u!114 &1555250057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555250051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c514784e80d37b64cb8735fa6266a0c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoPopConfirmDialog: 1
+  screens: []
+  view: {fileID: 1555250054}
 --- !u!1 &1769480951
 GameObject:
   m_ObjectHideFlags: 0
