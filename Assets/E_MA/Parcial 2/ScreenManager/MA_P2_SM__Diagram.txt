@@ -1,0 +1,83 @@
+ARBOL DE DECISIONES: FLUJO DE TRABAJO "SCREEN MANAGER (UI)"
+=========================================================================
+
+INICIO: Se activa el componente MA_P2_SM_Controller
+
+___ PASO 1: INICIALIZACION DEL SISTEMA (Setup)
+___ ¿Se encontró la referencia "View"?
+______ No >
+_________ ACCION: Buscar componente MA_P2_SM_View automáticamente.
+______ Si >
+_________ ACCION: Escanear todos los objetos hijos del Manager.
+_________ ACCION: Recorrer cada pantalla encontrada:
+____________ ¿El nombre contiene la palabra "Dialog"?
+_______________ Si >
+__________________ ACCION: CONFIGURAR BLOQUEO. Esta pantalla bloqueará el Input.
+_______________ No >
+__________________ ACCION: CONFIGURAR NORMAL. Pantalla estándar sin bloqueo.
+_________ ACCION: Guardar lista y crear mapa de acceso rápido.
+_________ ACCION: Suscribirse al evento de respuestas (ConfirmResponseEvent).
+
+___ PASO 2: ABRIR PANTALLA (Operación PUSH)
+___ El sistema recibe la orden Push("Nombre")
+___ ¿El nombre existe en el sistema?
+______ No >
+_________ ACCION: Error "Pantalla no encontrada" y cancelar.
+______ Si >
+_________ ¿El objeto está destruido (null)?
+____________ Si >
+_______________ ACCION: Cancelar operación.
+____________ No >
+_______________ ¿La pantalla ya está activa arriba de todo (Top)?
+__________________ Si >
+_____________________ ACCION: REFRESCAR. Traer al frente visualmente.
+__________________ No >
+_____________________ ¿Está en la pila pero más abajo?
+________________________ Si >
+___________________________ ACCION: REORDENAR. Moverla de abajo a la cima.
+________________________ No (Es nueva) >
+___________________________ ACCION: APILAR. Ponerla en la cima.
+_____________________ ACCION FINAL:
+________________________ 1. Activar objeto visual (SetActive true).
+________________________ 2. Aplicar bloqueo de Input si la pantalla lo requiere.
+________________________ 3. Disparar evento "OnScreenChanged".
+
+___ PASO 3: CERRAR PANTALLA (Operación POP)
+___ El sistema recibe la orden Pop()
+___ ACCION: Limpiar referencias nulas de la pila.
+___ ¿La pila está vacía?
+______ Si >
+_________ ACCION: No hacer nada.
+______ No >
+_________ ACCION: Sacar pantalla de la cima.
+_________ ACCION: Ocultar objeto visual (SetActive false).
+_________ ¿Queda alguna pantalla debajo (la anterior)?
+____________ Si >
+_______________ ACCION: RESTAURAR. Reactivar pantalla anterior.
+_______________ ACCION: Recuperar su configuración de bloqueo de Input.
+____________ No >
+_______________ ACCION: LIBERAR. Desbloquear todo el Input.
+
+___ PASO 4: RESPUESTA DE DIALOGOS (Confirmación)
+___ Usuario presiona Si (1) o No (0)
+___ ¿Está activada la opción "AutoPopConfirmDialog"?
+______ No >
+_________ ACCION: Solo notificar resultado por evento.
+______ Si >
+_________ ¿El diálogo que respondió es el que está arriba (Top)?
+____________ Si >
+_______________ ACCION: AUTOMATICO. Ejecutar PASO 3 (CERRAR PANTALLA).
+____________ No >
+_______________ ACCION: SEGURIDAD. No cerrar nada (orden incorrecto).
+
+___ PASO 5: DEBUGGING (Testing Unit)
+___ Usuario presiona tecla configurada
+___ ¿Qué acción tiene asignada la tecla?
+______ Caso "Push" >
+_________ ACCION: Ejecutar PASO 2 con el nombre configurado.
+______ Caso "Pop" >
+_________ ACCION: Ejecutar PASO 3.
+______ Caso "HideAll" >
+_________ ACCION: Ocultar todo y borrar la pila completa.
+
+FIN DEL PROCESO

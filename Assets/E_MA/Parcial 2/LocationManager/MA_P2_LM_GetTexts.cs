@@ -3,14 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using CustomInspector;
-
-
 using UnityEditor;
 
-public class MA_P2_Location_GetTexts : MonoBehaviour
+public class MA_P2_LM_GetTexts : MonoBehaviour
 {
     [Button(nameof(BuscarTextos))]
-    public string Algo1;
+    public string NotWatchHere;
 
     [Header("Text Legacy (UI antiguo)")]
     public List<Text> legacyTexts = new List<Text>();
@@ -31,23 +29,3 @@ public class MA_P2_Location_GetTexts : MonoBehaviour
         Debug.Log($"🟢 Encontrados: Legacy = {legacyTexts.Count}, TMP UGUI = {tmpGUITexts.Count}, TMP 3D = {tmp3DTexts.Count}");
     }
 }
-
-#if UNITY_EDITOR
-[CustomEditor(typeof(MA_P2_Location_GetTexts))]
-public class FindTextsInSceneEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        MA_P2_Location_GetTexts script = (MA_P2_Location_GetTexts)target;
-
-        EditorGUILayout.Space();
-
-        if (GUILayout.Button("🔍 Buscar todos los textos en la escena"))
-        {
-            script.BuscarTextos();
-        }
-    }
-}
-#endif

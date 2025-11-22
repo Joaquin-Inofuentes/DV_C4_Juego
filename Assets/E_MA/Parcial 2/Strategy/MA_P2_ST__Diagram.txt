@@ -1,0 +1,37 @@
+Jugador
+ └── Tiene referencia a un arma actual (IWeapon)
+
+IWeapon (interface)
+ ├── Nombre
+ ├── Daño
+ ├── RateDisparo
+ ├── RateRecarga
+ ├── TipoMunicion
+ ├── CapacidadCargador
+ ├── BalasActuales
+ ├── MunicionTotal
+ ├── Transform Origen
+ ├── void Disparar()
+ └── void Recargar()
+
+WeaponBase (abstract class)
+ ├── Implementa todos los datos comunes
+ ├── Lleva la lógica general de recarga
+ ├── Administra balas actuales
+ ├── Recibe el Transform origen
+ └── Obliga a cada arma a implementar Disparar()
+
+Armas concretas
+ ├── ArmaMelee
+ ├── Escopeta
+ ├── Metralleta
+ ├── TorretaFija
+ └── C4
+
+Cada arma:
+ └── Usa el origen para raycast / partículas / proyectiles / golpes
+
+PlayerArmas
+ ├── Lee Input
+ ├── Llama a Disparar()
+ └── Llama a Recargar()

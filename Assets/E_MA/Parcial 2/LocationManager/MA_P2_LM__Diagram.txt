@@ -1,0 +1,67 @@
+ARBOL DE DECISIONES: FLUJO DE TRABAJO "SINCRONIZAR DATA"
+=========================================================================
+
+INICIO: El usuario presiona el botón "SincronizarData"
+
+___ PASO 1: ESCANEO DE ESCENA (Lectura de Textos)
+___ ¿El script MA_P2_Location_GetTexts está asignado?
+______ No >
+_________ ACCION: Mostrar error y cancelar operación.
+______ Si >
+_________ ACCION: Buscar todos los textos Legacy, TMP UI y TMP 3D en la escena.
+_________ ACCION: Recorrer cada objeto de texto encontrado:
+____________ ¿El ID de este objeto ya tiene un texto guardado en la Memoria RAM?
+_______________ Si (Ya existe dato) >
+__________________ ACCION: PROTEGER. No hacer nada. Se respeta la traducción cargada previamente.
+_______________ No (Es nuevo o vacío) >
+__________________ ACCION: CAPTURAR. Guardar el texto actual de la escena en la columna "TextoOriginal".
+
+___ PASO 2: SINCRONIZACION CON DISCO (CSV vs RAM)
+___ ¿La ruta del archivo CSV está vacía?
+______ Si >
+_________ ACCION: Mostrar error "Asignar ruta destino".
+______ No >
+_________ ¿Existe el archivo CSV en esa ruta?
+____________ No (No existe) >
+_______________ ACCION: CREAR. Guardar todos los datos de la RAM en un archivo nuevo.
+____________ Si (Existe) >
+_______________ ACCION: Leer el archivo CSV.
+_______________ ¿El archivo CSV está vacío?
+__________________ Si >
+_____________________ ACCION: SOBRESCRIBIR. Guardar datos de RAM en el archivo.
+__________________ No >
+_____________________ ACCION: FUSIONAR. Cruzar datos de Escena (RAM) con Archivo (CSV).
+_____________________ REGLA DE PRIORIDAD (El CSV Manda):
+_____________________ Por cada celda (ID + Idioma):
+________________________ ¿La celda del CSV tiene texto escrito?
+___________________________ Si >
+______________________________ ACCION: IMPORTAR. El dato del CSV reemplaza al de la RAM.
+___________________________ No (Celda vacía) >
+______________________________ ACCION: RELLENAR. El dato de la RAM llena el hueco del CSV.
+_____________________ ACCION FINAL: Guardar los datos unificados en el archivo CSV.
+
+___ PASO 3: VISUALIZACION (Inspector)
+___ (Proceso Automático)
+______ ACCION: Limpiar listas visuales anteriores.
+______ ACCION: Generar lista de IDs únicos.
+______ ACCION: Generar columnas por cada Idioma encontrado.
+______ ACCION: Mostrar datos en el Inspector de Unity.
+
+___ PASO 4: TRADUCCION (Aplicar a la Escena)
+___ ¿Hay un nombre de Idioma válido en el campo "Idioma"?
+______ No >
+_________ ACCION: Poner todos los textos de la escena como "NOREF".
+______ Si >
+_________ ¿Existe esa columna de idioma en los datos cargados?
+____________ No >
+_______________ ACCION: Avisar "Idioma no encontrado".
+_______________ ACCION: Poner todos los textos como "NOREF".
+____________ Si >
+_______________ ACCION: Recorrer todos los objetos de texto de la escena.
+_______________ ¿El ID del objeto existe en la lista?
+__________________ Si >
+_____________________ ACCION: CAMBIAR TEXTO. Poner la traducción correspondiente.
+__________________ No >
+_____________________ ACCION: Poner texto como "NOREF".
+
+FIN DEL PROCESO
