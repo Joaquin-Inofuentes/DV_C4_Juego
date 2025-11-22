@@ -29,19 +29,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _albedo:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a347e78c423d86a4b963a5e27c2cb37d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _metalli:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 4f81c9eba0bb46a48a8a8b15fddae1b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _normal:
-        m_Texture: {fileID: 2800000, guid: 886c5e99b155a0d4587ae9bc4103bc67, type: 3}
+        m_Texture: {fileID: 2800000, guid: d2ab4263373a4924f861f1d7968d2246, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _smooth:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1fc265883a6e6164b8f81dd0f8a12d22, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -58,7 +58,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EmissiveForce: 0
+    - _EmissiveForce: 0.37
     - _QueueControl: 0
     - _QueueOffset: 0
     - _normalStreng: 1.12
