@@ -5,6 +5,7 @@ public class C_InputManager : MonoBehaviour  // controller
 {
     public event Action<Vector2> OnMoveInput;
     public event Action<Vector2> OnPanInput;
+    public event Action<int> OnCambiarArma;
     public event Action OnDisparar;
     public event Action Recargar;
     public event Action Agacharse;
@@ -43,5 +44,7 @@ public class C_InputManager : MonoBehaviour  // controller
     public void RecibirAgacharse() => Agacharse?.Invoke();
     public void RecibirLevantarse() => Levantarse?.Invoke();
     public void RecibirSaltar() => Saltar?.Invoke();
+
+    public void RecibirCambioDeArma(int Value) => OnCambiarArma?.Invoke(Value);
 
 }

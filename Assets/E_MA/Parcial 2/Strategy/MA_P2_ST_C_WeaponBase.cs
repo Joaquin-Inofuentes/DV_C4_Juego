@@ -1,22 +1,27 @@
 using UnityEngine;
 
-public abstract class MA_P2_ST_WeaponBase : MonoBehaviour, MA_P2_ST_IWeapon
+public abstract class MA_P2_ST_C_WeaponBase : MonoBehaviour
 {
+    /*
     [Header("Identidad")]
     [SerializeField] private string nombre;
-    [SerializeField] private string tipoMunicion;
+    [SerializeField] public string tipoMunicion;
 
     [Header("Stats")]
-    [SerializeField] private float daño = 10f;
+    [SerializeField] public int daño = 10;
     [SerializeField] private float rateDisparo = 0.2f;
     [SerializeField] private float rateRecarga = 1.5f;
+    [SerializeField] public float SpeedShot = 1.5f;
+
 
     [Header("Munición")]
     [SerializeField] private int capacidadCargador = 10;
     [SerializeField] private int municionTotal = 30;
 
     [Header("Origen del disparo")]
-    [SerializeField] private Transform origen;
+    [SerializeField] public Transform origen;
+
+    [SerializeField] public GameObject EfectoVisual;
 
     public string Nombre => nombre;
     public float Daño => daño;
@@ -27,17 +32,17 @@ public abstract class MA_P2_ST_WeaponBase : MonoBehaviour, MA_P2_ST_IWeapon
     public int CapacidadCargador => capacidadCargador;
     
     [SerializeField] private int _balasActuales;
+    public int MunicionTotal => municionTotal;
+
+    public Transform Origen => origen;
+
+    protected float ultimoDisparo;
 
     public int BalasActuales
     {
         get => _balasActuales;       
         set => _balasActuales = value; 
     }
-    public int MunicionTotal => municionTotal;
-
-    public Transform Origen => origen;
-
-    protected float ultimoDisparo;
 
     protected virtual void Awake()
     {
@@ -57,4 +62,5 @@ public abstract class MA_P2_ST_WeaponBase : MonoBehaviour, MA_P2_ST_IWeapon
         BalasActuales += aCargar;
         municionTotal -= aCargar;
     }
+    */
 }
