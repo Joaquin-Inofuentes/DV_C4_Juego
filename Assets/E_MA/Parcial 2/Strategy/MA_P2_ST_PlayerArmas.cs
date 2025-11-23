@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class MA_P2_ST_PlayerArmas : MonoBehaviour
 {
-    [SerializeField] private MonoBehaviour armaActualComponente;
-    private MA_P2_ST_IWeapon armaActual;
+    [SerializeField] public MonoBehaviour armaActualComponente;
+    public MA_P2_ST_C_IWeapon armaActual;
 
-    private void Awake()
+    private void OnEnable()
     {
-        armaActual = armaActualComponente as MA_P2_ST_IWeapon;
+        armaActual = armaActualComponente as MA_P2_ST_C_IWeapon;
 
         if (armaActual == null)
             Debug.LogError("El componente asignado NO implementa IWeapon.");
@@ -22,7 +22,7 @@ public class MA_P2_ST_PlayerArmas : MonoBehaviour
             armaActual?.Recargar();
     }
 
-    public void CambiarArma(MA_P2_ST_IWeapon nueva)
+    public void CambiarArma(MA_P2_ST_C_IWeapon nueva)
     {
         armaActual = nueva;
     }
