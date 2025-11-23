@@ -11,6 +11,21 @@ public class C_in_Teclado : MonoBehaviour
 
     void Update()
     {
+        DesplazamientoConTeclas();
+        CambiarDeArmas();
+    }
+
+    public void CambiarDeArmas()
+    {
+        // Cambio de arma
+        if (Input.GetKeyDown(KeyCode.E))
+            Manager?.RecibirCambioDeArma(101);
+        if (Input.GetKeyDown(KeyCode.Q))
+            Manager?.RecibirCambioDeArma(-101);
+    }
+
+    public void DesplazamientoConTeclas()
+    {
         // obtenemos input horizontal y vertical
         float x = Input.GetAxisRaw("Horizontal"); // A/D o flechas
         float y = Input.GetAxisRaw("Vertical");   // W/S o flechas
