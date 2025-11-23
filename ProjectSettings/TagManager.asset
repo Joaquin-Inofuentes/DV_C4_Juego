@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hunter
   - Boid
+  - Objetivo
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - NevadaZ
   - NevadaX
   - Camino
-  - 
+  - Objetivo
   - 
   - 
   - 

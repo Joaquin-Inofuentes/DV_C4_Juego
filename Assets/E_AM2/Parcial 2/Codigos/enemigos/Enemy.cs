@@ -6,70 +6,71 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
-    public float vida = 50f;
-    public float velocidad = 2f;
-    public float distanciaAtaque = 1.5f;
-    public float daño = 5f;
-    public float cadenciaAtaque = 1f;
+    public float speed = 2f;
+    public float attackRange = 18;
+    public float attackCooldown = 1f;
+    public int damage = 10;
 
-    [Header("Referencias")]
-    public Animator animator;
-    public Transform objetivo;
+    private float attackTimer;
+    private Animator anim;
+    private Transform target;
 
-    private float proximoAtaque;
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void OnEnable()
     {
-        vida = 50f;
-        animator.SetBool("walk", true);
-        animator.SetBool("Attack", false);
+        attackTimer = 0f;
+
+        // Buscar objetivo automáticamente al instanciarse
+        GameObject posibleTarget = GameObject.FindGameObjectWithTag("Objetivo");
+
+        if (posibleTarget != null)
+            target = posibleTarget.transform;
+        else
+            Debug.LogWarning("Enemy no encontró GameObject con tag 'Player'.");
     }
 
     void Update()
     {
-        if (objetivo == null) return;
+        if (target == null)
+            return;
 
-        float dist = Vector3.Distance(transform.position, objetivo.position);
+        float distancia = Vector3.Distance(transform.position, target.position);
 
-        if (dist > distanciaAtaque)
+        if (distancia > attackRange)
         {
-            // Estado Caminar
-            animator.SetBool("walk", true);
-            animator.SetBool("Attack", false);
+            // Caminar hacia el jugador
+            anim.SetBool("walk", true);
+            anim.SetBool("Attack", false);
 
-            // Moverse hacia el objetivo
-            Vector3 dir = (objetivo.position - transform.position).normalized;
-            transform.position += dir * velocidad * Time.deltaTime;
+            Vector3 dir = (target.position - transform.position).normalized;
+            transform.position += dir * speed * Time.deltaTime;
 
             // Rotar hacia el objetivo
-            transform.forward = dir;
+            transform.LookAt(target);
         }
         else
         {
-            // Estado Atacar
-            animator.SetBool("walk", false);
-            animator.SetBool("Attack", true);
+            // Atacar
+            anim.SetBool("walk", false);
+            anim.SetBool("Attack", true);
 
-            if (Time.time >= proximoAtaque)
+            attackTimer -= Time.deltaTime;
+
+            if (attackTimer <= 0f)
             {
-                // Acción de Ataque
-                Debug.Log("Cascarudo atacó!");
-
-                proximoAtaque = Time.time + cadenciaAtaque;
+                Attack();
+                attackTimer = attackCooldown;
             }
         }
     }
 
-    public void RecibirDaño(float d)
+    void Attack()
     {
-        vida -= d;
-
-        if (vida <= 0)
-            Morir();
-    }
-
-    void Morir()
-    {
-        EnemyPool.Instance.ReturnEnemy(this);
+        Debug.Log("Enemy golpeó al jugador por " + damage + " de daño.");
+        // Acá aplicás daño real al jugador si tenés su script
     }
 }
