@@ -38,9 +38,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Falloff: 0.98
-    - _distance: 40
-    - _nieblaTransparencia: 0.94
+    - _Falloff: 1.35
+    - _distance: 15.3
+    - _nieblaTransparencia: 1
     m_Colors:
     - _Color: {r: 0.5943396, g: 0.58032215, b: 0.58032215, a: 0}
   m_BuildTextureStacks: []
