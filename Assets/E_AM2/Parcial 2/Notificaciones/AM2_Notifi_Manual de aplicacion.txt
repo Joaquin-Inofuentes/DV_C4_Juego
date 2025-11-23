@@ -1,0 +1,4 @@
+File > Build Settings > Project Settings >
+Other Settings >
+	AndroidMinSdkVersion : 
+		Android 13.0 (API level 33)

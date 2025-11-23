@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/E_AM2/Parcial 2/Tienda/Tienda.unity
+    guid: d8e78327eec0d9340a0e69d701961035
   - enabled: 0
     path: Assets/E_VFX/Parcial 2/VFX_P2 Unido.unity
     guid: 6e5eb2972d281ab4d8b63c05d7d7f4ee
-  - enabled: 1
+  - enabled: 0
     path: Assets/NIVELES PARCIAL2/NivelesP2.unity
     guid: 5ac68604778badc4485584dfc47ad5e0
   m_configObjects: {}
