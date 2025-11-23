@@ -494,7 +494,6 @@ GameObject:
   - component: {fileID: 2095682540}
   - component: {fileID: 2095682539}
   - component: {fileID: 2095682538}
-  - component: {fileID: 2095682541}
   m_Layer: 5
   m_Name: Cavas
   m_TagString: Untagged
@@ -622,19 +621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c3a063a5094d44fab9ba1e02790e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2095682541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095682533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9110c390b8f3a8447aa201684cad55a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToActivate: {fileID: 223627757}
 --- !u!1001 &1206228375273077409
 PrefabInstance:
   m_ObjectHideFlags: 0
