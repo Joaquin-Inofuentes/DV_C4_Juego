@@ -659,6 +659,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1361876729452022666, guid: 20332f498d154534384528cbca07122b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3606626383946186715, guid: 20332f498d154534384528cbca07122b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -692,12 +697,12 @@ PrefabInstance:
     - target: {fileID: 3606626383946186715, guid: 20332f498d154534384528cbca07122b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -1584.5078
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3606626383946186715, guid: 20332f498d154534384528cbca07122b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -319.0522
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3606626383946186715, guid: 20332f498d154534384528cbca07122b,
         type: 3}
@@ -759,6 +764,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4253934328459119340, guid: 20332f498d154534384528cbca07122b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5877715962519514645, guid: 20332f498d154534384528cbca07122b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -803,6 +813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tienda
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631960239076641572, guid: 20332f498d154534384528cbca07122b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7692165896049813510, guid: 20332f498d154534384528cbca07122b,
         type: 3}
