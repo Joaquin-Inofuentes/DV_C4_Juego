@@ -1,0 +1,9 @@
+Dashboard > Activar monetizacion
+Instalar package > Unity Registry 
+>Advertisement legacy >install> Cancel
+Carpeta del proyecto > Packages > Manifest.json
+Editar com.unity.ads 4.16.3 a 4.4.2
+Guardar
+
+Package-lock.json
+com.unity.ads. 4.16.3 a 4.4.2
