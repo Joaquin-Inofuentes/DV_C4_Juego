@@ -20,11 +20,7 @@ public class AM2_P2_AdsManager : MonoBehaviour,
     public System.Action<string, AdsResult> OnAdResult;
 
     [Header("GAME IDs")]
-#if UNITY_ANDROID
     [SerializeField] string gameID = "5975125";
-#elif UNITY_IOS
-    [SerializeField] string gameID = "5990830";
-#endif
 
     [Header("PLACEMENTS")]
     [SerializeField] public string bannerID = "Banner_Android";
