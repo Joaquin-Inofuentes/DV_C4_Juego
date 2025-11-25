@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/E_AM2/Parcial 2/CodigosBase/Escenas/AM2_Juego.unity
+    guid: 58a6cddefc37aae419269fdbb9ac251c
+  - enabled: 0
     path: Assets/E_AM2/Parcial 2/Ads/Ads.unity
     guid: 02e1dc6c68c37be4b8121d0c4a09ab26
   - enabled: 0

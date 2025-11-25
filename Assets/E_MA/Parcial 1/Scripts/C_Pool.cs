@@ -20,12 +20,12 @@ public class C_Pool : MonoBehaviour
         {
             obj = Factory.Create(spawnPosition);
             obj.GetComponent<C_Projectile>().NombreDelProyectil = NombreDelProyectil;
-            Debug.Log("[Pool] Nuevo objeto creado por Factory");
+            //Debug.Log("[Pool] Nuevo objeto creado por Factory");
         }
 
         obj.transform.position = spawnPosition;
         obj.transform.SetParent(transform);
-        Debug.Log("Se asocio como padre a " + transform.name, gameObject);
+        //Debug.Log("Se asocio como padre a " + transform.name, gameObject);
         obj.SetActive(true);
 
         Model.AddActive(obj);

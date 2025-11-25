@@ -46,15 +46,15 @@ public class C_Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Colisiono con " + collision.gameObject.name + " | " + Model.Owner.layer.ToString() + "==" + collision.gameObject.layer.ToString(), collision.gameObject);
+        //Debug.Log("Colisiono con " + collision.gameObject.name + " | " + Model.Owner.layer.ToString() + "==" + collision.gameObject.layer.ToString(), collision.gameObject);
         if (Model.Owner.layer.ToString() == collision.gameObject.layer.ToString()) return;
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         view.ShowCollision(collision.gameObject);
 
         var damageable = collision.gameObject.GetComponent<I_ReceivesDamage>();
         if (damageable != null)
         {
-            Debug.Log($"[C_Projectile] Hizo {Model.Damage} de daño a {collision.gameObject.name}");
+            //Debug.Log($"[C_Projectile] Hizo {Model.Damage} de daño a {collision.gameObject.name}");
             damageable.ReceiveDamage(Model.Damage); // Daño de proyectil
         }
         else

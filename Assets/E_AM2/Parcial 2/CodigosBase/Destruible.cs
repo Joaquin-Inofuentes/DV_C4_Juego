@@ -15,12 +15,12 @@ public class Destruible : MonoBehaviour, I_ReceivesDamage
     public void ReceiveDamage(int damage)
     {
         health -= damage;
-        Debug.Log($"{gameObject.name} recibió {damage} de daño. Salud restante: {health}");
+        //Debug.Log($"{gameObject.name} recibió {damage} de daño. Salud restante: {health}");
 
         if (health <= 0)
         {
             Destroy(transform.parent.gameObject);
-            Debug.Log($"{gameObject.name} ha sido destruido.");
+            //Debug.Log($"{gameObject.name} ha sido destruido.");
         }
     }
 

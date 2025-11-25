@@ -1,17 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class C_SoldadoJugador : C_SoldadoTransform,I_ReceivesDamage
+public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
 {
     [Header("Jugador")]
-    [SerializeField] private Transform camara;
-    [SerializeField] private C_InputManager Manager;
+    [SerializeField] public Transform camara;
+    [SerializeField] public C_InputManager Manager;
 
     public int Vida = 100;
-    private Vector2 moveInput;
-    private Vector2 panInput;
+    public Vector2 moveInput;
+    public Vector2 panInput;
+    public GameObject Geometria;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         if (Manager != null)
         {
@@ -32,7 +33,13 @@ public class C_SoldadoJugador : C_SoldadoTransform,I_ReceivesDamage
         }
     }
 
-    private void SetMove(Vector2 input) => moveInput = input;
+    private void SetMove(Vector2 input)
+    {
+        //Debug.Log("se recibio movimiento" + input);
+        moveInput = input;
+        Mover(input);
+
+    }
     private void SetPan(Vector2 input) => panInput = input;
 
     protected override Vector2 GetMoveInput()
@@ -69,15 +76,25 @@ public class C_SoldadoJugador : C_SoldadoTransform,I_ReceivesDamage
     }
 
     // Movimiento sin Rigidbody
+    public AM2_P2_Aliado IndicadorDeDisparando;
     protected override void Mover(Vector2 input)
     {
+        //Debug.Log("se movio hacia " + input);
         Vector3 delta = new Vector3(input.x, 0, input.y) * velocidad * Time.deltaTime;
         transform.position += delta;
+        if (IndicadorDeDisparando != null
+            && IndicadorDeDisparando.enemigoActual == null)
+        {
+            Vector3 DireccionDeMira = delta + transform.position;
+            Debug.DrawLine(DireccionDeMira, transform.position, Color.red);
+            //Debug.Log("Se esta miradno al objetivo");
+            Geometria.transform.LookAt(DireccionDeMira);
+        }
     }
 
     public void ReceiveDamage(int damage)
     {
-        if(Vida <= 0)
+        if (Vida <= 0)
         {
             Vida = 0;
             Debug.Log(
@@ -88,14 +105,14 @@ public class C_SoldadoJugador : C_SoldadoTransform,I_ReceivesDamage
         }
         Vida -= damage;
         Debug.Log(
-            "Se daño al jugador: " 
-            + damage 
-            + ". Vida restante: " 
-            + Vida, 
+            "Se daño al jugador: "
+            + damage
+            + ". Vida restante: "
+            + Vida,
             gameObject);
     }
 
-    
+
 
     public Transform destinoDelArma; // Arrastra aquí el objeto "Mano" o "WeaponHolder"
     public float duracion = 1.0f;    // Tiempo que tarda en llegar

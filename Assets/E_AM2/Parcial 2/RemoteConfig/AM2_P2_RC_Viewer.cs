@@ -15,7 +15,7 @@ public class AM2_P2_RC_Viewer : MonoBehaviour
         Invoke(nameof(VolcarValoresEnPantalla), 2f);
     }
 
-    void VolcarValoresEnPantalla()
+    public void VolcarValoresEnPantalla()
     {
         if (init == null)
         {

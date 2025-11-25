@@ -27,6 +27,6 @@ public class V_Projectile : MonoBehaviour
 
     public void ShowCollision(GameObject other)
     {
-        Debug.Log($"[V_Projectile] Colisión con {other.name}");
+        //Debug.Log($"[V_Projectile] Colisión con {other.name}");
     }
 }

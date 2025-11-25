@@ -14,6 +14,7 @@ public class C_Shooter : MonoBehaviour, I_Interactuar
     public GameObject EfectoVisual;
     public void Interactuar()
     {
+        //Debug.Log("Reibe orden de ejcutarse", gameObject);
         if (EfectoVisual != null)
         {
             // Activar el efecto visual

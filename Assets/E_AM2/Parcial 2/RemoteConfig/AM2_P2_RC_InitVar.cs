@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class AM2_P2_RC_InitVar : MonoBehaviour
 {
@@ -9,55 +10,64 @@ public class AM2_P2_RC_InitVar : MonoBehaviour
     public float VelocidadDeCaminar;
     public int VidaMaximaDelJugador;
 
+    public Action OnAllValuesLoaded;
+
+    private int counter = 0;
+    private const int totalRequests = 5;
+    private bool alreadyInvoked = false;
+
     public void OnEnable()
     {
+        counter = 0;
+        alreadyInvoked = false;
         InitAll();
     }
 
-    // Llamar este método para inicializar las 5 variables
+    private void CheckComplete()
+    {
+        counter++;
+        if (counter >= totalRequests && !alreadyInvoked)
+        {
+            alreadyInvoked = true;
+            OnAllValuesLoaded?.Invoke();
+        }
+    }
+
     public void InitAll()
     {
-        // 1) BalasMaximas (int)
         AM2_P2_RC_Manager.GetInt("BalasMaximas", (val) =>
         {
             BalasMaximas = val;
-            if (BalasMaximas == 0) Debug.LogWarning("BalasMaximas llegó 0 -> posible falta de key o valor 0 real.");
             Debug.Log("BalasMaximas = " + BalasMaximas);
+            CheckComplete();
         });
 
-        // 2) CoeficienteDeObtencionDeCurrency (float)
         AM2_P2_RC_Manager.GetFloat("CoeficienteDeObtencionDeCurrency", (val) =>
         {
             CoeficienteDeObtencionDeCurrency = val;
-            if (Mathf.Approximately(CoeficienteDeObtencionDeCurrency, 0f))
-                Debug.LogWarning("CoeficienteDeObtencionDeCurrency llegó 0f -> posible falta de key o valor 0f real.");
             Debug.Log("CoeficienteDeObtencionDeCurrency = " + CoeficienteDeObtencionDeCurrency);
+            CheckComplete();
         });
 
-        // 3) Dificultad (string)
         AM2_P2_RC_Manager.GetString("Dificultad", (val) =>
         {
             Dificultad = val;
-            if (string.IsNullOrEmpty(Dificultad))
-                Debug.LogWarning("Dificultad vacío -> posible falta de key o string vacío.");
             Debug.Log("Dificultad = " + Dificultad);
+            CheckComplete();
         });
 
-        // 4) VelocidadDeCaminar (float)
         AM2_P2_RC_Manager.GetFloat("VelocidadDeCaminar", (val) =>
         {
             VelocidadDeCaminar = val;
-            if (Mathf.Approximately(VelocidadDeCaminar, 0f))
-                Debug.LogWarning("VelocidadDeCaminar llegó 0f -> posible falta de key o valor 0f real.");
             Debug.Log("VelocidadDeCaminar = " + VelocidadDeCaminar);
+            CheckComplete();
         });
 
-        // 5) VidaMaximaDelJugador (int)
         AM2_P2_RC_Manager.GetInt("VidaMaximaDelJugador", (val) =>
         {
             VidaMaximaDelJugador = val;
-            if (VidaMaximaDelJugador == 0) Debug.LogWarning("VidaMaximaDelJugador llegó 0 -> posible falta de key o valor 0 real.");
             Debug.Log("VidaMaximaDelJugador = " + VidaMaximaDelJugador);
+            CheckComplete();
         });
     }
 }

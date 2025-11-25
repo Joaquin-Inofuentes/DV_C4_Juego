@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DeteccionYAtaqueCercano : MonoBehaviour
+public class AM2_P2_Aliado : MonoBehaviour
 {
     [Header("Detección")]
     public LayerMask layerEnemigos;
@@ -20,9 +20,9 @@ public class DeteccionYAtaqueCercano : MonoBehaviour
     public int balasActuales;
     public bool isReloading;
 
-    private readonly List<Transform> listaEnemigos = new();
-    private Transform enemigoActual;
-    private float timerDisparo;
+    public readonly List<Transform> listaEnemigos = new();
+    public Transform enemigoActual;
+    public float timerDisparo;
 
     void Start()
     {

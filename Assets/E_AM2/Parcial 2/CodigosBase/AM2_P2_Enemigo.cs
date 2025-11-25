@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeteccionMovimientoYDisparo : MonoBehaviour
+public class AM2_P2_Enemigo : MonoBehaviour
 {
     [Header("Detección")]
     public LayerMask layersEnemigos;
@@ -36,6 +36,10 @@ public class DeteccionMovimientoYDisparo : MonoBehaviour
         MirarAlObjetivo();
         AccionSegunEstado();
         DibujarLineasDebug();
+        if(targetDestino == null && ObjetivoFinal.Objetivo != null)
+        {
+            targetDestino = ObjetivoFinal.Objetivo.transform;
+        }
     }
 
     // =====================================================
@@ -126,7 +130,7 @@ public class DeteccionMovimientoYDisparo : MonoBehaviour
     {
         if (puntoQueMira == null) return;
 
-        if (ignorarEnemigos)
+        if (ignorarEnemigos && targetDestino)
         {
             puntoQueMira.LookAt(targetDestino.position);
             return;
