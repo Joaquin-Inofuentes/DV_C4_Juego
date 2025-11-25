@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AM2_P2_Enemigo : MonoBehaviour
 {
+
+    public UnityEvent Caminando; // Llamados Continuo
+    public UnityEvent Disparo1Disparo; // 1 solo llamado por accion
+    public UnityEvent Murio; // 1 solo llamado
+    
+
+
     [Header("Detección")]
     public LayerMask layersEnemigos;
     public Transform puntoQueMira;
@@ -14,7 +22,7 @@ public class AM2_P2_Enemigo : MonoBehaviour
     public float distanciaAtaque = 4f;
 
     [Header("ATAQUE FINAL")]
-    public float distanciaFinalParaAtacar = 3f;  // <<< NUEVO
+    public float distanciaFinalParaAtacar = 3f;
 
     [Header("Arma")]
     public C_Shooter shooter;
@@ -23,11 +31,55 @@ public class AM2_P2_Enemigo : MonoBehaviour
     [Header("Estados públicos")]
     public bool tengoEnemigo = false;
     public bool perdiEnemigo = true;
-    public bool ignorarEnemigos = false;   // <<< NUEVO
+    public bool ignorarEnemigos = false;
 
     private List<Transform> enemigosDetectados = new();
     private Transform enemigoActual;
     private float timerDisparo;
+
+    public Destruible ElementoQRecibeDano;
+
+
+    public EnemyAnimController animCtrl;
+
+    private void OnEnable()
+    {
+        // Lo leen los enemigos al crearse para saber su vida y daño
+        // AM2_P2_Enemigo.cs >> OnEnable()
+        // Codigo : 5004
+        string dificultad = PlayerPrefs.GetString("Dificultad", "");
+
+        if (string.IsNullOrEmpty(dificultad))
+        {
+            Debug.LogWarning("No hay dificultad guardada en PlayerPrefs.");
+            return;
+        }
+
+        if (dificultad == "Facil")
+        {
+            tiempoEntreDisparos = 0.2f;
+            distanciaAtaque = 4f;
+            velocidadMovimiento = 3f;
+            ElementoQRecibeDano.healthMax = 170;
+            ElementoQRecibeDano.health = 170;
+        }
+        else if (dificultad == "Medio")
+        {
+            tiempoEntreDisparos = 0.1f;
+            distanciaAtaque = 5f;
+            velocidadMovimiento = 4f;
+            ElementoQRecibeDano.healthMax = 300;
+            ElementoQRecibeDano.health = 300;
+        }
+        else if (dificultad == "Dificil")
+        {
+            tiempoEntreDisparos = 0.05f;
+            distanciaAtaque = 6f;
+            velocidadMovimiento = 5f;
+            ElementoQRecibeDano.healthMax = 300;
+            ElementoQRecibeDano.health = 300;
+        }
+    }
 
     void Update()
     {
@@ -36,10 +88,15 @@ public class AM2_P2_Enemigo : MonoBehaviour
         MirarAlObjetivo();
         AccionSegunEstado();
         DibujarLineasDebug();
-        if(targetDestino == null && ObjetivoFinal.Objetivo != null)
+        if (targetDestino == null && ObjetivoFinal.Objetivo != null)
         {
             targetDestino = ObjetivoFinal.Objetivo.transform;
         }
+    }
+
+    public void OnDestroy()
+    {
+        Murio.Invoke();
     }
 
     // =====================================================
@@ -179,12 +236,17 @@ public class AM2_P2_Enemigo : MonoBehaviour
     {
         timerDisparo += Time.deltaTime;
 
+        // Está atacando mientras el timer llega al disparo
+        animCtrl.SetAtacando(true);
+
         if (timerDisparo >= tiempoEntreDisparos)
         {
             timerDisparo = 0f;
             shooter.Interactuar();
+            Disparo1Disparo.Invoke();
         }
     }
+
 
     // =====================================================
     // MOVIMIENTO HACIA DESTINO
@@ -192,7 +254,7 @@ public class AM2_P2_Enemigo : MonoBehaviour
     void MoverHaciaDestino()
     {
         if (targetDestino == null) return;
-
+        animCtrl.SetAtacando(false);
         Vector3 dir = targetDestino.position - transform.parent.position;
         dir.y = 0f;
         dir = dir.normalized;
@@ -203,12 +265,16 @@ public class AM2_P2_Enemigo : MonoBehaviour
             puntoQueMira.rotation = Quaternion.LookRotation(dir);
     }
 
-    void DetenerMovimiento() { }
+    void DetenerMovimiento()
+    {
+        animCtrl.SetAtacando(false);
+    }
 
     void MoverHaciaEnemigo()
     {
         if (enemigoActual == null) return;
-
+        Caminando.Invoke();
+        animCtrl.SetAtacando(false);
         Vector3 dir = enemigoActual.position - transform.parent.position;
         dir.y = 0f;
         dir = dir.normalized;

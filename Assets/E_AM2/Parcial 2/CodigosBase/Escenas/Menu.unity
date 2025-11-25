@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ConfigRemote: {fileID: 0}
-  Instance: {fileID: 0}
 --- !u!4 &87906425
 Transform:
   m_ObjectHideFlags: 0
@@ -1351,7 +1350,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: AM2_Juego
+          m_StringArgument: AM2_Principal v2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &852753391

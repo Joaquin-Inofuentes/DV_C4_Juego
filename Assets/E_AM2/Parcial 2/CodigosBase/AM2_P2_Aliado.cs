@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class AM2_P2_Aliado : MonoBehaviour
 {
+    public UnityEvent Murio; // llamado 1 vez
+    public UnityEvent Idle; // llamado continuo
+    public UnityEvent Disparo1Vez; // llamado 1 vez
+    public UnityEvent Caminando; // llamado continuo
+
     [Header("Detección")]
     public LayerMask layerEnemigos;
     public Transform puntoQueMira;
@@ -24,6 +31,8 @@ public class AM2_P2_Aliado : MonoBehaviour
     public Transform enemigoActual;
     public float timerDisparo;
 
+    public C_InputManager InputsEntradas;
+
     void Start()
     {
         balasActuales = balasMaximas;
@@ -36,6 +45,46 @@ public class AM2_P2_Aliado : MonoBehaviour
         MirarAlObjetivo();
         DibujarLineaDebug();
         EjecutarDisparo();
+        if (enemigoActual == null && InputsEntradas == null)
+        {
+            Idle.Invoke();
+        }
+    }
+
+
+    void OnEnable()
+    {
+        if (InputsEntradas)
+            InputsEntradas.OnMoveInput += OnMove;
+    }
+
+    void OnDisable()
+    {
+        if (InputsEntradas)
+            InputsEntradas.OnMoveInput -= OnMove;
+    }
+
+    void OnMove(Vector2 input)
+    {
+        if (input.magnitude > 0.1f)
+        {
+            if(enemigoActual != null)
+            {
+                Caminando.Invoke();
+            }
+        }
+        else
+        {
+            if(enemigoActual != null)
+            {
+                Idle.Invoke();
+            }
+        }
+    }
+
+    public void OnDestroy()
+    {
+        Murio.Invoke();
     }
 
     // =====================================================
@@ -111,6 +160,7 @@ public class AM2_P2_Aliado : MonoBehaviour
     }
 
     public TextMeshProUGUI IndicadorDeBalas;
+    public AttackState animationState;
 
     // =====================================================
     // DISPARO + RECARGA + BALAS
@@ -136,6 +186,16 @@ public class AM2_P2_Aliado : MonoBehaviour
 
             if (balasActuales > 0)
             {
+                if (animationState != null)
+                {
+
+                    animationState.TriggerShoot();
+                }
+                else
+                {
+                    Debug.Log("Falta animacion aqui");
+                }
+                Disparo1Vez.Invoke();
                 shooter.Interactuar();
                 balasActuales--;
 

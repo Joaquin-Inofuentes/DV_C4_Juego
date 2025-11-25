@@ -23,7 +23,10 @@ public class AM2_P2_RC_Cambios : MonoBehaviour
         
         string Dificultad = InicializadorDeRC.Dificultad;
         PlayerPrefs.SetString("Dificultad", Dificultad);
-        
+        // Lo leen los enemigos al crearse para saber su vida y daño
+        // AM2_P2_Enemigo.cs >> OnEnable()
+        // Codigo : 5004
+
         float VelocidadDeCaminar = InicializadorDeRC.VelocidadDeCaminar;
         JugadorC.velocidad = VelocidadDeCaminar * 2;
 
