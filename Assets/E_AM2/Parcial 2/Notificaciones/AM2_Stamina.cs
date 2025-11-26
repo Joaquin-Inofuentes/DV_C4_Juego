@@ -188,6 +188,11 @@ public class AM2_Stamina : MonoBehaviour
         return true;
     }
 
+    public void Consumir1Estamina()
+    {
+        ConsumirStamina(1);
+    }
+
     // -----------------------
     // NOTIFICACIONES (al salir/pause)
     // -----------------------
