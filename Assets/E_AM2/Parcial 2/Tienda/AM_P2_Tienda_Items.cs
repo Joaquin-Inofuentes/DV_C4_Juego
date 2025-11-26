@@ -63,6 +63,11 @@ public class AM_P2_Tienda_Items : MonoBehaviour
     public C_SoldadoJugador Soldado;
     public void AplicarCambios()
     {
+        if (Arma == null)
+        {
+            Debug.LogWarning("Estas en el menu");
+            return;
+        }
         if (DañoProyectil > 0)
             Arma.DamageProyectil = 5 * DañoProyectil;
         if (SoldadosMaximos > 0)
