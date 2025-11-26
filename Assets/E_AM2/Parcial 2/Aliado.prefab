@@ -6806,7 +6806,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5566362673717723594}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6901,8 +6901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63caa2374513640499b556535e3d5a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  healthMax: 100
+  health: 150
+  healthMax: 150
   barraVida: {fileID: 3699874383000943784}
   escalaMaxZ: 0.2
 --- !u!1 &5568700816010611818
@@ -8285,7 +8285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootPoint: {fileID: 8762345685329787096}
-  DamageProyectil: 5
+  DamageProyectil: 7
   SpeedProyectil: 30
   Proyectil: proyectil
   EfectoVisual: {fileID: 8202348479252907854}

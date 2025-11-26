@@ -1,12 +1,13 @@
 using CustomInspector;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class AM_P2_Tienda_Monedero : MonoBehaviour
 {
 
-
+    public TextMeshProUGUI CantidadDeCurrency;
     private const int START_CURRENCY = 1000;
     private static AM_P2_Tienda_Monedero _instance;
     public static AM_P2_Tienda_Monedero Instance => _instance;
@@ -29,6 +30,10 @@ public class AM_P2_Tienda_Monedero : MonoBehaviour
     public void Update()
     {
         CurrencyPublic = currency;
+        if (CantidadDeCurrency != null)
+        {
+            CantidadDeCurrency.text = "$" + currency;
+        }
     }
 
     public void AddCurrency(int amount)
