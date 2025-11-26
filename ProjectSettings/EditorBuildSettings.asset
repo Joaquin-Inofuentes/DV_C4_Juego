@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/E_AM2/Parcial 2/AM2_Principal v2.unity
     guid: c9dad2aa9e917004ab2a832bbaaaae33
+  - enabled: 1
+    path: Assets/E_AM2/EscenaVictoria.unity
+    guid: 30360fcdd63f28a49be1b7dda00df065
   m_configObjects: {}

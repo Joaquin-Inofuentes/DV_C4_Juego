@@ -109,7 +109,7 @@ public class EntityManager : MonoBehaviour
         {
             Debug.Log("<color=orange>¡Todos los boids han sido eliminados! Reiniciando la escena...</color>");
             // Carga la escena activa actualmente por su nombre.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
         // Lógica para activar/desactivar el movimiento con la tecla que asignaste.
         if (Input.GetKeyDown(KeyCode.S)) // Nota: Cambiaste la tecla a 'S'
