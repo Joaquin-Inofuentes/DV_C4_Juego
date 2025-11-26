@@ -1,4 +1,6 @@
-using System.Collections;
+Ôªøusing System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
@@ -11,6 +13,9 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
     public Vector2 moveInput;
     public Vector2 panInput;
     public GameObject Geometria;
+
+
+    public TextMeshProUGUI TextoDeSoldados;
 
     public void OnEnable()
     {
@@ -33,6 +38,15 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
         }
     }
 
+
+    public void Update()
+    {
+        if (TextoDeSoldados != null)
+        {
+            TextoDeSoldados.text = AliadosActivos.Count + "/" + CantidadMaximaDeAliados.ToString();
+        }
+    }
+
     private void SetMove(Vector2 input)
     {
         //Debug.Log("se recibio movimiento" + input);
@@ -46,7 +60,7 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
     {
         if (camara == null) return moveInput;
 
-        // Movimiento relativo a la c·mara
+        // Movimiento relativo a la c√°mara
         Vector3 forward = camara.forward; forward.y = 0;
         Vector3 right = camara.right; right.y = 0;
 
@@ -56,16 +70,16 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
 
     protected override Vector2 GetPanInput() => panInput;
 
-    // RotaciÛn sin Rigidbody
+    // Rotaci√≥n sin Rigidbody
     protected override void Rotar(Vector2 input)
     {
         if (input != Vector2.zero)
         {
-            // rotaciÛn horizontal del personaje
+            // rotaci√≥n horizontal del personaje
             float yaw = input.x * sensibilidadRotacion * Time.deltaTime;
             transform.rotation *= Quaternion.Euler(0f, yaw, 0f);
 
-            // rotaciÛn vertical de la c·mara
+            // rotaci√≥n vertical de la c√°mara
             if (camara != null)
             {
                 pitch -= input.y * sensibilidadRotacion * Time.deltaTime;
@@ -100,12 +114,12 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
             Debug.Log(
                 "El jugador ha muerto."
                 , gameObject);
-            // AquÌ puedes agregar lÛgica adicional para manejar la muerte del jugador
+            // Aqu√≠ puedes agregar l√≥gica adicional para manejar la muerte del jugador
             return;
         }
         Vida -= damage;
         Debug.Log(
-            "Se daÒo al jugador: "
+            "Se da√±o al jugador: "
             + damage
             + ". Vida restante: "
             + Vida,
@@ -114,10 +128,10 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
 
 
 
-    public Transform destinoDelArma; // Arrastra aquÌ el objeto "Mano" o "WeaponHolder"
+    public Transform destinoDelArma; // Arrastra aqu√≠ el objeto "Mano" o "WeaponHolder"
     public float duracion = 1.0f;    // Tiempo que tarda en llegar
 
-    // Llama a esta funciÛn cuando hagas click o presiones E
+    // Llama a esta funci√≥n cuando hagas click o presiones E
     public void Recojer(Transform arma)
     {
         GameObject armaGO = arma.gameObject;
@@ -141,14 +155,14 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
     IEnumerator AnimacionRecojer(Transform arma)
     {
         // 1. Hacemos que el arma sea hija del destino INMEDIATAMENTE
-        // El segundo par·metro 'true' mantiene su posiciÛn mundial por un instante
+        // El segundo par√°metro 'true' mantiene su posici√≥n mundial por un instante
         arma.SetParent(destinoDelArma, true);
 
-        // 2. Guardamos la posiciÛn y rotaciÛn iniciales (locales respecto a la mano)
+        // 2. Guardamos la posici√≥n y rotaci√≥n iniciales (locales respecto a la mano)
         Vector3 posInicial = arma.localPosition;
         Quaternion rotInicial = arma.localRotation;
 
-        // 3. Definimos el destino (0,0,0 local y rotaciÛn 0)
+        // 3. Definimos el destino (0,0,0 local y rotaci√≥n 0)
         Vector3 posFinal = Vector3.zero;
         Quaternion rotFinal = Quaternion.identity;
 
@@ -161,7 +175,7 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
             // Calculamos el porcentaje completado (0 a 1)
             float t = tiempoPasado / duracion;
 
-            // OPCIONAL: "SmoothStep" hace que empiece lento y termine lento (m·s natural)
+            // OPCIONAL: "SmoothStep" hace que empiece lento y termine lento (m√°s natural)
             t = t * t * (3f - 2f * t);
 
             // Movemos y rotamos suavemente
@@ -175,5 +189,56 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
         // 4. Nos aseguramos de que quede EXACTO al final (por si hubo decimales)
         arma.localPosition = posFinal;
         arma.localRotation = rotFinal;
+    }
+
+
+    public int CantidadMaximaDeAliados;
+    public List<GameObject> AliadosActivos = new List<GameObject>();
+    public GameObject PrefabDeAliado;
+
+    public void ColocarAliado() // Llamado via boton
+    {
+        // 1) Validaciones b√°sicas
+        if (PrefabDeAliado == null)
+        {
+            Debug.LogWarning("PrefabDeAliado es null. Asignalo en el inspector.");
+            return;
+        }
+        LimpiarAliadosNulos();
+
+        if (AliadosActivos == null)
+            AliadosActivos = new List<GameObject>();
+
+        // 2) L√≠mite m√°ximo
+        if (AliadosActivos.Count >= CantidadMaximaDeAliados)
+        {
+            Debug.Log("No se puede colocar: l√≠mite de aliados alcanzado.");
+            return;
+        }
+
+        // 3) Instanciar y configurar
+        Vector3 spawnPos = transform.position; // cambia esto si quer√©s otra posici√≥n
+        GameObject nuevo = Instantiate(PrefabDeAliado, spawnPos, Quaternion.identity);
+        nuevo.name = PrefabDeAliado.name + "_" + AliadosActivos.Count;
+
+        // 4) A√±adir a la lista
+        AliadosActivos.Add(nuevo);
+    } 
+
+
+    // üßπ Limpia todos los elementos null/missing
+    private void LimpiarAliadosNulos()
+    {
+        for (int i = AliadosActivos.Count - 1; i >= 0; i--)
+        {
+            if (AliadosActivos[i] == null)
+                AliadosActivos.RemoveAt(i);
+        }
+    }
+
+
+    public void OnDestroy()
+    {
+        GameManager.Instance.CambiarDeEscena("EscenaDerrota");
     }
 }

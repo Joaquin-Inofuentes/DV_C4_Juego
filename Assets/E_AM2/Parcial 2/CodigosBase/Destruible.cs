@@ -20,6 +20,12 @@ public class Destruible : MonoBehaviour, I_ReceivesDamage
         if (health <= 0)
         {
             Destroy(transform.parent.gameObject);
+
+            if (gameObject.layer == LayerMask.NameToLayer("Enemigos"))
+            {
+                AM_P2_Tienda_Monedero.Instance.AddCurrency(300);
+                Debug.Log("se agregaron monedas");
+            }
             //Debug.Log($"{gameObject.name} ha sido destruido.");
         }
     }

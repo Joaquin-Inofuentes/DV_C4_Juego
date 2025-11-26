@@ -54,6 +54,20 @@ public class AM_P2_Tienda_Items : MonoBehaviour
         DañoProyectil = PlayerPrefs.GetInt("DañoProyectil", DañoProyectil);
         VelocidadDeRecarga = PlayerPrefs.GetInt("VelocidadDeRecarga", VelocidadDeRecarga);
         SoldadosMaximos = PlayerPrefs.GetInt("SoldadosMaximos", SoldadosMaximos);
-        View.ActualizarInterfaz();
+        View?.ActualizarInterfaz();
+        AplicarCambios();
+    }
+
+    public C_Shooter Arma;
+    public AM2_P2_Aliado Arma2;
+    public C_SoldadoJugador Soldado;
+    public void AplicarCambios()
+    {
+        if (DañoProyectil > 0)
+            Arma.DamageProyectil = 5 * DañoProyectil;
+        if (SoldadosMaximos > 0)
+            Soldado.CantidadMaximaDeAliados = 7 + SoldadosMaximos;
+        if (VelocidadDeRecarga > 0)
+            Arma2.tiempoRecarga = 1.2f / VelocidadDeRecarga;
     }
 }
