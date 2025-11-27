@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Distance: 29
-    - _Nieblatranspa: 0.012
+    - _Nieblatranspa: 0.295
     - _alloff: 0.392
     m_Colors:
     - _Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0}
