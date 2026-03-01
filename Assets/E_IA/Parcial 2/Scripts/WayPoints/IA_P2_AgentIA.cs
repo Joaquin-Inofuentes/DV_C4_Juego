@@ -49,24 +49,78 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     public void GoTo(Vector3 targetPosition, float Offset = 0)
     {
+        targetPosition.y = 0;
+        int Estado = GetStateActual(targetPosition);
+        Debug.Log("El valor q dio fue " + Estado);
+        if (Estado == 1) // Visible
+        {
+            // Limpiar waypoints
+            currentPath = null;
+            currentIndex = 0;
+
+            // Ir directo sin pensar camino
+            currentPath = new List<Vector3> { targetPosition };
+            isMoving = true;
+            currentSpeed = 0f;
+
+            return;
+        }
+
+        if (Estado == 2) // No visible pero el ultimo waypoint lo ve
+        {
+            // Actualiza la ultima pos
+            currentPath[currentPath.Count - 1] = targetPosition;
+            return;
+        }
+
         Vector3 Origen = transform.position;
         Origen.y = 0;
         targetPosition.y = 0;
         currentPath = IA_P2_PathfindingManager.RequestPath(Origen, targetPosition, Offset);
 
+        /*
         if (currentPath != null && currentPath.Count > 1)
         {
-            //Debug.DrawLine(transform.position, currentPath[0], Color.red, 4f);
+            for (int i = 0; i < currentPath.Count - 1; i++)
+                Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.cyan, 3f);
         }
-
+        */
         currentIndex = 0;
         isMoving = currentPath != null && currentPath.Count > 0;
         currentSpeed = 0f;
+    }
 
-        if (currentPath == null || currentPath.Count < 2) return;
+    public int GetStateActual(Vector3 targetPosition)
+    {
+        Vector3 PosAAnalizar = transform.position;
+        var model = IA_P2_PathfindingModel.Instance;
+        LayerMask obstacleLayer = model.obstacleLayer;
 
-        for (int i = 0; i < currentPath.Count - 1; i++)
-            Debug.DrawLine(currentPath[i], currentPath[i + 1], Color.cyan, 3f);
+        // Si, desde mi pos veo al objetivo
+        if (!Physics.Linecast(PosAAnalizar, targetPosition, obstacleLayer))
+        {
+            Debug.Log("Es visible desde la pos actual");
+            return 1; // Camino directo visible
+        }
+        // Obtengo el último waypoint su posición
+        if (currentPath != null && currentPath.Count > 0)
+        {
+            if (currentPath.Count > 2)
+            {
+                Vector3 UltimoWaypoint = currentPath[currentPath.Count - 2];
+
+                // Trazo un rayo del último waypoint al target
+                if (!Physics.Linecast(UltimoWaypoint, targetPosition, obstacleLayer))
+                {
+                    Debug.Log("El camino aun sirve");
+                    Debug.DrawLine(UltimoWaypoint, targetPosition, Color.yellow, 2);
+                    return 2; // Camino visible desde el último waypoint
+                }
+            }
+        }
+
+
+        return 0; // Camino no sirve
     }
 
     void Update()
