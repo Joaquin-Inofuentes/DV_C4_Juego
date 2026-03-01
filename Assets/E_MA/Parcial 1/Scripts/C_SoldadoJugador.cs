@@ -93,16 +93,15 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
     public AM2_P2_Aliado IndicadorDeDisparando;
     protected override void Mover(Vector2 input)
     {
-        //Debug.Log("se movio hacia " + input);
         Vector3 delta = new Vector3(input.x, 0, input.y) * velocidad * Time.deltaTime;
         transform.position += delta;
-        if (IndicadorDeDisparando != null
-            && IndicadorDeDisparando.enemigoActual == null)
+
+        // 🔥 NUEVO: rotar hacia dirección de movimiento
+        if (input != Vector2.zero)
         {
-            Vector3 DireccionDeMira = delta + transform.position;
-            Debug.DrawLine(DireccionDeMira, transform.position, Color.red);
-            //Debug.Log("Se esta miradno al objetivo");
-            Geometria.transform.LookAt(DireccionDeMira);
+            Vector3 direccion = new Vector3(input.x, 0, input.y);
+            Quaternion rotacionObjetivo = Quaternion.LookRotation(direccion);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, 10f * Time.deltaTime);
         }
     }
 

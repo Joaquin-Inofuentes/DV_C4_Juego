@@ -25,6 +25,14 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     public float DistanceStop = 1f;
 
+    public void OnDisable()
+    {
+        isMoving = false;
+        currentPath = null;
+        currentIndex = 0;
+        currentSpeed = 0f;
+    }
+
     public void SetSpeed(float speed)
     {
         moveSpeed = speed;
@@ -144,7 +152,7 @@ public class IA_P2_AgentIA : MonoBehaviour
 
         if (currentPath == null || currentPath.Count < 2)
             return false;
-        
+
         return currentIndex == currentPath.Count;
     }
 
