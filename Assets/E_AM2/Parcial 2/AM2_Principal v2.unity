@@ -984,6 +984,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 776415807069815144, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 200bdc8a19af85849bbbbbacaabb0436, type: 3}
+    - target: {fileID: 776415807069815144, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:RightHandRing2'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
+        'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
+        'mixamorig:RightHandRing1'\n\tTransform 'mixamorig:RightHandIndex3'\n\tand
+        more ...\n\tFrom animation clip 'mixamo.com'"
+      objectReference: {fileID: 0}
     - target: {fileID: 4317670997721627072, guid: e45d2ade21d10734fa5a4b61777b3544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1054,7 +1070,8 @@ PrefabInstance:
       propertyPath: IndicadorDeBalas
       value: 
       objectReference: {fileID: 1577305114}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 154269862759291099, guid: e45d2ade21d10734fa5a4b61777b3544, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17212,6 +17229,21 @@ PrefabInstance:
       propertyPath: IndicadorDeBalas
       value: 
       objectReference: {fileID: 1577305114}
+    - target: {fileID: 7062834235469873699, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: Disparo1Vez.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062834235469873699, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: Disparo1Vez.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062834235469873699, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: Disparo1Vez.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36371,6 +36403,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 776415807069815144, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4317670997721627072, guid: e45d2ade21d10734fa5a4b61777b3544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36419,6 +36456,11 @@ PrefabInstance:
     - target: {fileID: 4317670997721627072, guid: e45d2ade21d10734fa5a4b61777b3544,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4890417365099837947, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6195972516010314691, guid: e45d2ade21d10734fa5a4b61777b3544,
