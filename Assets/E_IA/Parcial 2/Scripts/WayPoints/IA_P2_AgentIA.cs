@@ -103,33 +103,39 @@ public class IA_P2_AgentIA : MonoBehaviour
 
     public int GetStateActual(Vector3 targetPosition)
     {
-        Vector3 PosAAnalizar = transform.position;
         var model = IA_P2_PathfindingModel.Instance;
+
+        // VALIDACIÓN DE SEGURIDAD: Si el modelo no existe, no podemos checkear visión
+        if (model == null)
+        {
+            // Intentamos buscarlo una vez si es null
+            model = FindObjectOfType<IA_P2_PathfindingModel>();
+            if (model == null) return 0;
+        }
+
+        Vector3 PosAAnalizar = transform.position;
         LayerMask obstacleLayer = model.obstacleLayer;
 
-        // Si, desde mi pos veo al objetivo
+        // 1. Si, desde mi pos veo al objetivo
         if (!Physics.Linecast(PosAAnalizar, targetPosition, obstacleLayer))
         {
-            //Debug.Log("Es visible desde la pos actual");
             return 1; // Camino directo visible
         }
-        // Obtengo el último waypoint su posición
+
+        // 2. Obtengo el último waypoint su posición
         if (currentPath != null && currentPath.Count > 0)
         {
-            if (currentPath.Count > 2)
+            if (currentPath.Count >= 2) // Corregido: >= 2 para asegurar que hay un punto previo
             {
-                Vector3 UltimoWaypoint = currentPath[currentPath.Count - 2];
+                Vector3 UltimoWaypoint = currentPath[currentPath.Count - 1];
 
                 // Trazo un rayo del último waypoint al target
                 if (!Physics.Linecast(UltimoWaypoint, targetPosition, obstacleLayer))
                 {
-                    //Debug.Log("El camino aun sirve");
-                    //Debug.DrawLine(UltimoWaypoint, targetPosition, Color.yellow, 2);
                     return 2; // Camino visible desde el último waypoint
                 }
             }
         }
-
 
         return 0; // Camino no sirve
     }

@@ -802,13 +802,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 367831773}
-  - {fileID: 931444269}
-  - {fileID: 797508316}
-  - {fileID: 1074141297}
   - {fileID: 16976844}
   - {fileID: 353718745}
+  - {fileID: 367831773}
+  - {fileID: 797508316}
   - {fileID: 842743713}
+  - {fileID: 931444269}
+  - {fileID: 1074141297}
   - {fileID: 1087980655}
   - {fileID: 1135142498}
   - {fileID: 1351474245}
@@ -1144,20 +1144,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 2018434827}
-  - {fileID: 931444269}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 425876007}
+  - {fileID: 541700292}
   - {fileID: 824224141}
   - {fileID: 842743713}
+  - {fileID: 931444269}
   - {fileID: 1065500084}
+  - {fileID: 1074141297}
   - {fileID: 1135142498}
   - {fileID: 1163544463}
   - {fileID: 1263259953}
+  - {fileID: 1350363427}
   - {fileID: 1415163220}
+  - {fileID: 2018434827}
 --- !u!135 &16976845
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1263,12 +1263,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 317008522}
   - {fileID: 572057792}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 1085171048}
   - {fileID: 1214630590}
   - {fileID: 1492777982}
@@ -4903,6 +4903,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1376005793}
+  - {fileID: 623139830}
   - {fileID: 851876622}
   - {fileID: 724722563}
   - {fileID: 1224803538}
@@ -4993,7 +4994,6 @@ Transform:
   - {fileID: 861281328}
   - {fileID: 1965101377}
   - {fileID: 453341722}
-  - {fileID: 1305963636}
   - {fileID: 733130114}
   - {fileID: 1682540113}
   - {fileID: 106564548}
@@ -5588,6 +5588,7 @@ MonoBehaviour:
   - {fileID: 1247476814}
   - {fileID: 1259564492}
   - {fileID: 1694578471}
+  - {fileID: 2010640974}
 --- !u!135 &144221179
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5901,7 +5902,7 @@ Transform:
   m_GameObject: {fileID: 148330370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 0.5, z: 32}
+  m_LocalPosition: {x: 3, y: 0, z: 32}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6298,6 +6299,7 @@ MonoBehaviour:
   - {fileID: 690472295}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1173691509}
   - {fileID: 1463673091}
@@ -6408,7 +6410,7 @@ Transform:
   m_GameObject: {fileID: 154377375}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 31, y: 0.5, z: 11}
+  m_LocalPosition: {x: 31, y: 0, z: 11}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6699,7 +6701,7 @@ Transform:
   m_GameObject: {fileID: 155631567}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071059, z: -0, w: 0.7071078}
-  m_LocalPosition: {x: 27.5, y: 0.5, z: 14.5}
+  m_LocalPosition: {x: 27.5, y: 0, z: 14.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8661,11 +8663,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 1330384089}
-  - {fileID: 1074141297}
   - {fileID: 425876007}
   - {fileID: 1065500084}
+  - {fileID: 1074141297}
   - {fileID: 1135142498}
+  - {fileID: 1330384089}
   - {fileID: 1408650832}
   - {fileID: 1415163220}
   - {fileID: 1472761480}
@@ -10758,6 +10760,7 @@ MonoBehaviour:
   - {fileID: 598246878}
   - {fileID: 690472295}
   - {fileID: 787582217}
+  - {fileID: 984336833}
   - {fileID: 984731831}
   - {fileID: 1173691509}
   - {fileID: 1310807580}
@@ -13169,10 +13172,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
   - {fileID: 17313469}
   - {fileID: 461293795}
   - {fileID: 572057792}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
   - {fileID: 1085171048}
@@ -13945,13 +13948,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 931444269}
-  - {fileID: 797508316}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 425876007}
+  - {fileID: 797508316}
   - {fileID: 842743713}
+  - {fileID: 931444269}
   - {fileID: 1065500084}
+  - {fileID: 1074141297}
   - {fileID: 1087980655}
   - {fileID: 1135142498}
   - {fileID: 1351474245}
@@ -14565,15 +14568,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 931444269}
-  - {fileID: 541700292}
-  - {fileID: 1615347777}
   - {fileID: 10903450}
   - {fileID: 425876007}
+  - {fileID: 541700292}
   - {fileID: 824224141}
+  - {fileID: 931444269}
   - {fileID: 1163544463}
   - {fileID: 1263259953}
   - {fileID: 1510819384}
+  - {fileID: 1615347777}
 --- !u!135 &367831774
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -17040,17 +17043,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 203211703}
-  - {fileID: 367831773}
-  - {fileID: 931444269}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1074141297}
   - {fileID: 16976844}
+  - {fileID: 203211703}
   - {fileID: 353718745}
+  - {fileID: 367831773}
+  - {fileID: 541700292}
   - {fileID: 824224141}
   - {fileID: 842743713}
+  - {fileID: 931444269}
+  - {fileID: 1074141297}
   - {fileID: 1135142498}
+  - {fileID: 1350363427}
   - {fileID: 1415163220}
   - {fileID: 1472761480}
   - {fileID: 1683321617}
@@ -17707,6 +17710,7 @@ MonoBehaviour:
   - {fileID: 787582217}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1173691509}
   - {fileID: 1259564492}
@@ -18887,12 +18891,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 221748366}
   - {fileID: 317008522}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 1214630590}
   - {fileID: 1731416662}
   - {fileID: 1876715513}
@@ -20079,6 +20083,111 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8, y: 8, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &489773797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 489773801}
+  - component: {fileID: 489773800}
+  - component: {fileID: 489773799}
+  - component: {fileID: 489773798}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &489773798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489773797}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &489773799
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489773797}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &489773800
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489773797}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &489773801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489773797}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.5, y: 26.53202, z: 31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &500699202
 GameObject:
   m_ObjectHideFlags: 0
@@ -21082,19 +21191,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 2018434827}
-  - {fileID: 367831773}
-  - {fileID: 1350363427}
-  - {fileID: 1615347777}
-  - {fileID: 1074141297}
   - {fileID: 16976844}
+  - {fileID: 367831773}
   - {fileID: 425876007}
   - {fileID: 824224141}
   - {fileID: 842743713}
+  - {fileID: 1074141297}
   - {fileID: 1163544463}
   - {fileID: 1263259953}
+  - {fileID: 1350363427}
   - {fileID: 1415163220}
   - {fileID: 1510819384}
+  - {fileID: 1615347777}
+  - {fileID: 2018434827}
 --- !u!135 &541700293
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -22265,11 +22374,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 0.5
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 17313469}
   - {fileID: 317008522}
+  - {fileID: 597238226}
   - {fileID: 660455702}
+  - {fileID: 765529569}
   - {fileID: 1085171048}
   - {fileID: 2011003358}
 --- !u!135 &572057793
@@ -23022,13 +23131,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 765529569}
   - {fileID: 17313469}
   - {fileID: 317008522}
   - {fileID: 461293795}
   - {fileID: 572057792}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 1085171048}
   - {fileID: 1214630590}
   - {fileID: 1492777982}
@@ -23159,6 +23268,7 @@ MonoBehaviour:
   - {fileID: 266564238}
   - {fileID: 485933217}
   - {fileID: 787582217}
+  - {fileID: 1259564492}
   - {fileID: 1379756605}
   - {fileID: 1463673091}
   - {fileID: 1657037947}
@@ -23476,12 +23586,9 @@ MonoBehaviour:
   - {fileID: 645638308}
   - {fileID: 711679519}
   - {fileID: 915708858}
-  - {fileID: 1107737067}
   - {fileID: 1247476814}
   - {fileID: 1252987726}
-  - {fileID: 1259564492}
   - {fileID: 1492777982}
-  - {fileID: 2010640974}
 --- !u!135 &605654706
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -23987,6 +24094,111 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619529388}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &623139829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623139830}
+  - component: {fileID: 623139833}
+  - component: {fileID: 623139832}
+  - component: {fileID: 623139831}
+  m_Layer: 6
+  m_Name: Cubo (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &623139830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623139829}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
+  m_LocalPosition: {x: 35.250015, y: 0, z: 13.000049}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 142948942}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &623139831
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623139829}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &623139832
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623139829}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 70690ddf5ac344c4eab057c169050875, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &623139833
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623139829}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &623688143
 GameObject:
@@ -24631,10 +24843,7 @@ MonoBehaviour:
   movementCost: 1
   Vecinos:
   - {fileID: 605654705}
-  - {fileID: 1107737067}
   - {fileID: 1252987726}
-  - {fileID: 1259564492}
-  - {fileID: 2010640974}
 --- !u!135 &645638309
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25057,16 +25266,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
-  - {fileID: 1575745228}
   - {fileID: 17313469}
   - {fileID: 317008522}
   - {fileID: 461293795}
   - {fileID: 572057792}
+  - {fileID: 597238226}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 1085171048}
   - {fileID: 1214630590}
+  - {fileID: 1575745228}
   - {fileID: 1731416662}
   - {fileID: 1876715513}
   - {fileID: 1986434985}
@@ -25946,6 +26155,7 @@ MonoBehaviour:
   - {fileID: 439123523}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1103359320}
   - {fileID: 1107737067}
   - {fileID: 1155409748}
@@ -26166,7 +26376,7 @@ Transform:
   m_GameObject: {fileID: 698296922}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 30, y: 0.5, z: 12}
+  m_LocalPosition: {x: 30, y: 0, z: 12}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27074,7 +27284,7 @@ Transform:
   m_GameObject: {fileID: 725525127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 31, y: 0.5, z: 13}
+  m_LocalPosition: {x: 31, y: 0, z: 13}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27789,16 +27999,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
-  - {fileID: 1575745228}
   - {fileID: 17313469}
   - {fileID: 221748366}
   - {fileID: 317008522}
   - {fileID: 461293795}
+  - {fileID: 597238226}
   - {fileID: 660455702}
+  - {fileID: 765529569}
   - {fileID: 1085171048}
   - {fileID: 1214630590}
+  - {fileID: 1575745228}
   - {fileID: 1731416662}
   - {fileID: 1876715513}
   - {fileID: 1986434985}
@@ -28328,16 +28538,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 1575745228}
   - {fileID: 17313469}
   - {fileID: 461293795}
   - {fileID: 572057792}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
   - {fileID: 1085171048}
   - {fileID: 1214630590}
   - {fileID: 1492777982}
+  - {fileID: 1575745228}
   - {fileID: 1986434985}
   - {fileID: 2004655579}
   - {fileID: 2011003358}
@@ -29540,15 +29750,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 1575745228}
-  - {fileID: 1330384089}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 353718745}
+  - {fileID: 1074141297}
   - {fileID: 1087980655}
   - {fileID: 1163544463}
+  - {fileID: 1330384089}
   - {fileID: 1351474245}
   - {fileID: 1408650832}
+  - {fileID: 1575745228}
   - {fileID: 1683321617}
   - {fileID: 1855490979}
   - {fileID: 2026915894}
@@ -30645,16 +30855,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 2018434827}
-  - {fileID: 367831773}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1615347777}
   - {fileID: 16976844}
+  - {fileID: 367831773}
   - {fileID: 425876007}
+  - {fileID: 541700292}
+  - {fileID: 842743713}
   - {fileID: 1163544463}
   - {fileID: 1263259953}
+  - {fileID: 1350363427}
   - {fileID: 1510819384}
+  - {fileID: 1615347777}
+  - {fileID: 2018434827}
 --- !u!135 &824224142
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -31004,6 +31215,7 @@ MonoBehaviour:
   - {fileID: 439123523}
   - {fileID: 690472295}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1463673091}
   - {fileID: 1657037947}
@@ -31138,6 +31350,7 @@ MonoBehaviour:
   - {fileID: 439123523}
   - {fileID: 690472295}
   - {fileID: 836742468}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1259564492}
   - {fileID: 1379756605}
@@ -31673,17 +31886,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 931444269}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 16976844}
   - {fileID: 353718745}
   - {fileID: 425876007}
+  - {fileID: 541700292}
+  - {fileID: 824224141}
+  - {fileID: 931444269}
   - {fileID: 1065500084}
+  - {fileID: 1074141297}
   - {fileID: 1087980655}
   - {fileID: 1135142498}
+  - {fileID: 1350363427}
   - {fileID: 1415163220}
   - {fileID: 1683321617}
 --- !u!135 &842743714
@@ -31766,7 +31980,7 @@ Transform:
   m_GameObject: {fileID: 842743712}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.5, y: 0, z: 42.5}
+  m_LocalPosition: {x: 23, y: 0, z: 42.5}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -34471,19 +34685,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 2018434827}
-  - {fileID: 367831773}
-  - {fileID: 1350363427}
-  - {fileID: 1615347777}
   - {fileID: 10903450}
   - {fileID: 16976844}
   - {fileID: 353718745}
+  - {fileID: 367831773}
   - {fileID: 425876007}
   - {fileID: 842743713}
   - {fileID: 1135142498}
   - {fileID: 1263259953}
+  - {fileID: 1350363427}
   - {fileID: 1472761480}
+  - {fileID: 1615347777}
   - {fileID: 1683321617}
+  - {fileID: 2018434827}
 --- !u!135 &931444270
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -35861,7 +36075,7 @@ Transform:
   m_GameObject: {fileID: 983668022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 0.5, z: 33}
+  m_LocalPosition: {x: 3, y: 0, z: 33}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36002,6 +36216,141 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983668022}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &984336832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 984336837}
+  - component: {fileID: 984336836}
+  - component: {fileID: 984336835}
+  - component: {fileID: 984336834}
+  - component: {fileID: 984336833}
+  m_Layer: 7
+  m_Name: Sphere (61)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &984336833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984336832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b12ef0bb16661a40aae8a2778104739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementCost: 1
+  Vecinos:
+  - {fileID: 151679127}
+  - {fileID: 266564238}
+  - {fileID: 439123523}
+  - {fileID: 690472295}
+  - {fileID: 836742468}
+  - {fileID: 837546410}
+  - {fileID: 1107737067}
+  - {fileID: 1155409748}
+  - {fileID: 1173691509}
+  - {fileID: 1259564492}
+  - {fileID: 1463673091}
+  - {fileID: 1657037947}
+  - {fileID: 1694578471}
+  - {fileID: 1841327222}
+  - {fileID: 2010640974}
+--- !u!135 &984336834
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984336832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &984336835
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984336832}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bacea6156dbb3f54bb5c49683ffda689, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &984336836
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984336832}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &984336837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984336832}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 24, y: 0, z: 10}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1834709750}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984731830
 GameObject:
   m_ObjectHideFlags: 0
@@ -37722,7 +38071,7 @@ Transform:
   m_GameObject: {fileID: 1021337361}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.99945295, y: 0, z: -2.44248}
+  m_LocalPosition: {x: -0.49945116, y: 0, z: -1.9999928}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38457,7 +38806,7 @@ Transform:
   m_GameObject: {fileID: 1061561412}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: -1}
+  m_LocalPosition: {x: -0.49999708, y: 0, z: -0.9999987}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38583,12 +38932,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 203211703}
-  - {fileID: 1330384089}
   - {fileID: 16976844}
+  - {fileID: 203211703}
   - {fileID: 353718745}
   - {fileID: 842743713}
   - {fileID: 1135142498}
+  - {fileID: 1330384089}
   - {fileID: 1408650832}
   - {fileID: 1415163220}
   - {fileID: 1472761480}
@@ -38909,16 +39258,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 203211703}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 797508316}
   - {fileID: 10903450}
   - {fileID: 16976844}
+  - {fileID: 203211703}
   - {fileID: 353718745}
   - {fileID: 425876007}
+  - {fileID: 541700292}
+  - {fileID: 797508316}
   - {fileID: 842743713}
   - {fileID: 1087980655}
+  - {fileID: 1350363427}
   - {fileID: 1351474245}
   - {fileID: 1415163220}
   - {fileID: 1472761480}
@@ -39148,13 +39497,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 17313469}
   - {fileID: 317008522}
   - {fileID: 572057792}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 1492777982}
   - {fileID: 2004655579}
   - {fileID: 2011003358}
@@ -39398,15 +39747,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 1575745228}
-  - {fileID: 1330384089}
-  - {fileID: 797508316}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 353718745}
+  - {fileID: 797508316}
   - {fileID: 842743713}
+  - {fileID: 1074141297}
+  - {fileID: 1330384089}
   - {fileID: 1351474245}
   - {fileID: 1408650832}
+  - {fileID: 1575745228}
   - {fileID: 1683321617}
   - {fileID: 1855490979}
 --- !u!135 &1087980656
@@ -40703,7 +41052,7 @@ Transform:
   m_GameObject: {fileID: 1107737065}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33, y: 0, z: 9.5}
+  m_LocalPosition: {x: 33, y: 0, z: 10.5}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -40727,11 +41076,10 @@ MonoBehaviour:
   - {fileID: 144221178}
   - {fileID: 151679127}
   - {fileID: 439123523}
-  - {fileID: 605654705}
-  - {fileID: 645638308}
   - {fileID: 690472295}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1173691509}
   - {fileID: 1247476814}
   - {fileID: 1252987726}
@@ -40742,6 +41090,7 @@ MonoBehaviour:
   - {fileID: 1841327222}
   - {fileID: 1845516233}
   - {fileID: 2010640974}
+  - {fileID: 2022861597}
   - {fileID: 2079603804}
 --- !u!135 &1107737068
 SphereCollider:
@@ -40950,7 +41299,7 @@ Transform:
   m_GameObject: {fileID: 1114358814}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2, y: 0.5, z: 32}
+  m_LocalPosition: {x: 2, y: 0, z: 32}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41460,13 +41809,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 203211703}
-  - {fileID: 931444269}
   - {fileID: 10903450}
   - {fileID: 16976844}
+  - {fileID: 203211703}
   - {fileID: 353718745}
   - {fileID: 425876007}
   - {fileID: 842743713}
+  - {fileID: 931444269}
   - {fileID: 1065500084}
   - {fileID: 1472761480}
   - {fileID: 2026915894}
@@ -42111,6 +42460,7 @@ MonoBehaviour:
   - {fileID: 421728565}
   - {fileID: 485933217}
   - {fileID: 690472295}
+  - {fileID: 984336833}
   - {fileID: 1103359320}
   - {fileID: 1173691509}
   - {fileID: 1500118443}
@@ -42223,19 +42573,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 1575745228}
-  - {fileID: 1330384089}
-  - {fileID: 367831773}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1615347777}
-  - {fileID: 797508316}
   - {fileID: 16976844}
+  - {fileID: 367831773}
+  - {fileID: 541700292}
+  - {fileID: 797508316}
   - {fileID: 824224141}
   - {fileID: 1263259953}
+  - {fileID: 1330384089}
+  - {fileID: 1350363427}
   - {fileID: 1351474245}
   - {fileID: 1408650832}
   - {fileID: 1510819384}
+  - {fileID: 1575745228}
+  - {fileID: 1615347777}
 --- !u!135 &1163544464
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -42585,6 +42935,7 @@ MonoBehaviour:
   - {fileID: 266564238}
   - {fileID: 439123523}
   - {fileID: 690472295}
+  - {fileID: 984336833}
   - {fileID: 1103359320}
   - {fileID: 1107737067}
   - {fileID: 1155409748}
@@ -43448,15 +43799,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
-  - {fileID: 1575745228}
   - {fileID: 17313469}
   - {fileID: 221748366}
   - {fileID: 317008522}
   - {fileID: 461293795}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
+  - {fileID: 1575745228}
   - {fileID: 1731416662}
   - {fileID: 1876715513}
   - {fileID: 1986434985}
@@ -44100,6 +44451,7 @@ MonoBehaviour:
   - {fileID: 1259564492}
   - {fileID: 1492777982}
   - {fileID: 1694578471}
+  - {fileID: 2010640974}
 --- !u!135 &1247476815
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -44330,7 +44682,6 @@ MonoBehaviour:
   - {fileID: 1107737067}
   - {fileID: 1247476814}
   - {fileID: 1259564492}
-  - {fileID: 2010640974}
 --- !u!135 &1252987727
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -44666,14 +45017,15 @@ MonoBehaviour:
   - {fileID: 144221178}
   - {fileID: 421728565}
   - {fileID: 439123523}
-  - {fileID: 605654705}
-  - {fileID: 645638308}
+  - {fileID: 598246878}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1131410410}
   - {fileID: 1247476814}
   - {fileID: 1252987726}
   - {fileID: 1463673091}
+  - {fileID: 1657037947}
   - {fileID: 1694578471}
   - {fileID: 1743040223}
   - {fileID: 2010640974}
@@ -44757,7 +45109,7 @@ Transform:
   m_GameObject: {fileID: 1259564491}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.5, y: 0, z: 9.5}
+  m_LocalPosition: {x: 34.5, y: 0, z: 10.5}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -45060,16 +45412,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 2018434827}
-  - {fileID: 367831773}
-  - {fileID: 931444269}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1615347777}
   - {fileID: 16976844}
+  - {fileID: 367831773}
+  - {fileID: 541700292}
   - {fileID: 824224141}
+  - {fileID: 931444269}
   - {fileID: 1163544463}
+  - {fileID: 1350363427}
   - {fileID: 1510819384}
+  - {fileID: 1615347777}
+  - {fileID: 2018434827}
 --- !u!135 &1263259954
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -46708,111 +47060,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305555841}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1305963635
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1305963636}
-  - component: {fileID: 1305963639}
-  - component: {fileID: 1305963638}
-  - component: {fileID: 1305963637}
-  m_Layer: 6
-  m_Name: Muro (123)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1305963636
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305963635}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75006247, y: 0, z: -5.000039}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 142948942}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1305963637
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305963635}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 4
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1305963638
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305963635}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 70690ddf5ac344c4eab057c169050875, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1305963639
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1305963635}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1309698434
 GameObject:
   m_ObjectHideFlags: 0
@@ -48070,7 +48317,6 @@ MonoBehaviour:
   movementCost: 1
   Vecinos:
   - {fileID: 203211703}
-  - {fileID: 1575745228}
   - {fileID: 797508316}
   - {fileID: 1065500084}
   - {fileID: 1087980655}
@@ -48080,6 +48326,7 @@ MonoBehaviour:
   - {fileID: 1415163220}
   - {fileID: 1472761480}
   - {fileID: 1550865706}
+  - {fileID: 1575745228}
   - {fileID: 1683321617}
   - {fileID: 1855490979}
 --- !u!135 &1330384090
@@ -48826,7 +49073,7 @@ Transform:
   m_GameObject: {fileID: 1346351267}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: -1}
+  m_LocalPosition: {x: 0.4994592, y: 0, z: -1.0000013}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48937,18 +49184,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 2018434827}
-  - {fileID: 931444269}
-  - {fileID: 541700292}
-  - {fileID: 1615347777}
-  - {fileID: 1074141297}
   - {fileID: 16976844}
   - {fileID: 425876007}
+  - {fileID: 541700292}
   - {fileID: 824224141}
   - {fileID: 842743713}
+  - {fileID: 931444269}
+  - {fileID: 1074141297}
   - {fileID: 1163544463}
   - {fileID: 1263259953}
   - {fileID: 1415163220}
+  - {fileID: 1615347777}
+  - {fileID: 2018434827}
 --- !u!135 &1350363428
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -49174,16 +49421,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 1575745228}
-  - {fileID: 1330384089}
-  - {fileID: 1615347777}
-  - {fileID: 797508316}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 353718745}
+  - {fileID: 797508316}
+  - {fileID: 1074141297}
   - {fileID: 1087980655}
   - {fileID: 1163544463}
+  - {fileID: 1330384089}
   - {fileID: 1408650832}
+  - {fileID: 1575745228}
+  - {fileID: 1615347777}
   - {fileID: 1683321617}
   - {fileID: 1855490979}
   - {fileID: 2026915894}
@@ -50836,6 +51083,7 @@ MonoBehaviour:
   - {fileID: 1323169677}
   - {fileID: 1657037947}
   - {fileID: 2005628111}
+  - {fileID: 2010640974}
 --- !u!1 &1380193238
 GameObject:
   m_ObjectHideFlags: 0
@@ -51621,11 +51869,11 @@ MonoBehaviour:
   movementCost: 1
   Vecinos:
   - {fileID: 203211703}
-  - {fileID: 1330384089}
   - {fileID: 797508316}
   - {fileID: 1065500084}
   - {fileID: 1087980655}
   - {fileID: 1163544463}
+  - {fileID: 1330384089}
   - {fileID: 1351474245}
   - {fileID: 1415163220}
   - {fileID: 1472761480}
@@ -52053,16 +52301,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 203211703}
-  - {fileID: 1330384089}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 16976844}
+  - {fileID: 203211703}
   - {fileID: 425876007}
+  - {fileID: 541700292}
   - {fileID: 842743713}
   - {fileID: 1065500084}
+  - {fileID: 1074141297}
+  - {fileID: 1330384089}
+  - {fileID: 1350363427}
   - {fileID: 1408650832}
   - {fileID: 1472761480}
   - {fileID: 1855490979}
@@ -53350,6 +53598,7 @@ MonoBehaviour:
   - {fileID: 690472295}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1259564492}
   - {fileID: 1694578471}
@@ -53490,12 +53739,12 @@ MonoBehaviour:
   movementCost: 1
   Vecinos:
   - {fileID: 203211703}
-  - {fileID: 1330384089}
-  - {fileID: 931444269}
-  - {fileID: 1074141297}
   - {fileID: 425876007}
+  - {fileID: 931444269}
   - {fileID: 1065500084}
+  - {fileID: 1074141297}
   - {fileID: 1135142498}
+  - {fileID: 1330384089}
   - {fileID: 1408650832}
   - {fileID: 1415163220}
   - {fileID: 1550865706}
@@ -54319,12 +54568,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 17313469}
   - {fileID: 317008522}
+  - {fileID: 597238226}
   - {fileID: 605654705}
   - {fileID: 711679519}
+  - {fileID: 765529569}
   - {fileID: 915708858}
   - {fileID: 1085171048}
   - {fileID: 1247476814}
@@ -54893,7 +55142,6 @@ MonoBehaviour:
   - {fileID: 1596364278}
   - {fileID: 1841327222}
   - {fileID: 2005628111}
-  - {fileID: 2010640974}
   - {fileID: 2079603804}
 --- !u!135 &1500118444
 SphereCollider:
@@ -55420,13 +55668,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 2018434827}
   - {fileID: 367831773}
   - {fileID: 541700292}
-  - {fileID: 1615347777}
   - {fileID: 824224141}
   - {fileID: 1163544463}
   - {fileID: 1263259953}
+  - {fileID: 1615347777}
+  - {fileID: 2018434827}
 --- !u!135 &1510819385
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -58088,16 +58336,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 765529569}
-  - {fileID: 1330384089}
-  - {fileID: 1615347777}
-  - {fileID: 797508316}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
+  - {fileID: 797508316}
   - {fileID: 1087980655}
   - {fileID: 1163544463}
   - {fileID: 1214630590}
+  - {fileID: 1330384089}
   - {fileID: 1351474245}
+  - {fileID: 1615347777}
   - {fileID: 1683321617}
 --- !u!135 &1575745229
 SphereCollider:
@@ -59158,7 +59406,7 @@ Transform:
   m_GameObject: {fileID: 1595166801}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0005472, y: 0, z: -2.442482}
+  m_LocalPosition: {x: 0.50000525, y: 0, z: -1.9999976}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -60238,16 +60486,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 1575745228}
   - {fileID: 367831773}
-  - {fileID: 931444269}
-  - {fileID: 1350363427}
   - {fileID: 541700292}
   - {fileID: 824224141}
+  - {fileID: 931444269}
   - {fileID: 1163544463}
   - {fileID: 1263259953}
+  - {fileID: 1350363427}
   - {fileID: 1351474245}
   - {fileID: 1510819384}
+  - {fileID: 1575745228}
 --- !u!135 &1615347778
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -61676,7 +61924,7 @@ Transform:
   m_GameObject: {fileID: 1651042431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 31, y: 0.5, z: 12}
+  m_LocalPosition: {x: 31, y: 0, z: 12}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -61860,7 +62108,9 @@ MonoBehaviour:
   - {fileID: 787582217}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
+  - {fileID: 1259564492}
   - {fileID: 1379756605}
   - {fileID: 1841327222}
   - {fileID: 2010640974}
@@ -62526,18 +62776,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 1575745228}
-  - {fileID: 1330384089}
-  - {fileID: 931444269}
-  - {fileID: 797508316}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 353718745}
   - {fileID: 425876007}
+  - {fileID: 797508316}
   - {fileID: 842743713}
+  - {fileID: 931444269}
+  - {fileID: 1074141297}
   - {fileID: 1087980655}
+  - {fileID: 1330384089}
   - {fileID: 1351474245}
   - {fileID: 1408650832}
+  - {fileID: 1575745228}
   - {fileID: 1855490979}
 --- !u!135 &1683321618
 SphereCollider:
@@ -62982,6 +63232,7 @@ MonoBehaviour:
   - {fileID: 690472295}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1247476814}
   - {fileID: 1259564492}
@@ -67456,19 +67707,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   allNodes:
-  - {fileID: 203211703}
-  - {fileID: 597238226}
-  - {fileID: 765529569}
-  - {fileID: 1575745228}
-  - {fileID: 1330384089}
-  - {fileID: 2018434827}
-  - {fileID: 367831773}
-  - {fileID: 931444269}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
-  - {fileID: 1615347777}
-  - {fileID: 797508316}
-  - {fileID: 1074141297}
   - {fileID: 10903450}
   - {fileID: 16976844}
   - {fileID: 17313469}
@@ -67477,11 +67715,13 @@ MonoBehaviour:
   - {fileID: 111581378}
   - {fileID: 144221178}
   - {fileID: 151679127}
+  - {fileID: 203211703}
   - {fileID: 221748366}
   - {fileID: 266564238}
   - {fileID: 306600989}
   - {fileID: 317008522}
   - {fileID: 353718745}
+  - {fileID: 367831773}
   - {fileID: 421728565}
   - {fileID: 425876007}
   - {fileID: 439123523}
@@ -67489,7 +67729,9 @@ MonoBehaviour:
   - {fileID: 463039870}
   - {fileID: 485933217}
   - {fileID: 503434622}
+  - {fileID: 541700292}
   - {fileID: 572057792}
+  - {fileID: 597238226}
   - {fileID: 598246878}
   - {fileID: 605654705}
   - {fileID: 645638308}
@@ -67497,16 +67739,21 @@ MonoBehaviour:
   - {fileID: 690472295}
   - {fileID: 711679519}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 787582217}
+  - {fileID: 797508316}
   - {fileID: 824224141}
   - {fileID: 836742468}
   - {fileID: 837546410}
   - {fileID: 842743713}
   - {fileID: 915708858}
   - {fileID: 927591137}
+  - {fileID: 931444269}
+  - {fileID: 984336833}
   - {fileID: 984731831}
   - {fileID: 1004742568}
   - {fileID: 1065500084}
+  - {fileID: 1074141297}
   - {fileID: 1085171048}
   - {fileID: 1087980655}
   - {fileID: 1103359320}
@@ -67524,6 +67771,8 @@ MonoBehaviour:
   - {fileID: 1310807580}
   - {fileID: 1323169677}
   - {fileID: 1329373302}
+  - {fileID: 1330384089}
+  - {fileID: 1350363427}
   - {fileID: 1351474245}
   - {fileID: 1379756605}
   - {fileID: 1408650832}
@@ -67534,7 +67783,9 @@ MonoBehaviour:
   - {fileID: 1500118443}
   - {fileID: 1510819384}
   - {fileID: 1550865706}
+  - {fileID: 1575745228}
   - {fileID: 1596364278}
+  - {fileID: 1615347777}
   - {fileID: 1657037947}
   - {fileID: 1683321617}
   - {fileID: 1694578471}
@@ -67549,6 +67800,7 @@ MonoBehaviour:
   - {fileID: 2005628111}
   - {fileID: 2010640974}
   - {fileID: 2011003358}
+  - {fileID: 2018434827}
   - {fileID: 2022861597}
   - {fileID: 2026915894}
   - {fileID: 2066805963}
@@ -67577,6 +67829,7 @@ Transform:
   - {fileID: 837546409}
   - {fileID: 439123522}
   - {fileID: 2010640973}
+  - {fileID: 984336837}
   - {fileID: 1107737066}
   - {fileID: 690472294}
   - {fileID: 1173691508}
@@ -67825,6 +68078,7 @@ MonoBehaviour:
   - {fileID: 690472295}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1500118443}
   - {fileID: 1596364278}
@@ -68493,7 +68747,7 @@ Transform:
   m_GameObject: {fileID: 1847303541}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3, y: 0.5, z: 31}
+  m_LocalPosition: {x: 3, y: 0, z: 31}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -68999,10 +69253,10 @@ MonoBehaviour:
   movementCost: 1
   Vecinos:
   - {fileID: 203211703}
-  - {fileID: 1330384089}
   - {fileID: 797508316}
   - {fileID: 1065500084}
   - {fileID: 1087980655}
+  - {fileID: 1330384089}
   - {fileID: 1351474245}
   - {fileID: 1408650832}
   - {fileID: 1415163220}
@@ -72137,13 +72391,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 0.5
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 221748366}
   - {fileID: 317008522}
   - {fileID: 461293795}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 1214630590}
   - {fileID: 1731416662}
   - {fileID: 1876715513}
@@ -72703,10 +72957,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 463039870}
+  - {fileID: 597238226}
   - {fileID: 711679519}
+  - {fileID: 765529569}
   - {fileID: 915708858}
   - {fileID: 1085171048}
   - {fileID: 1492777982}
@@ -73378,7 +73632,7 @@ Transform:
   m_GameObject: {fileID: 2010640972}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 0, z: 9.5}
+  m_LocalPosition: {x: 25, y: 0, z: 10.5}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -73398,21 +73652,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
+  - {fileID: 144221178}
   - {fileID: 151679127}
   - {fileID: 266564238}
   - {fileID: 439123523}
-  - {fileID: 605654705}
-  - {fileID: 645638308}
   - {fileID: 690472295}
   - {fileID: 836742468}
   - {fileID: 837546410}
+  - {fileID: 984336833}
   - {fileID: 1107737067}
   - {fileID: 1155409748}
   - {fileID: 1173691509}
-  - {fileID: 1252987726}
+  - {fileID: 1247476814}
   - {fileID: 1259564492}
+  - {fileID: 1379756605}
   - {fileID: 1463673091}
-  - {fileID: 1500118443}
   - {fileID: 1657037947}
   - {fileID: 1694578471}
   - {fileID: 1841327222}
@@ -73521,14 +73775,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 597238226}
-  - {fileID: 765529569}
   - {fileID: 17313469}
   - {fileID: 317008522}
   - {fileID: 461293795}
   - {fileID: 572057792}
+  - {fileID: 597238226}
   - {fileID: 660455702}
   - {fileID: 743104406}
+  - {fileID: 765529569}
   - {fileID: 1085171048}
   - {fileID: 1214630590}
   - {fileID: 1492777982}
@@ -73758,12 +74012,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementCost: 1
   Vecinos:
-  - {fileID: 931444269}
-  - {fileID: 1350363427}
-  - {fileID: 541700292}
   - {fileID: 16976844}
+  - {fileID: 541700292}
   - {fileID: 824224141}
+  - {fileID: 931444269}
   - {fileID: 1263259953}
+  - {fileID: 1350363427}
   - {fileID: 1510819384}
 --- !u!135 &2018434828
 SphereCollider:
@@ -73902,6 +74156,7 @@ MonoBehaviour:
   Vecinos:
   - {fileID: 485933217}
   - {fileID: 836742468}
+  - {fileID: 1107737067}
   - {fileID: 1155409748}
   - {fileID: 1596364278}
   - {fileID: 1657037947}
@@ -74014,8 +74269,8 @@ MonoBehaviour:
   movementCost: 1
   Vecinos:
   - {fileID: 203211703}
-  - {fileID: 797508316}
   - {fileID: 353718745}
+  - {fileID: 797508316}
   - {fileID: 1065500084}
   - {fileID: 1135142498}
   - {fileID: 1351474245}
@@ -77125,6 +77380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentIA: {fileID: 8607124817029311682}
   soldadoJugador: {fileID: 2957731773989595616}
+  objetivoEnemigo: {fileID: 489773797}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -77145,3 +77401,4 @@ SceneRoots:
   - {fileID: 1842395933}
   - {fileID: 1834709750}
   - {fileID: 142948942}
+  - {fileID: 489773801}

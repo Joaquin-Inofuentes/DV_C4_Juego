@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomInspector;
 
 public class IA_F_ChangeMode : MonoBehaviour
 {
+    [Button(nameof(OrdenarAtaque))]
     public IA_P2_AgentIA agentIA;
     public C_SoldadoJugador soldadoJugador;
 
@@ -98,5 +100,17 @@ public class IA_F_ChangeMode : MonoBehaviour
             soldadoJugador.enabled = false;
             //Debug.Log("Modo IA activado.");
         }
+    }
+
+
+
+
+    public GameObject objetivoEnemigo;
+
+    [ContextMenu("Forzar Ataque Global")]
+    public void OrdenarAtaque()
+    {
+        // Esto activará a TODOS los agentes que tengan el script IA_P2_FSM
+        IA_P2_BusEvent_Manager.NotificarEncontrado(objetivoEnemigo);
     }
 }

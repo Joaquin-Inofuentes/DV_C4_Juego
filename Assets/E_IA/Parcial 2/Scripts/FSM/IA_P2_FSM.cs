@@ -41,6 +41,7 @@ public class IA_P2_FSM : MonoBehaviour
 
     void OnEnable()
     {
+        Debug.Log("Empezo a inicializarse");
         // Instanciamos TODOS los estados
         _patrolState = new IA_P2_ST_PatrolState();
         _chaseState = new IA_P2_ST_ChaseState();
@@ -69,7 +70,7 @@ public class IA_P2_FSM : MonoBehaviour
         {
             _currentState.Enter(this);
         }
-
+        Debug.Log("Se inicializo correctamente");
         NotificacionDeEnemigoVisible.OnTargetDetected += PerseguirEnemigo;
         IA_P2_BusEvent_Manager.OnEnemyFound += PerseguirEnemigo;
         NotificacionDeEnemigoVisible.OnTargetLost += LoPerdiDeVision;
@@ -83,6 +84,9 @@ public class IA_P2_FSM : MonoBehaviour
 
     public void PerseguirEnemigo(GameObject enemigo)
     {
+        
+        Debug.Log($"recibió orden de perseguir a {enemigo.name}");
+        Debug.Log($"{gameObject.name} recibió orden de perseguir a ");
         target = enemigo;
         //Debug.Log("changing to chasing state", enemigo);
         TransitionTo(AgentState.Chasing);

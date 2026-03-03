@@ -6,7 +6,14 @@ public class IA_P2_ST_ChaseState : IA_P2_INT_gentState
 
     public void Enter(IA_P2_FSM context)
     {
-        //Debug.Log("Se llamo a perseguir");
+        // Si entramos aquí por error sin target, abortamos y volvemos a patrulla
+        if (context.target == null)
+        {
+            Debug.LogWarning("Se intentó entrar en Chase sin un Target. Volviendo a patrulla.");
+            context.TransitionTo(AgentState.Patrolling);
+            return;
+        }
+        Debug.Log("Se llamo a perseguir");
         context.agent.AsignarColor(Color.red);
 
         if (context.target != null)
@@ -18,7 +25,7 @@ public class IA_P2_ST_ChaseState : IA_P2_INT_gentState
         {
             Debug.Log("Target es null. Revisar");
         }
-        IA_P2_BusEvent_Manager.NotificarEncontrado(context.target, context);
+        IA_P2_BusEvent_Manager.NotificarEncontrado(context.target);
         context.agent.SetSpeed(5);
     }
 

@@ -29,11 +29,12 @@ public class IA_P2_BusEvent_Manager : MonoBehaviour
             agentes.Add(encontrados[i]);
     }
 
-    public static void NotificarEncontrado(GameObject enemigo, IA_P2_FSM quienLoVio)
+    public static void NotificarEncontrado(GameObject enemigo)
     {
         ultimoEnemigoVisto = enemigo;
         ultimaPosicionVisto = enemigo.transform.position;
         OnEnemyFound?.Invoke(enemigo);
+        Debug.Log("Se notifico q se encontro al enemigo");
     }
 
 

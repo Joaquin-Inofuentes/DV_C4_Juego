@@ -16,6 +16,12 @@ public class IA_P2_PathfindingModel : MonoBehaviour
 
     public static IA_P2_PathfindingModel Instance;
 
+
+    public void Awake()
+    {
+        Instance = this;
+    }
+
     public void OnEnable()
     {
         Instance = this;
