@@ -47,8 +47,8 @@ Material:
     - _Scale: 24.76
     - _speed: 0.51
     m_Colors:
-    - _Color: {r: 0.26415092, g: 0.23300104, b: 0.23300104, a: 0.87058824}
-    - _Velocidad: {r: 0.05, g: 0.01, b: 0, a: 0}
+    - _Color: {r: 0.26415086, g: 0.23300096, b: 0.23300096, a: 0.6509804}
+    - _Velocidad: {r: 0.02, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3672552812493977793
 MonoBehaviour:
