@@ -48,6 +48,7 @@ public class IA_P2_FSM : MonoBehaviour
         _searchingState = new IA_P2_ST_SearchingState();
         _returningState = new IA_P2_ST_ReturningToPatrolState();
 
+        if (target == null) currentStateEnum = AgentState.Patrolling;
 
         switch (currentStateEnum) // <-- Lee el valor del Inspector
         {
@@ -84,12 +85,15 @@ public class IA_P2_FSM : MonoBehaviour
 
     public void PerseguirEnemigo(GameObject enemigo)
     {
-        
-        Debug.Log($"recibió orden de perseguir a {enemigo.name}");
-        Debug.Log($"{gameObject.name} recibió orden de perseguir a ");
+        if (enemigo == null) return;
         target = enemigo;
-        //Debug.Log("changing to chasing state", enemigo);
-        TransitionTo(AgentState.Chasing);
+        lastKnownPosition = enemigo.transform.position; // Actualizar siempre
+
+        // Solo cambiar si no estamos ya persiguiendo
+        if (currentStateEnum != AgentState.Chasing)
+        {
+            TransitionTo(AgentState.Chasing);
+        }
     }
 
     void Update()
@@ -115,7 +119,8 @@ public class IA_P2_FSM : MonoBehaviour
 
         if (agent.currentPath == null || agent.currentPath.Count == 0)
         {
-            TransitionTo(AgentState.ReturningToPatrol);
+            //TransitionTo(AgentState.ReturningToPatrol);
+            //Debug.Log("Intento de vovler a patrolling" + gameObject.name, gameObject);
         }
     }
 

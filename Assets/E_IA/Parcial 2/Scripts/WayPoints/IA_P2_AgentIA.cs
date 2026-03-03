@@ -205,6 +205,9 @@ public class IA_P2_AgentIA : MonoBehaviour
     public void StopAgent()
     {
         isMoving = false;
+        currentPath = null;
+        currentIndex = 0;
+        // Si tienes un componente NavMeshAgent, aquí deberías poner navMesh.isStopped = true;
     }
 
     public bool IsMoving()

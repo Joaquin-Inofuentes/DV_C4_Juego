@@ -1717,7 +1717,7 @@ MonoBehaviour:
   - {fileID: 1214630589}
   target: {fileID: 0}
   lastKnownPosition: {x: 0, y: 0, z: 0}
-  currentStateEnum: 1
+  currentStateEnum: 0
   NotificacionDeEnemigoVisible: {fileID: 440425330}
 --- !u!114 &44714559
 MonoBehaviour:
@@ -6596,7 +6596,7 @@ MonoBehaviour:
   - {fileID: 151679126}
   target: {fileID: 0}
   lastKnownPosition: {x: 0, y: 0, z: 0}
-  currentStateEnum: 1
+  currentStateEnum: 0
   NotificacionDeEnemigoVisible: {fileID: 2094814253}
 --- !u!114 &155631569
 MonoBehaviour:
@@ -45865,7 +45865,7 @@ MonoBehaviour:
   - {fileID: 915708862}
   target: {fileID: 0}
   lastKnownPosition: {x: 0, y: 0, z: 0}
-  currentStateEnum: 1
+  currentStateEnum: 0
   NotificacionDeEnemigoVisible: {fileID: 2059527647}
 --- !u!114 &1269027804
 MonoBehaviour:

@@ -1,72 +1,57 @@
-using System.Net.Sockets;
 using UnityEngine;
 
 public class IA_P2_ST_ChaseState : IA_P2_INT_gentState
 {
+    private bool _goingToLastKnown;
 
     public void Enter(IA_P2_FSM context)
     {
-        // Si entramos aquí por error sin target, abortamos y volvemos a patrulla
-        if (context.target == null)
-        {
-            Debug.LogWarning("Se intentó entrar en Chase sin un Target. Volviendo a patrulla.");
-            context.TransitionTo(AgentState.Patrolling);
-            return;
-        }
-        Debug.Log("Se llamo a perseguir");
-        context.agent.AsignarColor(Color.red);
-
-        if (context.target != null)
-        {
-            context.lastKnownPosition = context.target.transform.position;
-            context.agent.GoTo(context.target.transform.position, context.agent.DistanceStop);
-        }
-        else
-        {
-            Debug.Log("Target es null. Revisar");
-        }
-        IA_P2_BusEvent_Manager.NotificarEncontrado(context.target);
-        context.agent.SetSpeed(5);
+        context.agent.AsignarColor(Color.red); // ROJO = Te estoy viendo o te estoy buscando donde te vi
+        context.agent.SetSpeed(5f);
+        _goingToLastKnown = false;
     }
 
     public void Execute(IA_P2_FSM context)
     {
-        //Debug.Log("Ejecutando Chase State");
-
-        // --- Lógica de Persecución (si SÍ vemos al jugador) ---
-
-        if (context.target == null) return; // Doble chequeo por si acaso
-
-        Vector3 targetPosition = context.target.transform.position;
-        Debug.DrawLine(context.agent.transform.position, targetPosition, Color.red);
-
-        // Si estamos en el ultimo tramo hacia la posición del jugador
-        if (context.agent.IsOnFinalPathSegment())
+        if (context.target == null)
         {
-            // Miramos hacia el objetivo
-            context.agent.LookAtTarget(context.target.transform.position);
-            // Si es visible actualizamos el destino
-            if (IA_P2_LineOfSight3D.Check(
-                context.agent.transform.position, 
-                targetPosition, 
-                context.NotificacionDeEnemigoVisible.visionObstacles))
+            context.TransitionTo(AgentState.ReturningToPatrol);
+            return;
+        }
+
+        Vector3 targetPos = context.target.transform.position;
+        // Check de visión real
+        bool loVeo = IA_P2_LineOfSight3D.Check(context.agent.transform.position, targetPos, context.NotificacionDeEnemigoVisible.visionObstacles);
+
+        if (loVeo)
+        {
+            // SI LO VEO: Persecución activa
+            context.lastKnownPosition = targetPos;
+            context.agent.GoTo(targetPos, context.agent.DistanceStop);
+            _goingToLastKnown = false;
+        }
+        else
+        {
+            // SI NO LO VEO:
+            if (!_goingToLastKnown)
             {
-                context.lastKnownPosition = context.target.transform.position;
-                context.agent.GoTo(targetPosition, context.agent.DistanceStop);
-                Debug.DrawLine(targetPosition, context.agent.transform.position, Color.blue);
-                return;
+                // Solo enviamos la orden de ir al último punto UNA VEZ
+                context.agent.GoTo(context.lastKnownPosition, 0f);
+                _goingToLastKnown = true;
+                Debug.Log("<color=red>Chase:</color> Te perdí. Yendo a tu última posición...");
             }
-            else
+
+            // Chequeamos si hemos llegado físicamente a ese último punto
+            float distancia = Vector3.Distance(context.agent.transform.position, context.lastKnownPosition);
+
+            // Si estamos a menos de 0.8 metros o el agente se detuvo
+            if (distancia < 0.8f || !context.agent.isMoving)
             {
-                //Debug.DrawLine(targetPosition, context.agent.transform.position, Color.black,2);
-                // Perdimos de vista al jugador
-                context.LoPerdiDeVision(context.target);
+                Debug.Log("<color=yellow>Chase:</color> ¡Llegué al último punto! Entrando en ALERTA.");
+                context.TransitionTo(AgentState.Searching);
             }
         }
     }
 
-    public void Exit(IA_P2_FSM context)
-    {
-        context.agent.StopAgent();
-    }
+    public void Exit(IA_P2_FSM context) { }
 }

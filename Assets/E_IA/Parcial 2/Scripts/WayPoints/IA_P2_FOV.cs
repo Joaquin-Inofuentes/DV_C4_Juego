@@ -108,12 +108,12 @@ public class IA_P2_FOV : MonoBehaviour
                 {
                     _visibleTargets.Add(target);
                     OnTargetDetected?.Invoke(target);
-                    Debug.Log("Se encontro a " + target.name, target);
+                    //Debug.Log("Se encontro a " + target.name, target);
                     Debug.DrawLine(transform.parent.position, target.transform.position, detectionColor, 2f);
                 }
                 else
                 {
-                    Debug.Log("Se ignoro a " + target.name + " vs " + gameObject.name, target);
+                    //Debug.Log("Se ignoro a " + target.name + " vs " + gameObject.name, target);
                 }
 
             }
