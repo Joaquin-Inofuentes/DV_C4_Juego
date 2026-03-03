@@ -77,19 +77,28 @@ public class IA_P2_FSM : MonoBehaviour
         NotificacionDeEnemigoVisible.OnTargetLost += LoPerdiDeVision;
     }
 
-    public void LoPerdiDeVision(GameObject target)
+    public void LoPerdiDeVision(GameObject objetivoPerdido)
     {
-        //Debug.Log("changing to searching state",gameObject);
-        TransitionTo(AgentState.Searching);
+        // Solo entramos en modo búsqueda si el objeto que se perdió 
+        // es EXACTAMENTE el que estábamos persiguiendo.
+        if (target != null && objetivoPerdido == target)
+        {
+            // Guardamos la última posición antes de pasar a Searching
+            lastKnownPosition = target.transform.position;
+            TransitionTo(AgentState.Searching);
+        }
     }
 
     public void PerseguirEnemigo(GameObject enemigo)
     {
         if (enemigo == null) return;
-        target = enemigo;
-        lastKnownPosition = enemigo.transform.position; // Actualizar siempre
 
-        // Solo cambiar si no estamos ya persiguiendo
+        // Seguridad: No perseguirse a sí mismo
+        if (enemigo == this.gameObject) return;
+
+        target = enemigo;
+        lastKnownPosition = enemigo.transform.position;
+
         if (currentStateEnum != AgentState.Chasing)
         {
             TransitionTo(AgentState.Chasing);

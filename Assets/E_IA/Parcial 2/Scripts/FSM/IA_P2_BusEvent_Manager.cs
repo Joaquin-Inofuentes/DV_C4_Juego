@@ -29,7 +29,7 @@ public class IA_P2_BusEvent_Manager : MonoBehaviour
             agentes.Add(encontrados[i]);
     }
 
-    public static void NotificarEncontrado(GameObject enemigo)
+    public static void NotificarEncontrado(GameObject enemigo,string NombreDelOrigen)
     {
         ultimoEnemigoVisto = enemigo;
         ultimaPosicionVisto = enemigo.transform.position;

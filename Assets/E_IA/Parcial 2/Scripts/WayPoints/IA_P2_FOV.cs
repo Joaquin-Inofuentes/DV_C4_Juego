@@ -74,53 +74,52 @@ public class IA_P2_FOV : MonoBehaviour
     {
         Transform targetTransform = target.transform;
 
-        // 1. Chequeo de Distancia
-        float distanceToTarget = Vector3.Distance(transform.position, targetTransform.position);
-        if (distanceToTarget > viewDistance)
+        // 1. Chequeos físicos básicos (Distancia, Ángulo y Muros)
+        if (Vector3.Distance(transform.position, targetTransform.position) > viewDistance) return;
+        if (!IsInFOV(targetTransform)) return;
+        if (!HasLineOfSight(targetTransform)) return;
+
+        // --- LÓGICA DE IDENTIDAD Y EQUIPOS ---
+
+        GameObject miAgente = transform.parent.gameObject;
+        if (target == miAgente) return; // Se ignora a sí mismo (sin debug para no colapsar la consola sobre sí mismo)
+
+        string miNombre = miAgente.name;
+        string nombreEnemigo = target.name;
+
+        // Detectar facciones
+        bool yoSoyA = miNombre.Contains("EQA");
+        bool yoSoyB = miNombre.Contains("EQB");
+        bool enemigoEsA = nombreEnemigo.Contains("EQA");
+        bool enemigoEsB = nombreEnemigo.Contains("EQB");
+
+        // Determinar qué palabra debería tener el enemigo para que yo lo ataque
+        string palabraBuscada = yoSoyA ? "EQB" : (yoSoyB ? "EQA" : "DESCONOCIDO");
+
+        // Condición de ataque: Equipos opuestos
+        bool sonEnemigos = (yoSoyA && enemigoEsB) || (yoSoyB && enemigoEsA);
+
+        if (sonEnemigos)
         {
-            return;
-        }
+            _currentlyVisibleTargets.Add(target);
 
-        // 2. Chequeo de Ángulo (FOV)
-        if (!IsInFOV(targetTransform))
-        {
-            return;
-        }
-
-        // 3. Chequeo de Línea de Visión (Obstáculos)
-        if (!HasLineOfSight(targetTransform))
-        {
-            //Debug.DrawLine(transform.position + Vector3.up * 0.5f, targetTransform.position + Vector3.up * 0.5f, lostTargetColor);
-            return;
-        }
-
-        // --- ÉXITO TOTAL ---
-        _currentlyVisibleTargets.Add(target);
-
-        //Debug.DrawLine(transform.position + Vector3.up * 0.5f, targetTransform.position + Vector3.up * 0.5f, detectionColor);
-
-        if (!_visibleTargets.Contains(target))
-        {
-            if (IA_P2_LineOfSight3D.Check(transform.parent.position, target.transform.position, visionObstacles))
+            if (!_visibleTargets.Contains(target))
             {
-                bool sonEnemigos = gameObject.name.Contains("_Agente") != target.name.Contains("_Agente");
-                if (sonEnemigos)
+                if (IA_P2_LineOfSight3D.Check(transform.parent.position, target.transform.position, visionObstacles))
                 {
                     _visibleTargets.Add(target);
-                    OnTargetDetected?.Invoke(target);
-                    //Debug.Log("Se encontro a " + target.name, target);
-                    Debug.DrawLine(transform.parent.position, target.transform.position, detectionColor, 2f);
-                }
-                else
-                {
-                    //Debug.Log("Se ignoro a " + target.name + " vs " + gameObject.name, target);
-                }
 
+                    // DEBUG ATAQUE
+                    Debug.Log($"<color=red>ATAQUE:</color> Se vio a <b>{nombreEnemigo}</b>. Como yo soy <b>{miNombre}</b>, ¡iré por él!");
+
+                    OnTargetDetected?.Invoke(target);
+                }
             }
-            else
-            {
-                //Debug.DrawLine(transform.parent.position, target.transform.position, lostTargetColor, 2f);
-            }
+        }
+        else
+        {
+            // DEBUG OMISIÓN CONSTANTE (Se ejecuta cada frame que lo ve)
+            Debug.Log($"Se vio a {nombreEnemigo} con tal nombre. Se omitió por que no contiene {palabraBuscada} en su nombre en su debug. Soy {miNombre}");
         }
     }
 

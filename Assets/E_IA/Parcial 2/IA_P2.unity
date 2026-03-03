@@ -1689,7 +1689,7 @@ GameObject:
   - component: {fileID: 44714559}
   - component: {fileID: 44714558}
   m_Layer: 0
-  m_Name: _Agente 5
+  m_Name: EQB_Agente 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5774,7 +5774,7 @@ GameObject:
   - component: {fileID: 148330371}
   - component: {fileID: 148330377}
   m_Layer: 0
-  m_Name: Seguidor (1)
+  m_Name: EQA_Seguidor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6395,7 +6395,7 @@ GameObject:
   - component: {fileID: 154377378}
   - component: {fileID: 154377377}
   m_Layer: 0
-  m_Name: Seguidor (3)
+  m_Name: EQB_Seguidor (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6566,7 +6566,7 @@ GameObject:
   - component: {fileID: 155631569}
   - component: {fileID: 155631568}
   m_Layer: 0
-  m_Name: _Agente 1
+  m_Name: EQB__Agente 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26361,7 +26361,7 @@ GameObject:
   - component: {fileID: 698296925}
   - component: {fileID: 698296924}
   m_Layer: 0
-  m_Name: Seguidor (2)
+  m_Name: EQB_Seguidor (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27269,7 +27269,7 @@ GameObject:
   - component: {fileID: 725525130}
   - component: {fileID: 725525129}
   m_Layer: 0
-  m_Name: Seguidor (4)
+  m_Name: EQB_Seguidor (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36060,7 +36060,7 @@ GameObject:
   - component: {fileID: 983668025}
   - component: {fileID: 983668024}
   m_Layer: 0
-  m_Name: Seguidor (4)
+  m_Name: EQA_Seguidor (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41284,7 +41284,7 @@ GameObject:
   - component: {fileID: 1114358817}
   - component: {fileID: 1114358816}
   m_Layer: 0
-  m_Name: Seguidor (2)
+  m_Name: EQA_Seguidor (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45838,7 +45838,7 @@ GameObject:
   - component: {fileID: 1269027804}
   - component: {fileID: 1269027803}
   m_Layer: 0
-  m_Name: _Agente 3
+  m_Name: EQB__Agente 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46623,7 +46623,7 @@ GameObject:
   - component: {fileID: 1297547139}
   - component: {fileID: 1297547138}
   m_Layer: 0
-  m_Name: _Agente 2
+  m_Name: EQB__Agente 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61909,7 +61909,7 @@ GameObject:
   - component: {fileID: 1651042434}
   - component: {fileID: 1651042433}
   m_Layer: 0
-  m_Name: Seguidor (1)
+  m_Name: EQB_Seguidor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68732,7 +68732,7 @@ GameObject:
   - component: {fileID: 1847303544}
   - component: {fileID: 1847303543}
   m_Layer: 0
-  m_Name: Seguidor (3)
+  m_Name: EQA_Seguidor (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74695,7 +74695,7 @@ GameObject:
   - component: {fileID: 2047452468}
   - component: {fileID: 2047452467}
   m_Layer: 0
-  m_Name: _Agente 4
+  m_Name: EQB__Agente 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77187,7 +77187,7 @@ GameObject:
   - component: {fileID: 8607124817029311682}
   - component: {fileID: 8607124817029311683}
   m_Layer: 8
-  m_Name: Jugador
+  m_Name: EQA_Jugador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

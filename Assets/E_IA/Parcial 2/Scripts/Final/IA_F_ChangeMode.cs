@@ -111,6 +111,6 @@ public class IA_F_ChangeMode : MonoBehaviour
     public void OrdenarAtaque()
     {
         // Esto activará a TODOS los agentes que tengan el script IA_P2_FSM
-        IA_P2_BusEvent_Manager.NotificarEncontrado(objetivoEnemigo);
+        IA_P2_BusEvent_Manager.NotificarEncontrado(objetivoEnemigo,"Jugador");
     }
 }
