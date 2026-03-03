@@ -6,20 +6,24 @@ public class IA_P2_ST_ReturningToPatrolState : IA_P2_INT_gentState
 {
     private Vector3 _patrolDestination;
 
+    // Retry
+    private float _nextRetryTime;
+    private const float RETRY_EVERY = 0.2f;
+    private int _retryCount;
+    private const int MAX_RETRIES = 1; // ajustá si querés infinito
+
     public void Enter(IA_P2_FSM context)
     {
-        //Debug.Log("Returning: Volviendo a la patrulla.");
-        context.agent.AsignarColor(Color.cyan); // Un color "tranquilo"
+        context.agent.AsignarColor(Color.cyan);
 
-        // 1. Encontrar el waypoint de patrulla MÁS CERCANO
         var wps = context.patrolWaypoints;
         if (wps == null || wps.Count == 0)
         {
-            // No hay patrulla a la que volver, pasar directo a Patrullar
             context.TransitionTo(AgentState.Patrolling);
             return;
         }
 
+        // 1) waypoint más cercano
         int closestIndex = 0;
         float minDistance = float.MaxValue;
         Vector3 agentPos = context.agent.transform.position;
@@ -34,37 +38,68 @@ public class IA_P2_ST_ReturningToPatrolState : IA_P2_INT_gentState
             }
         }
 
-        // 2. Ir a ese punto
+        // 2) destino
         _patrolDestination = wps[closestIndex].position;
-        context.agent.GoTo(_patrolDestination);
+
+        // reset retry
+        _retryCount = 0;
+        _nextRetryTime = Time.time; // intento inmediato
+
+        // primer intento
+        TryGoToPatrol(context);
         context.agent.SetSpeed(2.0f);
     }
 
     public void Execute(IA_P2_FSM context)
     {
-        // 1. ¿Vemos al jugador mientras volvemos?
         if (context.IsPlayerVisible())
         {
             context.TransitionTo(AgentState.Chasing);
             return;
         }
 
-        // 2. ¿Llegamos al punto de la patrulla?
-        float arrivalDistance = 0.5f;
-
-        // Comprobamos si no nos estamos moviendo Y estamos cerca del destino
-        if (!context.agent.isMoving && Vector3.Distance(context.agent.transform.position, _patrolDestination) < arrivalDistance)
+        // Reintento cada 1 segundo si NO estamos avanzando hacia el destino
+        if (Time.time >= _nextRetryTime)
         {
-            // Llegamos. Ahora podemos empezar a patrullar normalmente.
-            //Debug.Log("Returning: En posición. Reanudando patrulla.");
+            // criterio simple: si no se mueve y todavía está lejos => reintentar
+            float arrivalDistance = 0.5f;
+            bool lejos = Vector3.Distance(context.agent.transform.position, _patrolDestination) > arrivalDistance;
+
+            if (!context.agent.isMoving && lejos)
+            {
+                _retryCount++;
+                if (_retryCount <= MAX_RETRIES)
+                {
+                    TryGoToPatrol(context);
+                }
+                else
+                {
+                    // si querés: fallback duro
+                    Debug.LogWarning("ReturningToPatrol: demasiados retries, vuelvo a Patrolling igual.");
+                    context.TransitionTo(AgentState.Patrolling);
+                    return;
+                }
+            }
+
+            _nextRetryTime = Time.time + RETRY_EVERY;
+        }
+
+        // Llegada normal
+        float arrivalDist = 0.5f;
+        if (!context.agent.isMoving && Vector3.Distance(context.agent.transform.position, _patrolDestination) < arrivalDist)
+        {
             context.TransitionTo(AgentState.Patrolling);
         }
     }
 
     public void Exit(IA_P2_FSM context)
     {
-        // No necesita parar al agente, porque el estado Patrolling
-        // tomará el control del movimiento.
-        context.agent.SetSpeed(3.0f); // Sali de returnat patrullaje a velocidad normal
+        context.agent.SetSpeed(3.0f);
+    }
+
+    private void TryGoToPatrol(IA_P2_FSM context)
+    {
+        //Debug.Log($"ReturningToPatrol: intento #{_retryCount} -> {_patrolDestination}");
+        context.agent.GoTo(_patrolDestination);
     }
 }

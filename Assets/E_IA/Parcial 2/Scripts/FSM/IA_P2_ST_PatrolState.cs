@@ -32,15 +32,43 @@ public class IA_P2_ST_PatrolState : IA_P2_INT_gentState
         Vector3 targetPos = wps[_currentWaypoint].position;
         context.agent.GoTo(targetPos);
         _registrada = targetPos;
-
-        context.agent.SetSpeed(2.0f);
-
+        if (context.patrolWaypoints.Count != 1)
+            context.agent.SetSpeed(2.0f);
+        else
+            context.agent.SetSpeed(5);
         // (Sacamos el DrawAllWaypoints de aquí para que no se
         // ejecute solo una vez)
     }
-
+    private float _lastGoToTime = 0f;
+    private float _cooldown = 0.05f;
+    private Vector3 _ultimoDestino;
+    private float _distanciaMinima = 0.05f;
     public void Execute(IA_P2_FSM context)
     {
+        if (context.patrolWaypoints.Count == 1)
+        {
+            Vector3 nuevoDestino = context.patrolWaypoints[0].position;
+
+            bool pasoTiempo = Time.time >= _lastGoToTime + _cooldown;
+            bool cambioDistancia = Vector3.Distance(_ultimoDestino, nuevoDestino) > _distanciaMinima;
+
+            if (pasoTiempo && cambioDistancia)
+            {
+                _lastGoToTime = Time.time;
+                _ultimoDestino = nuevoDestino;
+
+                context.agent.GoTo(nuevoDestino);
+            }
+
+            return;
+        }
+
+
+
+
+
+
+
         // [NUEVO] Comprobación de transición
         // ¿Vemos al jugador? Si es así, cambiamos a Chase.
         if (context.IsPlayerVisible())

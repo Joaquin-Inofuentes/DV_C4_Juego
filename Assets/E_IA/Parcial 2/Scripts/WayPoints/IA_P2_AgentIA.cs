@@ -51,7 +51,6 @@ public class IA_P2_AgentIA : MonoBehaviour
     {
         targetPosition.y = 0;
         int Estado = GetStateActual(targetPosition);
-        Debug.Log("El valor q dio fue " + Estado);
         if (Estado == 1) // Visible
         {
             // Limpiar waypoints
@@ -76,7 +75,19 @@ public class IA_P2_AgentIA : MonoBehaviour
         Vector3 Origen = transform.position;
         Origen.y = 0;
         targetPosition.y = 0;
-        currentPath = IA_P2_PathfindingManager.RequestPath(Origen, targetPosition, Offset);
+
+        var model = IA_P2_PathfindingModel.Instance;
+        LayerMask obstacleLayer = model.obstacleLayer;
+
+        List<Vector3> RecorridoAStar = IA_P2_PathfindingManager.RequestPath(Origen, targetPosition, Offset);
+
+        List<Vector3> RecorridoConTheta =
+            IA_F_PathFinding_Theta.OptimizarConTheta(
+                RecorridoAStar,
+                obstacleLayer
+            );
+
+        currentPath = RecorridoAStar;
 
         /*
         if (currentPath != null && currentPath.Count > 1)
@@ -99,7 +110,7 @@ public class IA_P2_AgentIA : MonoBehaviour
         // Si, desde mi pos veo al objetivo
         if (!Physics.Linecast(PosAAnalizar, targetPosition, obstacleLayer))
         {
-            Debug.Log("Es visible desde la pos actual");
+            //Debug.Log("Es visible desde la pos actual");
             return 1; // Camino directo visible
         }
         // Obtengo el último waypoint su posición
@@ -112,8 +123,8 @@ public class IA_P2_AgentIA : MonoBehaviour
                 // Trazo un rayo del último waypoint al target
                 if (!Physics.Linecast(UltimoWaypoint, targetPosition, obstacleLayer))
                 {
-                    Debug.Log("El camino aun sirve");
-                    Debug.DrawLine(UltimoWaypoint, targetPosition, Color.yellow, 2);
+                    //Debug.Log("El camino aun sirve");
+                    //Debug.DrawLine(UltimoWaypoint, targetPosition, Color.yellow, 2);
                     return 2; // Camino visible desde el último waypoint
                 }
             }
@@ -221,5 +232,41 @@ public class IA_P2_AgentIA : MonoBehaviour
         Quaternion targetRot = Quaternion.LookRotation(direction.normalized);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static List<Vector3> OptimizarConTheta(List<Vector3> RecorridoAStar)
+    {
+        // Primero revisa si 
+
+        return null;
+    }
+
+
+    /* Usa esto
+     
+
+IA_P2_LineOfSight3D. public static bool Check(Vector3 from, Vector3 to,LayerMask obstacleLayer)
+    {
+        from.y = 0;
+        to.y = 0;
+        Vector3 dir = to - from;
+        float dist = dir.magnitude;
+
+        return !Physics.Raycast(from, dir.normalized, dist, obstacleLayer);
+    }
+
+
+     */
 
 }

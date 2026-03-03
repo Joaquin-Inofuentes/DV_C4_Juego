@@ -90,13 +90,13 @@ public class IA_F_ChangeMode : MonoBehaviour
         {
             agentIA.enabled = false;
             soldadoJugador.enabled = true;
-            Debug.Log("Modo Jugador activado.");
+            //Debug.Log("Modo Jugador activado.");
         }
         else
         {
             agentIA.enabled = true;
             soldadoJugador.enabled = false;
-            Debug.Log("Modo IA activado.");
+            //Debug.Log("Modo IA activado.");
         }
     }
 }

@@ -103,9 +103,19 @@ public class IA_P2_FOV : MonoBehaviour
         {
             if (IA_P2_LineOfSight3D.Check(transform.parent.position, target.transform.position, visionObstacles))
             {
-                _visibleTargets.Add(target);
-                OnTargetDetected?.Invoke(target);
-                Debug.DrawLine(transform.parent.position, target.transform.position, detectionColor, 2f);
+                bool sonEnemigos = gameObject.name.Contains("_Agente") != target.name.Contains("_Agente");
+                if (sonEnemigos)
+                {
+                    _visibleTargets.Add(target);
+                    OnTargetDetected?.Invoke(target);
+                    Debug.Log("Se encontro a " + target.name, target);
+                    Debug.DrawLine(transform.parent.position, target.transform.position, detectionColor, 2f);
+                }
+                else
+                {
+                    Debug.Log("Se ignoro a " + target.name + " vs " + gameObject.name, target);
+                }
+
             }
             else
             {
