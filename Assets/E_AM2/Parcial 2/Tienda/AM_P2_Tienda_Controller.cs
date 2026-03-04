@@ -43,7 +43,6 @@ public class AM_P2_Tienda_Controller : MonoBehaviour
         View.ActualizarInterfaz();
     }
 
-
     // -------------------
     // COMPRAR VELOCIDAD RECARGA
     // -------------------
@@ -82,6 +81,33 @@ public class AM_P2_Tienda_Controller : MonoBehaviour
         View.ActualizarInterfaz();
     }
 
+    public AM2_F_PopUp Pedidos;
+    public void PedirComprarAlgo(string Nombre)
+    {
+        Pedidos.IniciarPoUpDeSeleccion("Seguro que desea comprar " + Nombre, (Resultado) =>
+        {
+            if (Resultado == null) return;
+            if(Resultado == true)
+            {
+                if(Nombre == "Soldados")
+                {
+                    ComprarSoldados();
+                }
+                else if(Nombre == "VelocidadDeRecarga")
+                {
+                    ComprarVelocidadRecarga();
+                }
+                else if (Nombre == "Daño")
+                {
+                    ComprarDaño();
+                }
+            }
+            else
+            {
+                Debug.Log("Se Arrepintio y cancelo la compra de " + Nombre);
+            }
+        });
+    }
 
     public void RestablecerTodo()
     {

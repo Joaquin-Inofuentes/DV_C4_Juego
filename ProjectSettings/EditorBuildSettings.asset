@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/E_AM2/Parcial 2/AM2_Principal v2.unity
     guid: c9dad2aa9e917004ab2a832bbaaaae33
-  - enabled: 0
+  - enabled: 1
     path: Assets/E_AM2/EscenaVictoria.unity
     guid: 30360fcdd63f28a49be1b7dda00df065
-  - enabled: 0
+  - enabled: 1
     path: Assets/E_AM2/EscenaDerrota.unity
     guid: fece95db96e769141b235124a82d7e81
   - enabled: 1

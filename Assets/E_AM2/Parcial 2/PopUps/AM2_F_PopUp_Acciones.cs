@@ -29,13 +29,16 @@ public class AM2_F_PopUp_Acciones : MonoBehaviour
     //- Borrar los datos de juego
     public void PedirBorrarLaData()
     {
-        Confirmaciones.IniciarPoUpDeSeleccion("¿Seguro desea volver al menu inicial?", (seleccion) =>
+        Confirmaciones.IniciarPoUpDeSeleccion("Estas a punto de borrar todo. ¿Seguro?", (seleccion) =>
             {
                 if (seleccion == null) return;
                 if (seleccion == true)
                 {
-                    PlayerPrefs.DeleteAll();
-                    Debug.Log("Se borro toda la data");
+                    Confirmaciones.IniciarPoUpDeSeleccion("¿Posta?, mira que no recuperaras tu tiempo invertido", (seleccion) =>
+                    {
+                        PlayerPrefs.DeleteAll();
+                        Debug.Log("Se borro toda la data");
+                    });
                 }
                 else
                 {
@@ -50,8 +53,8 @@ public class AM2_F_PopUp_Acciones : MonoBehaviour
 
 
     /*
-//- Comprar elementos de la tienda 
-//- Obtener recompensas tras jugar un nivel
-//- Opcional: Confirmación al intentar cerrar el juego
+        //- Comprar elementos de la tienda 
+        //- Obtener recompensas tras jugar un nivel
+        //- Opcional: Confirmación al intentar cerrar el juego
      */
 }

@@ -5,6 +5,8 @@ public class SceneLoader : MonoBehaviour
 {
     public void LoadSceneByIndex(int buildIndex)
     {
+        Debug.Log("se intento ir a la escena" + buildIndex);
+        return;
         if (buildIndex < 0 || buildIndex >= SceneManager.sceneCountInBuildSettings)
         {
             Debug.LogWarning($"Index fuera de rango: {buildIndex}");
@@ -17,6 +19,8 @@ public class SceneLoader : MonoBehaviour
     // Recarga la escena actual
     public void ReloadScene()
     {
+        Debug.Log("Se intento re cargar la escena");
+        return;
         Scene current = SceneManager.GetActiveScene();
         SceneManager.LoadScene(current.buildIndex);
     }
