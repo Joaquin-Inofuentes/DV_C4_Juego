@@ -33,6 +33,7 @@ public class AM2_P2_Aliado : MonoBehaviour
 
     public C_InputManager InputsEntradas;
 
+    public AttackState attackState;
     void Start()
     {
         balasActuales = balasMaximas;
@@ -148,6 +149,7 @@ public class AM2_P2_Aliado : MonoBehaviour
     {
         if (enemigoActual == null || puntoQueMira == null) return;
         puntoQueMira.LookAt(enemigoActual.position);
+        attackState.ActivarAtaque();
     }
 
     // =====================================================

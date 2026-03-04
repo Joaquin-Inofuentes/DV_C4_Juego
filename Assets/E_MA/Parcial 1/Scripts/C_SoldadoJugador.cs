@@ -15,7 +15,7 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
     public GameObject Geometria;
 
     public TextMeshProUGUI TextoDeSoldados;
-
+    [SerializeField] private Animator animator;
     public void OnEnable()
     {
         if (Manager != null)
@@ -49,9 +49,17 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
     private void SetMove(Vector2 input)
     {
         //Debug.Log("se recibio movimiento" + input);
+        // moveInput = input;
+        // Mover(input);
         moveInput = input;
-        Mover(input);
 
+        Vector2 movimientoReal = GetMoveInput();
+        Mover(movimientoReal);
+
+        if (animator != null)
+        {
+            animator.SetBool("IsWalking", movimientoReal.sqrMagnitude > 0.01f);
+        }
     }
     private void SetPan(Vector2 input) => panInput = input;
 

@@ -44,7 +44,7 @@ public class AttackState : MonoBehaviour
         }
         else
         {
-            Debug.Log("[AttackState] Falta el trigger shoot en animator");
+            animator.SetBool("IsWalking", true);
         }
     }
 }
