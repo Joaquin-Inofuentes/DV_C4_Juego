@@ -36408,6 +36408,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 901900106368418215, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4317670997721627072, guid: e45d2ade21d10734fa5a4b61777b3544,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36478,8 +36483,15 @@ PrefabInstance:
       propertyPath: IndicadorDeBalas
       value: 
       objectReference: {fileID: 1577305114}
+    - target: {fileID: 8202348479252907854, guid: e45d2ade21d10734fa5a4b61777b3544,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1917979156352517948, guid: e45d2ade21d10734fa5a4b61777b3544, type: 3}
+    - {fileID: 5385719995830096335, guid: e45d2ade21d10734fa5a4b61777b3544, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e45d2ade21d10734fa5a4b61777b3544, type: 3}
