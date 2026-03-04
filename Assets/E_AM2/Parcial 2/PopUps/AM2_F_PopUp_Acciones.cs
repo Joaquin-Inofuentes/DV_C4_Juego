@@ -39,10 +39,14 @@ public class AM2_F_PopUp_Acciones : MonoBehaviour
                     {
                         PlayerPrefs.DeleteAll();
                         Debug.Log("Se borro toda la data");
-                        if(ObjetoARefrescar != null)
+                        if (ObjetoARefrescar != null)
                         {
                             ObjetoARefrescar.SetActive(false);
                             ObjetoARefrescar.SetActive(true);
+                            if (AM2_Stamina.instance != null)
+                            {
+                                AM2_Stamina.instance.Start();
+                            }
                         }
                     });
                 }

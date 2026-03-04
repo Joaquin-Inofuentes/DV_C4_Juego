@@ -23,6 +23,13 @@ public class AM2_Stamina : MonoBehaviour
     public float CHECK_INTERVAL = 2f;
     public int SECONDS_PER_STAMINA = 10; // 10s
 
+    public static AM2_Stamina instance;
+
+    public void OnEnable()
+    {
+        instance = this;
+    }
+
     // -----------------------
     // START / LOAD
     // -----------------------
