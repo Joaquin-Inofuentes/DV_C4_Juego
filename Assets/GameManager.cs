@@ -5,8 +5,6 @@ using CustomInspector;
 
 public class GameManager : MonoBehaviour
 {
-    [Button(nameof(CargarEscenaAsyncDesactivada), true)]
-    public string NombreDeEscena;
     public GameObject PanelDeCargandoPantalla;
 
     public AM2_P2_RC_Manager ConfigRemote;

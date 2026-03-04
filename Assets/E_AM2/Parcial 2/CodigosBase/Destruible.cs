@@ -55,7 +55,7 @@ public class Destruible : MonoBehaviour, I_ReceivesDamage
     {
         if(gameObject.name == "COL_EnemigoGeometria")
         {
-            GanarOPerder.Instance.AgregarPunto();
+            AM2_F_GanarOPerder.Instance.AgregarPunto();
         }
     }
 }

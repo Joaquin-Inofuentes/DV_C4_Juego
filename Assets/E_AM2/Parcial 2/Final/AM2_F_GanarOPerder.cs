@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GanarOPerder : MonoBehaviour
+public class AM2_F_GanarOPerder : MonoBehaviour
 {
-    public static GanarOPerder Instance;
+    public static AM2_F_GanarOPerder Instance;
     public int Puntos = 0;
     public TextMeshProUGUI ContadorDePuntos;
-
+    public int PuntosParaGanar = 3;
 
     public void Awake()
     {
@@ -23,8 +23,8 @@ public class GanarOPerder : MonoBehaviour
     public void AgregarPunto()
     {
         Puntos ++;
-        ContadorDePuntos.text = $"{Puntos}/15";
-        if(Puntos >= 3)
+        ContadorDePuntos.text = $"{Puntos}/{PuntosParaGanar}";
+        if(Puntos >= PuntosParaGanar)
         {
             Ganar();
         }
