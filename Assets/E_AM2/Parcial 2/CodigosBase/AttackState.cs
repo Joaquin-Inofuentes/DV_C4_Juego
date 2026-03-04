@@ -25,7 +25,26 @@ public class AttackState : MonoBehaviour
     // Opcional si necesitas disparo puntual
     public void TriggerShoot()
     {
-        if (animator != null)
+        if (animator == null) return;
+
+        bool tieneShoot = false;
+
+        foreach (var p in animator.parameters)
+        {
+            if (p.name.Contains("Shoot"))
+            {
+                tieneShoot = true;
+                break;
+            }
+        }
+
+        if (tieneShoot)
+        {
             animator.SetTrigger("Shoot");
+        }
+        else
+        {
+            Debug.Log("[AttackState] Falta el trigger shoot en animator");
+        }
     }
 }

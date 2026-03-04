@@ -33,10 +33,13 @@ public class AM2_P2_RC_InitVar : MonoBehaviour
         }
     }
 
+    public bool FalloLaObtencion = false;
     public void InitAll()
     {
         AM2_P2_RC_Manager.GetInt("BalasMaximas", (val) =>
         {
+            if (val == 0) FalloLaObtencion |= true;
+            if (FalloLaObtencion) return;
             BalasMaximas = val;
             Debug.Log("BalasMaximas = " + BalasMaximas);
             CheckComplete();
@@ -44,6 +47,8 @@ public class AM2_P2_RC_InitVar : MonoBehaviour
 
         AM2_P2_RC_Manager.GetFloat("CoeficienteDeObtencionDeCurrency", (val) =>
         {
+            if (val == 0) FalloLaObtencion |= true;
+            if (FalloLaObtencion) return;
             CoeficienteDeObtencionDeCurrency = val;
             Debug.Log("CoeficienteDeObtencionDeCurrency = " + CoeficienteDeObtencionDeCurrency);
             CheckComplete();
@@ -51,21 +56,24 @@ public class AM2_P2_RC_InitVar : MonoBehaviour
 
         AM2_P2_RC_Manager.GetString("Dificultad", (val) =>
         {
-            Dificultad = val;
+            if (val == "") FalloLaObtencion |= true;
+            if (FalloLaObtencion) return;
             Debug.Log("Dificultad = " + Dificultad);
             CheckComplete();
         });
 
         AM2_P2_RC_Manager.GetFloat("VelocidadDeCaminar", (val) =>
         {
-            VelocidadDeCaminar = val;
+            if (val == 0) FalloLaObtencion |= true;
+            if (FalloLaObtencion) return;
             Debug.Log("VelocidadDeCaminar = " + VelocidadDeCaminar);
             CheckComplete();
         });
 
         AM2_P2_RC_Manager.GetInt("VidaMaximaDelJugador", (val) =>
         {
-            VidaMaximaDelJugador = val;
+            if (val == 0) FalloLaObtencion |= true;
+            if (FalloLaObtencion) return;
             Debug.Log("VidaMaximaDelJugador = " + VidaMaximaDelJugador);
             CheckComplete();
         });

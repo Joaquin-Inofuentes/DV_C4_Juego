@@ -3,8 +3,8 @@ using UnityEngine;
 public abstract class C_SoldadoTransform : MonoBehaviour
 {
     [Header("Ajustes Comunes")]
-    [SerializeField] public float velocidad = 5f;
-    [SerializeField] protected float sensibilidadRotacion = 200f;
+    public float velocidad = 5f;
+    protected float sensibilidadRotacion = 200f;
 
     [Header("Límites verticales (solo si se usan en el hijo)")]
     [SerializeField] protected float maxPitchArriba = 80f;

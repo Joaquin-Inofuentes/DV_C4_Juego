@@ -24,7 +24,7 @@ public class Destruible : MonoBehaviour, I_ReceivesDamage
             if (gameObject.layer == LayerMask.NameToLayer("Enemigos"))
             {
                 AM_P2_Tienda_Monedero.Instance.AddCurrency(300);
-                Debug.Log("se agregaron monedas");
+                //Debug.Log("se agregaron monedas");
             }
             //Debug.Log($"{gameObject.name} ha sido destruido.");
         }
@@ -39,9 +39,10 @@ public class Destruible : MonoBehaviour, I_ReceivesDamage
     {
         if (barraVida == null) return;
 
+        if (health == 0 || healthMax == 0) return;
         // 0 → 1
         float n = Mathf.Clamp01((float)health / healthMax);
-
+        
         // Escala Z desde el pivot
         barraVida.localScale = new Vector3(
             barraVida.localScale.x,

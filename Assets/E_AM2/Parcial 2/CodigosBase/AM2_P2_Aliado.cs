@@ -68,14 +68,14 @@ public class AM2_P2_Aliado : MonoBehaviour
     {
         if (input.magnitude > 0.1f)
         {
-            if(enemigoActual != null)
+            if (enemigoActual != null)
             {
                 Caminando.Invoke();
             }
         }
         else
         {
-            if(enemigoActual != null)
+            if (enemigoActual != null)
             {
                 Idle.Invoke();
             }
@@ -167,15 +167,17 @@ public class AM2_P2_Aliado : MonoBehaviour
     // =====================================================
     void EjecutarDisparo()
     {
-        if (isReloading)
-            IndicadorDeBalas.text = "Load...";
-        else
+        if (IndicadorDeBalas != null)
         {
-            IndicadorDeBalas.text = balasActuales.ToString() + "/" + balasMaximas;
+            if (isReloading)
+                IndicadorDeBalas.text = "Load...";
+            else
+            {
+                IndicadorDeBalas.text = balasActuales.ToString() + "/" + balasMaximas;
+            }
 
+            barraRecarga.parent.gameObject.SetActive(isReloading);
         }
-
-        barraRecarga.parent.gameObject.SetActive(isReloading);
         if (enemigoActual == null || isReloading) return;
 
         timerDisparo += Time.deltaTime;
@@ -188,7 +190,6 @@ public class AM2_P2_Aliado : MonoBehaviour
             {
                 if (animationState != null)
                 {
-
                     animationState.TriggerShoot();
                 }
                 else

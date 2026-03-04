@@ -6,14 +6,13 @@ using UnityEngine;
 public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
 {
     [Header("Jugador")]
-    [SerializeField] public Transform camara;
-    [SerializeField] public C_InputManager Manager;
+    public Transform camara;
+    public C_InputManager Manager;
 
     public int Vida = 100;
     public Vector2 moveInput;
     public Vector2 panInput;
     public GameObject Geometria;
-
 
     public TextMeshProUGUI TextoDeSoldados;
 

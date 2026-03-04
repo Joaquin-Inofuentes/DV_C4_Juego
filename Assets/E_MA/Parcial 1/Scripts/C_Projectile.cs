@@ -47,6 +47,8 @@ public class C_Projectile : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("Colisiono con " + collision.gameObject.name + " | " + Model.Owner.layer.ToString() + "==" + collision.gameObject.layer.ToString(), collision.gameObject);
+        if (Model.Owner == null) return;
+        if (collision == null) return;
         if (Model.Owner.layer.ToString() == collision.gameObject.layer.ToString()) return;
         //Debug.Log(collision.gameObject.name);
         view.ShowCollision(collision.gameObject);
@@ -67,7 +69,7 @@ public class C_Projectile : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        Debug.Log("Colisiono con " + collision.gameObject.name, collision.gameObject);
+        //Debug.Log("Colisiono con " + collision.gameObject.name, collision.gameObject);
     }
     public void ResetState()
     {

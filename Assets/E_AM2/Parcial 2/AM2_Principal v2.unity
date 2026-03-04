@@ -8558,10 +8558,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7830189, g: 0.7276166, b: 0.7276166, a: 0.49019608}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.6132076, g: 0.47726062, b: 0.47726062, a: 1}
     m_PressedColor: {r: 1, g: 0.7995194, b: 0, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8577,7 +8577,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1211988976}
+  m_TargetGraphic: {fileID: 547114118}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -10737,7 +10737,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.3397827, y: -59.219727}
+  m_AnchoredPosition: {x: -2.3398438, y: -59.219727}
   m_SizeDelta: {x: -23.279, y: 17.1339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882142898
@@ -11364,11 +11364,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9a06d5cb9e0264c948ad086017d251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BalasMaximas: 0
-  CoeficienteDeObtencionDeCurrency: 0
+  BalasMaximas: 15
+  CoeficienteDeObtencionDeCurrency: 0.5
   Dificultad: 
-  VelocidadDeCaminar: 0
-  VidaMaximaDelJugador: 0
+  VelocidadDeCaminar: 4
+  VidaMaximaDelJugador: 100
 --- !u!114 &964882999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20084,7 +20084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1526803589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39503,7 +39503,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 4
-  sensibilidadRotacion: 200
   maxPitchArriba: 15
   maxPitchAbajo: -30
   camara: {fileID: 0}
