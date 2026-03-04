@@ -6,6 +6,7 @@ public class AM2_F_PopUp_Acciones : MonoBehaviour
 {
     public AM2_F_PopUp Confirmaciones;
     public GameManager GM;
+    public GameObject ObjetoARefrescar;
 
     //- Dejar de jugar y volver al menú principal
     public void VolverAlMenuInicial()
@@ -38,6 +39,11 @@ public class AM2_F_PopUp_Acciones : MonoBehaviour
                     {
                         PlayerPrefs.DeleteAll();
                         Debug.Log("Se borro toda la data");
+                        if(ObjetoARefrescar != null)
+                        {
+                            ObjetoARefrescar.SetActive(false);
+                            ObjetoARefrescar.SetActive(true);
+                        }
                     });
                 }
                 else

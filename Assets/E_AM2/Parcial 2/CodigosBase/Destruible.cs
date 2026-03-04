@@ -50,4 +50,12 @@ public class Destruible : MonoBehaviour, I_ReceivesDamage
             n * escalaMaxZ
         );
     }
+
+    public void OnDestroy()
+    {
+        if(gameObject.name == "COL_EnemigoGeometria")
+        {
+            GanarOPerder.Instance.AgregarPunto();
+        }
+    }
 }
