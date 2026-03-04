@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/E_AM2/Parcial 2/Tienda/Tienda.unity
     guid: d8e78327eec0d9340a0e69d701961035
+  - enabled: 1
+    path: Assets/E_AM2/Parcial 2/AM2_Tutorial.unity
+    guid: ed07229cc02979e4d9dbac81fafebfa1
+  - enabled: 1
+    path: Assets/E_AM2/Parcial 2/AM2_Nivel 2.unity
+    guid: f47abfab4ec608c4699c7907d32479c2
   m_configObjects: {}

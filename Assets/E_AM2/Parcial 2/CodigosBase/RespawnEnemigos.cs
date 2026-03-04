@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 
 public class RespawnEnemigos : MonoBehaviour
@@ -20,12 +20,12 @@ public class RespawnEnemigos : MonoBehaviour
 
     void Update()
     {
-        // Limpieza automática (por si alguno murió / fue destruido)
+        // Limpieza automÃ¡tica (por si alguno muriÃ³ / fue destruido)
         enemigosVivos.RemoveAll(e => e == null);
 
         timer += Time.deltaTime;
 
-        // No spawnear si está lleno
+        // No spawnear si estÃ¡ lleno
         if (enemigosVivos.Count >= maxEnemigos) return;
 
         if (timer >= intervaloSpawn)

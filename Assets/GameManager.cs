@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public AM2_P2_RC_Manager ConfigRemote;
     public static GameManager Instance;
 
+    public static bool SeEstaCargandoUnaEscena;
+
     public void Start()
     {
         AM2_P2_AdsManager.Instance.HideBanner();
@@ -29,13 +31,16 @@ public class GameManager : MonoBehaviour
 
     public void CambiarDeEscena(string nombreEscena)
     {
+        SeEstaCargandoUnaEscena = true;
+        Debug.Log("Se recibio el cambio de escena a " + nombreEscena);
         if (PanelDeCargandoPantalla != null)
             PanelDeCargandoPantalla.SetActive(true);
         //UnityEngine.SceneManagement.SceneManager.LoadScene(nombreEscena);
         if (AM2_P2_AdsManager.Instance != null)
             AM2_P2_AdsManager.Instance.ShowBanner();
+        Debug.Log("Espere 1 segundo");
         EscenaCargandose = nombreEscena;
-        Invoke(nameof(CargarEscenaAsyncDesactivada), 1);
+        CargarEscenaAsyncDesactivada();
         //CargarEscenaAsyncDesactivada();
     }
 
@@ -72,7 +77,9 @@ public class GameManager : MonoBehaviour
 
     public void CargarEscenaAsyncDesactivada()
     {
+        Debug.Log("Inicio la escena con " + EscenaCargandose);
         AsyncOperation op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(EscenaCargandose);
-        op.allowSceneActivation = true;
+        if (op != null)
+            op.allowSceneActivation = true;
     }
 }

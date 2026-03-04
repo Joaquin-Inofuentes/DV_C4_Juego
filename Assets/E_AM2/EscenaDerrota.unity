@@ -237,7 +237,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7395668932555276884}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CargarEscenaAsyncDesactivada
+        m_MethodName: CambiarDeEscena
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -522,7 +522,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7395668932555276884}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CargarEscenaAsyncDesactivada
+        m_MethodName: CambiarDeEscena
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1072,7 +1072,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70d2fbe42da8ff2438db250bac5af759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NombreDeEscena: 
   PanelDeCargandoPantalla: {fileID: 7995145753686088169}
   ConfigRemote: {fileID: 0}
 --- !u!114 &7395668932555276885

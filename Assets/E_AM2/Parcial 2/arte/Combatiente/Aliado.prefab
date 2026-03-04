@@ -274,6 +274,7 @@ MonoBehaviour:
   enemigoActual: {fileID: 0}
   timerDisparo: 0
   InputsEntradas: {fileID: 0}
+  attackState: {fileID: 1116927761296176305}
   IndicadorDeBalas: {fileID: 0}
   animationState: {fileID: 1116927761296176305}
   barraRecarga: {fileID: 0}

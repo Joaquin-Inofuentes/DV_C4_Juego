@@ -17,7 +17,7 @@ public class AM2_F_PopUp_Acciones : MonoBehaviour
                 if (seleccion == true)
                 {
                     GM.CambiarDeEscena("MainMenu");
-                    Debug.Log("Se cambio a la escena MainMenu");
+                    Debug.Log("Se cambio a la escena MainMenu", gameObject);
                 }
                 else
                 {
