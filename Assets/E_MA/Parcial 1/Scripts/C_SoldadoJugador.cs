@@ -235,8 +235,14 @@ public class C_SoldadoJugador : C_SoldadoTransform, I_ReceivesDamage
     }
 
 
-    public void OnDestroy()
+
+    public void Morir()
     {
         GameManager.Instance.CambiarDeEscena("EscenaDerrota");
+
+    }
+    public void OnDestroy()
+    {
+        Debug.Log("Fue destruido el " + gameObject.name);
     }
 }

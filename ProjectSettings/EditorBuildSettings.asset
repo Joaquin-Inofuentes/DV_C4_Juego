@@ -6,15 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/NIVELES PARCIAL2/NivelesP2.unity
-    guid: 5ac68604778badc4485584dfc47ad5e0
-  - enabled: 0
     path: Assets/E_AM2/MainMenu.unity
     guid: cd3bf07d705f33547b5c2704c9f140d6
-  - enabled: 0
+  - enabled: 1
     path: Assets/E_AM2/Parcial 2/Niveles/AM2_P2_SelectorNiveles.unity
     guid: 7dd310d5c9de3904ba3b27bd92b9568c
-  - enabled: 0
+  - enabled: 1
     path: Assets/E_AM2/Parcial 2/AM2_Principal v2.unity
     guid: c9dad2aa9e917004ab2a832bbaaaae33
   - enabled: 0
@@ -23,10 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/E_AM2/EscenaDerrota.unity
     guid: fece95db96e769141b235124a82d7e81
-  - enabled: 0
+  - enabled: 1
     path: Assets/E_AM2/Parcial 2/Opciones de juego/AM2_P2_Opciones.unity
     guid: 94e49a7a1bbc1374397224376408151f
-  - enabled: 0
+  - enabled: 1
     path: Assets/E_AM2/Parcial 2/Tienda/Tienda.unity
     guid: d8e78327eec0d9340a0e69d701961035
   m_configObjects: {}
