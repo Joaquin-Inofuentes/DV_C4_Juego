@@ -1,7 +1,6 @@
 ﻿using CustomInspector;
 using System;
 using TMPro;
-using Unity.Notifications.Android;
 using UnityEngine;
 
 public class AM2_Stamina : MonoBehaviour

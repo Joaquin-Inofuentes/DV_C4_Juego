@@ -45,7 +45,7 @@ public class FoodSpawner : MonoBehaviour
     // Se ejecuta en cada frame.
     private void Update()
     {
-        Debug.Log(EntityManager.Instance.foodItems.Count + " | " + maxFoodCount);
+        //Debug.Log(EntityManager.Instance.foodItems.Count + " | " + maxFoodCount);
         // Comprueba constantemente si la cantidad de comida en la escena es menor que el máximo permitido.
         if (EntityManager.Instance.foodItems.Count < maxFoodCount)
         {
